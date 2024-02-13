@@ -10,24 +10,22 @@ const Navbar = () => {
     "
     >
       <div className="navtitle">
-        <h1 className="fs-3">ACMEMART SHOPPING SITE</h1>
+        <h1 className="fs-3">WILLY COLLECTIONS</h1>
       </div>
       <div className="navul d-flex">
-        <ul className="d-flex list-unstyled">
+        <ul className="d-flex list-unstyled py-1">
           <li>
             <Link to="/">SHOP ALL</Link>
           </li>
           <li>
-            <Link to="/">ELECTRONICS</Link>
+            <Link to="/">WOMEN'S WEAR</Link>
           </li>
           <li>
-            <Link to="/">FURNITURE</Link>
+            <Link to="/">MEN'S WEAR</Link>
           </li>
+
           <li>
             <Link to="/">HOUSEHOLDS</Link>
-          </li>
-          <li>
-            <Link to="/">SCHOOL ITEMS</Link>
           </li>
         </ul>
       </div>
