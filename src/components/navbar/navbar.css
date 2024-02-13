@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 10px;
+  background-color: rgba(233, 95, 95, 0.9);
+  box-shadow: inset;
+}
+
+.navtitle h1 {
+  font-size: 20px;
+}
+.navul ul {
+  display: flex;
+}
+
+.navul ul li {
+  list-style: none;
+  margin: 0 10px;
+  font-size: 12px;
+}
