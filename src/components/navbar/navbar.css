@@ -1,33 +1,11 @@
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 25px 10px;
-  background-color: rgba(233, 95, 95, 0.9);
-  box-shadow: inset;
-}
-
-.navtitle h1 {
-  font-size: 20px;
-}
-.navul ul {
-  display: flex;
-}
-
-.navul ul li {
-  list-style: none;
-  margin: 0 10px;
-  font-size: 12px;
-}
-.navul ul li a:hover {
-  font-size: 14px;
-  text-decoration: underline;
-  padding: 5px;
-  font-weight: bold;
-  color: gray;
-}
-
 .navul ul li a {
   text-decoration: none;
   color: black;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.navul ul li a:hover {
+  color: gray;
+  font-size: 14px;
 }
