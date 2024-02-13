@@ -4,4 +4,9 @@
 
 .lowerdiv .section {
   width: 30%;
+  cursor: pointer;
+}
+
+.lowerdiv .section:hover {
+  color: gray;
 }
