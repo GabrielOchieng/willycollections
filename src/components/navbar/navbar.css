@@ -19,3 +19,15 @@
   margin: 0 10px;
   font-size: 12px;
 }
+.navul ul li a:hover {
+  font-size: 14px;
+  text-decoration: underline;
+  padding: 5px;
+  font-weight: bold;
+  color: gray;
+}
+
+.navul ul li a {
+  text-decoration: none;
+  color: black;
+}
