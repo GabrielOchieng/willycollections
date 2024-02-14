@@ -1,5 +1,6 @@
 import "./App.css";
 import Category from "./components/category/Category";
+import Featured from "./components/featured/Featured";
 import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
 
@@ -9,6 +10,7 @@ function App() {
       <Navbar />
       <Header />
       <Category />
+      <Featured />
     </>
   );
 }

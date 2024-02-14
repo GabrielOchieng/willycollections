@@ -1,0 +1,12 @@
+.sectionf .image img {
+  height: 150px;
+}
+
+.lowerdiv .sectionf {
+  width: 15%;
+  cursor: pointer;
+}
+
+.lowerdiv .sectionf:hover {
+  transform: translate(scale(2));
+}
