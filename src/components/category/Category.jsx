@@ -16,9 +16,9 @@ const Category = () => {
         <h3>Shop by category</h3>
         <hr />
       </div>
-      <div className="lowerdiv container d-flex gap-3 flex-wrap pt-4">
+      <div className="lowerdiv container row d-flex gap-3 flex-wrap pt-4">
         <div
-          className="section p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
+          className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
 "
         >
           <div className="image">
@@ -32,7 +32,7 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">20 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={men} className="img-fluid" alt="shopping item" />
           </div>
@@ -44,7 +44,7 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">12 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={shoes} className="img-fluid" alt="shopping item" />
           </div>
@@ -56,7 +56,7 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">15 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={household} className="img-fluid" alt="shopping item" />
           </div>
@@ -68,7 +68,7 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">7 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={inner} className="img-fluid" alt="shopping item" />
           </div>
@@ -80,7 +80,7 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">35 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={sports} className="img-fluid" alt="shopping item" />
           </div>

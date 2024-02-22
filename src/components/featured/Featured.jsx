@@ -29,9 +29,9 @@ const Featured = () => {
         <h3>Featured Products</h3>
         <hr />
       </div>
-      <div className="lowerdiv container d-flex gap-3 flex-wrap pt-4">
+      <div className="lowerdiv container row d-flex gap-3 flex-wrap pt-4">
         <div
-          className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
+          className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
 "
         >
           <div className="image">
@@ -45,7 +45,7 @@ const Featured = () => {
             <h5 className="fs-6 fw-normal">KSH. 400</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={sleeveless} className="img-fluid" alt="shopping item" />
           </div>
@@ -57,7 +57,7 @@ const Featured = () => {
             <h5 className="fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={mentrouser} className="img-fluid" alt="shopping item" />
           </div>
@@ -69,7 +69,7 @@ const Featured = () => {
             <h5 className="fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={children} className="img-fluid" alt="shopping item" />
           </div>
@@ -81,7 +81,7 @@ const Featured = () => {
             <h5 className="fs-6 fw-normal">KSH. 500</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={Jeans} className="img-fluid" alt="shopping item" />
           </div>
@@ -93,7 +93,7 @@ const Featured = () => {
             <h5 className="fs-6 fw-normal">KSH. 1200</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={trousermen} className="img-fluid" alt="shopping item" />
           </div>
@@ -105,7 +105,7 @@ const Featured = () => {
             <h5 className="fs-6 fw-normal">KSH. 1100</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={dress} className="img-fluid" alt="shopping item" />
           </div>
@@ -117,7 +117,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={carpet} className="img-fluid" alt="shopping item" />
           </div>
@@ -129,7 +129,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={bowls} className="img-fluid" alt="shopping item" />
           </div>
@@ -141,7 +141,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={cookware} className="img-fluid" alt="shopping item" />
           </div>
@@ -153,7 +153,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={duvet} className="img-fluid" alt="shopping item" />
           </div>
@@ -165,7 +165,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={handbag} className="img-fluid" alt="shopping item" />
           </div>
@@ -177,7 +177,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={handbagf} className="img-fluid" alt="shopping item" />
           </div>
@@ -189,7 +189,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={dinnerset} className="img-fluid" alt="shopping item" />
           </div>
@@ -201,7 +201,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={Juiceset} className="img-fluid" alt="shopping item" />
           </div>
@@ -213,7 +213,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={Kitchenset} className="img-fluid" alt="shopping item" />
           </div>
@@ -225,7 +225,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={mats} className="img-fluid" alt="shopping item" />
           </div>
@@ -237,7 +237,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={mugs} className="img-fluid" alt="shopping item" />
           </div>
@@ -249,7 +249,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={nets} className="img-fluid" alt="shopping item" />
           </div>
@@ -261,7 +261,7 @@ const Featured = () => {
             <h5 className="price fs-6 fw-normal">KSH. 1000</h5>
           </div>
         </div>
-        <div className="sectionf p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
           <div className="image">
             <img src={smart} className="img-fluid" alt="shopping item" />
           </div>

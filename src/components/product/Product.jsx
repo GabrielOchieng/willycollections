@@ -6,7 +6,7 @@ import good from "../../assets/good.jpg";
 const Product = () => {
   return (
     <div>
-      <div className="container-fluid d-flex pt-4 gap-5 align-items-center h-75 header-shop">
+      <div className="container-fluid d-flex flex-column flex-sm-row pt-4 gap-5 align-items-center h-75 header-shop">
         <div className="leftp container position-relative">
           <img
             src={set}
@@ -14,7 +14,7 @@ const Product = () => {
             alt="shopping image"
           />
           <div
-            className="trends position-absolute top-50 translate-middle start-50 text-white p-2 bg-black text-center
+            className="trends position-absolute d-none d-md-block bottom-0 start-50  translate-middle start-md-50 text-white p-2 bg-black text-center
 "
           >
             <p className="fs-6">Latest trends</p>
