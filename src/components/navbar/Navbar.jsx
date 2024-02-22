@@ -1,69 +1,93 @@
-import React from "react";
+import { IoSearch } from "react-icons/io5";
+import { FiShoppingCart } from "react-icons/fi";
+import { IoPersonCircleOutline } from "react-icons/io5";
 import "./navbar.css";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false); // State variable for tracking menu visibility
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div
-      className="navbar d-flex bg-primary bg-gradient align-items-center px-3
+    <nav className="navbar navbar-expand-lg  fixed-top bg-primary mb-2">
+      <div className="container-fluid d-flex  justify-content-between align-items-center">
+        <button
+          className="navbar-toggler mb-2"
+          type="button"
+          onClick={toggleMenu} // Toggle menu on click
+          data-bs-toggle={isOpen ? "collapse" : ""} // Conditional collapse data-bs-toggle
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded={isOpen} // Update aria-expanded based on isOpen
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div>
+          <Link to="/" className="navbar-brand font-bolder">
+            WILLY COLLECTIONS
+          </Link>
+        </div>
 
-    "
-    >
-      <div className="navtitle">
-        <h1 className="fs-3">WILLY COLLECTIONS</h1>
-      </div>
-      <div className="navul d-flex">
-        <ul className="d-flex list-unstyled py-1">
-          <li>
-            <Link to="/">SHOP ALL</Link>
-          </li>
-          <li>
-            <Link to="/">WOMEN'S WEAR</Link>
-          </li>
-          <li>
-            <Link to="/">MEN'S WEAR</Link>
-          </li>
-
-          <li>
-            <Link to="/">HOUSEHOLDS</Link>
-          </li>
-        </ul>
-      </div>
-
-      <div className="navul ">
-        <ul className="d-flex list-unstyled fs-6">
-          <li>
-            <Link to="/">ABOUT</Link>
-          </li>
-          <li>
-            <Link to="/">CONTACT</Link>
-          </li>
-          <li>
-            <Link to="/">TRACK ORDER</Link>
-          </li>
-          <li>
-            <Link to="/">HELP</Link>
-          </li>
-          <li>
-            <Link to="/">Log In</Link>
-          </li>
-          <li>
-            <Link to="/">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-cart-dash-fill"
-                viewBox="0 0 16 16"
+        <div
+          className={`collapse navbar-collapse ${isOpen ? "show" : ""}`} // Conditional collapse class
+          id="navbarSupportedContent"
+        >
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link
+                to="/wishlist"
+                className="nav-link active"
+                aria-current="page"
               >
-                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M6.5 7h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1 0-1" />
-              </svg>
-            </Link>
-          </li>
-        </ul>
+                SHOP ALL
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/wishlist" className="nav-link">
+                WOMEN'S WEAR
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/wishlist" className="nav-link">
+                MEN'S WEAR
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/wishlist" className="nav-link">
+                HOUSEHOLDS
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <form
+            role="search"
+            className="position-relative mb-2 collapse navbar-collapse show" // Always show search form
+          >
+            <IoSearch className="position-absolute searchicon cursor-pointer" />
+            <input
+              className="form-control bg-body-tertiary me-2 rounded-pill ps-4 pe-5 "
+              type="search"
+              placeholder="Search for products..."
+              aria-label="Search"
+            />
+          </form>
+        </div>
+        <div className="d-flex gap-3 align-items-center ms-4">
+          <Link to="/product/:id" className="nav-link">
+            <FiShoppingCart />
+          </Link>
+          <Link to="/login" className="nav-link">
+            <IoPersonCircleOutline />
+          </Link>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
