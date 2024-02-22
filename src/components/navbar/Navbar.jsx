@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg  fixed-top bg-primary mb-2">
+    <nav className="navbar navbar-expand-lg mb-5 fixed-top bg-light mb-2">
       <div className="container-fluid d-flex  justify-content-between align-items-center">
         <button
           className="navbar-toggler mb-2"
@@ -69,7 +69,7 @@ const Navbar = () => {
             role="search"
             className="position-relative mb-2 collapse navbar-collapse show" // Always show search form
           >
-            <IoSearch className="position-absolute searchicon cursor-pointer" />
+            <IoSearch className="position-absolute top-30  searchicon cursor-pointer" />
             <input
               className="form-control bg-body-tertiary me-2 rounded-pill ps-4 pe-5 "
               type="search"

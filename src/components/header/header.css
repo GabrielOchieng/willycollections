@@ -1,3 +1,22 @@
 /* .header-shop img {
   max-height: 650px;
 } */
+.header-shop {
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .header-shop {
+    margin-top: 40px; /* Adjust the value for smaller screens */
+  }
+}
+@media (max-width: 675px) {
+  .header-shop {
+    margin-top: 60px; /* Adjust the value for smaller screens */
+  }
+}
+@media (max-width: 400px) {
+  .header-shop {
+    margin-top: 100px; /* Adjust the value for smaller screens */
+  }
+}
