@@ -1,10 +1,12 @@
 // import appstore from "../../assets/appstore.png";
 // import googleplay from "../../assets/googleplay.jpg";
+import { FaWhatsappSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
 import "./footer.css";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
@@ -34,10 +36,41 @@ const Contact = () => {
             </p>
           </div>
           <div className="contacticons d-flex gap-3 cursor-pointer">
-            <FaXTwitter />
-            <FaLinkedin />
-            <FaFacebook />
-            <FaSquareInstagram />
+            <Link
+              className="link"
+              to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
+              target="_blank"
+            >
+              <FaWhatsappSquare />
+            </Link>
+            <Link
+              className="link"
+              to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
+              target="_blank"
+            >
+              <FaXTwitter />
+            </Link>
+            <Link
+              className="link"
+              to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
+              target="_blank"
+            >
+              <FaLinkedin />
+            </Link>
+            <Link
+              className="link"
+              to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
+              target="_blank"
+            >
+              <FaFacebook />
+            </Link>
+            <Link
+              className="link"
+              to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
+              target="_blank"
+            >
+              <FaSquareInstagram />
+            </Link>
           </div>
         </div>
         <div className="contactitm col-12  col-lg-2 col-sm-5 text-secondary  d-flex  flex-1 flex-column">
