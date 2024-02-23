@@ -42,7 +42,6 @@ const Featured = () => {
 "
           >
             <h4 className="fs-6 fw-bolder">Women dress</h4>
-            <h5 className="fs-6 fw-normal">KSH. 400</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -54,7 +53,6 @@ const Featured = () => {
 "
           >
             <h4 className="fs-6 fw-bolder">Comfortable dress</h4>
-            <h5 className="fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -66,7 +64,6 @@ const Featured = () => {
 "
           >
             <h4 className="fs-6 fw-bolder">Men trouser</h4>
-            <h5 className="fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -78,7 +75,6 @@ const Featured = () => {
 "
           >
             <h4 className="fs-6 fw-bolder">Children Clothing</h4>
-            <h5 className="fs-6 fw-normal">KSH. 500</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -90,7 +86,6 @@ const Featured = () => {
 "
           >
             <h4 className="fs-6 fw-bolder">Jeans Trouser</h4>
-            <h5 className="fs-6 fw-normal">KSH. 1200</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -102,7 +97,6 @@ const Featured = () => {
 "
           >
             <h4 className="fs-6 fw-bolder">Men trouser</h4>
-            <h5 className="fs-6 fw-normal">KSH. 1100</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -114,7 +108,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Ladies Dress</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -126,7 +119,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Carpet</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -138,7 +130,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Bowl set</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -150,7 +141,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Cooking Utensils</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -162,7 +152,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Duvet</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -174,7 +163,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Handbag</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -186,7 +174,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Handbag</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -198,7 +185,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Dinner set</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -210,7 +196,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Juice glass</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -222,7 +207,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Kitchen set</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -234,7 +218,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Mats</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -246,7 +229,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Mugs</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 350</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -258,7 +240,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Bed net</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 1000</h5>
           </div>
         </div>
         <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
@@ -270,7 +251,6 @@ const Featured = () => {
 "
           >
             <h4 className="item fs-6 fw-bolder">Ladies wear</h4>
-            <h5 className="price fs-6 fw-normal">KSH. 1800</h5>
           </div>
         </div>
       </div>
