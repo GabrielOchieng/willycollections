@@ -3,6 +3,7 @@
 } */
 .header-shop {
   margin-top: 20px;
+  overflow-x: hidden;
 }
 
 @media (max-width: 768px) {

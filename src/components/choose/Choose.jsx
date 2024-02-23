@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaTruckFast } from "react-icons/fa6";
 import { MdLocalShipping } from "react-icons/md";
 import { SiFsecure } from "react-icons/si";
 import { FaCartArrowDown } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Choose = () => {
+  useEffect(() => {
+    AOS.init({ duration: 3000 });
+  }, []);
+
   return (
     <div className=" d-flex flex-column align-items-center pt-5">
       <div className="upperdiv text-center">
@@ -12,7 +18,10 @@ const Choose = () => {
         <h3>Why Choose Us</h3>
         <hr />
       </div>
-      <div className="lowerdiv container row d-flex gap-3 flex-wrap pt-4 justify-content-between">
+      <div
+        data-aos="fade-bottom"
+        className="lowerdiv container row d-flex gap-3 flex-wrap pt-4 justify-content-between"
+      >
         <div
           className="section col-12 col-md-3 col-lg-2 p-3  d-flex flex-column text-center align-items-center gap-3
 "

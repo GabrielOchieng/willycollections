@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import household from "../../assets/household.jpeg";
 import men from "../../assets/men.jpg";
 import shoes from "../../assets/shoes.jpeg";
@@ -7,8 +7,14 @@ import women from "../../assets/women.jpeg";
 import inner from "../../assets/inner.webp";
 import sports from "../../assets/sports.webp";
 import "./category.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Category = () => {
+  useEffect(() => {
+    AOS.init({ duration: 3000 });
+  }, []);
+
   return (
     <div className=" d-flex container flex-column align-items-center pt-5">
       <div className="upperdiv text-center">
@@ -18,6 +24,7 @@ const Category = () => {
       </div>
       <div className="lowerdiv container row d-flex justify-content-between gap-3 flex-wrap pt-4">
         <div
+          data-aos="fade-top"
           className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
 "
         >
@@ -32,7 +39,10 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">20 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-top"
+          className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={men} className="img-fluid" alt="shopping item" />
           </div>
@@ -44,7 +54,10 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">12 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-top"
+          className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={shoes} className="img-fluid" alt="shopping item" />
           </div>
@@ -56,7 +69,10 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">15 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-top"
+          className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={household} className="img-fluid" alt="shopping item" />
           </div>
@@ -68,7 +84,10 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">7 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-top"
+          className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={inner} className="img-fluid" alt="shopping item" />
           </div>
@@ -80,7 +99,10 @@ const Category = () => {
             <h5 className="fs-6 fw-normal">35 PRODUCTS</h5>
           </div>
         </div>
-        <div className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-top"
+          className="section col-12 col-md-3 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={sports} className="img-fluid" alt="shopping item" />
           </div>

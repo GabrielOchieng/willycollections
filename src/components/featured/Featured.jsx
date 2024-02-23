@@ -1,3 +1,5 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import carpet from "../../assets/carpet.jpg";
 import bowls from "../../assets/Bowls.jpg";
 import children from "../../assets/children.jpg";
@@ -18,10 +20,14 @@ import sleeveless from "../../assets/sleeveless.jpg";
 import smart from "../../assets/smart.jpg";
 import trousermen from "../../assets/trousermen.jpg";
 import womend from "../../assets/women.jpg";
-
 import "./featured.css";
+import { useEffect } from "react";
 
 const Featured = () => {
+  useEffect(() => {
+    AOS.init({ duration: 3000 });
+  }, []);
+
   return (
     <div className=" d-flex container flex-column align-items-center pt-5">
       <div className="upperdiv text-center">
@@ -31,7 +37,8 @@ const Featured = () => {
       </div>
       <div className="lowerdiv container row d-flex justify-content-between gap-3 flex-wrap pt-4">
         <div
-          className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
 "
         >
           <div className="image">
@@ -44,7 +51,10 @@ const Featured = () => {
             <h4 className="fs-6 fw-bolder">Women dress</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={sleeveless} className="img-fluid" alt="shopping item" />
           </div>
@@ -55,7 +65,10 @@ const Featured = () => {
             <h4 className="fs-6 fw-bolder">Comfortable dress</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={mentrouser} className="img-fluid" alt="shopping item" />
           </div>
@@ -66,7 +79,10 @@ const Featured = () => {
             <h4 className="fs-6 fw-bolder">Men trouser</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={children} className="img-fluid" alt="shopping item" />
           </div>
@@ -77,7 +93,10 @@ const Featured = () => {
             <h4 className="fs-6 fw-bolder">Children Clothing</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={Jeans} className="img-fluid" alt="shopping item" />
           </div>
@@ -88,7 +107,10 @@ const Featured = () => {
             <h4 className="fs-6 fw-bolder">Jeans Trouser</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={trousermen} className="img-fluid" alt="shopping item" />
           </div>
@@ -99,7 +121,10 @@ const Featured = () => {
             <h4 className="fs-6 fw-bolder">Men trouser</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={dress} className="img-fluid" alt="shopping item" />
           </div>
@@ -110,7 +135,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Ladies Dress</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={carpet} className="img-fluid" alt="shopping item" />
           </div>
@@ -121,7 +149,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Carpet</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={bowls} className="img-fluid" alt="shopping item" />
           </div>
@@ -132,7 +163,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Bowl set</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={cookware} className="img-fluid" alt="shopping item" />
           </div>
@@ -143,7 +177,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Cooking Utensils</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={duvet} className="img-fluid" alt="shopping item" />
           </div>
@@ -154,7 +191,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Duvet</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={handbag} className="img-fluid" alt="shopping item" />
           </div>
@@ -165,7 +205,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Handbag</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={handbagf} className="img-fluid" alt="shopping item" />
           </div>
@@ -176,7 +219,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Handbag</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={dinnerset} className="img-fluid" alt="shopping item" />
           </div>
@@ -187,7 +233,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Dinner set</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={Juiceset} className="img-fluid" alt="shopping item" />
           </div>
@@ -198,7 +247,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Juice glass</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={Kitchenset} className="img-fluid" alt="shopping item" />
           </div>
@@ -209,7 +261,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Kitchen set</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={mats} className="img-fluid" alt="shopping item" />
           </div>
@@ -220,7 +275,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Mats</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={mugs} className="img-fluid" alt="shopping item" />
           </div>
@@ -231,7 +289,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Mugs</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={nets} className="img-fluid" alt="shopping item" />
           </div>
@@ -242,7 +303,10 @@ const Featured = () => {
             <h4 className="item fs-6 fw-bolder">Bed net</h4>
           </div>
         </div>
-        <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle">
+        <div
+          data-aos="fade-right"
+          className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+        >
           <div className="image">
             <img src={smart} className="img-fluid" alt="shopping item" />
           </div>
