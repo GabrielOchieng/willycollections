@@ -57,10 +57,11 @@ const Navbar = () => {
                 MEN'S WEAR
               </Link>
             </li>
+
             <li className="nav-item">
-              <Link to="/wishlist" className="nav-link">
-                HOUSEHOLDS
-              </Link>
+              <a href="#contact" className="nav-link">
+                CONTACT
+              </a>
             </li>
           </ul>
         </div>

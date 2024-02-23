@@ -1,16 +1,19 @@
 // import appstore from "../../assets/appstore.png";
 // import googleplay from "../../assets/googleplay.jpg";
 import { FaWhatsappSquare } from "react-icons/fa";
+import { MdWhatsapp } from "react-icons/md";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
+import { BsTelephoneFill } from "react-icons/bs";
+
 import "./footer.css";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
   return (
-    <div className="bg-secondary-subtle column">
+    <div id="contact" className="bg-secondary-subtle column">
       <div
         className="container row d-flex flex-wrap p-3 mx-auto align-items-center justify-content-between gap-2
     "
@@ -37,35 +40,35 @@ const Contact = () => {
           </div>
           <div className="contacticons d-flex gap-3 cursor-pointer">
             <Link
-              className="link"
+              className="linki "
               to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
               target="_blank"
             >
               <FaWhatsappSquare />
             </Link>
             <Link
-              className="link"
+              className="linki "
               to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
               target="_blank"
             >
               <FaXTwitter />
             </Link>
             <Link
-              className="link"
+              className="linki "
               to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
               target="_blank"
             >
               <FaLinkedin />
             </Link>
             <Link
-              className="link"
+              className="linki "
               to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
               target="_blank"
             >
               <FaFacebook />
             </Link>
             <Link
-              className="link"
+              className="linki "
               to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
               target="_blank"
             >
@@ -137,15 +140,47 @@ const Contact = () => {
 
 "
             >
-              RESOURCES
+              Contacts
             </h5>
           </div>
           <div className="contactul">
             <ul>
-              <li>Free eBooks</li>
-              <li>Development Tutorial</li>
-              <li>How to - Blog</li>
-              <li>Youtube Playlist</li>
+              <li>
+                <Link
+                  className="linki "
+                  to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
+                  target="_blank"
+                >
+                  <FaWhatsappSquare />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="linki "
+                  to={"https://wa.me/254705956148"}
+                  target="_blank"
+                >
+                  <MdWhatsapp />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="linki "
+                  to={"tel:+254-0-595-6148"}
+                  target="_blank"
+                >
+                  <BsTelephoneFill />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="linki "
+                  to={"https://chat.whatsapp.com/B50fzuvFHtA4R0aXWM8Xxs"}
+                  target="_blank"
+                >
+                  +254705956148
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

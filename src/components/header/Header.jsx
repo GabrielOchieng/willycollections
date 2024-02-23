@@ -29,7 +29,7 @@ const Header = () => {
           shoes, bags, art products and other items.
         </p>
         <p>Find all quality items you need at affordable prices</p>
-        <h5>Delivery at your doorstep</h5>
+        <h5>Delivery done countrywide at a small fee.</h5>
         <button type="button" className="btn btn-dark fs-2">
           Shop Now
         </button>
