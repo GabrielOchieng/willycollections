@@ -12,7 +12,7 @@ const Choose = () => {
         <h3>Why Choose Us</h3>
         <hr />
       </div>
-      <div className="lowerdiv container row d-flex gap-3 flex-wrap pt-4">
+      <div className="lowerdiv container row d-flex gap-3 flex-wrap pt-4 justify-content-between">
         <div
           className="section col-12 col-md-3 col-lg-2 p-3  d-flex flex-column text-center align-items-center gap-3
 "

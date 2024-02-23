@@ -23,13 +23,13 @@ import "./featured.css";
 
 const Featured = () => {
   return (
-    <div className=" d-flex flex-column align-items-center pt-5">
+    <div className=" d-flex container flex-column align-items-center pt-5">
       <div className="upperdiv text-center">
         <p>Shop by category</p>
         <h3>Featured Products</h3>
         <hr />
       </div>
-      <div className="lowerdiv container row d-flex gap-3 flex-wrap pt-4">
+      <div className="lowerdiv container row d-flex justify-content-between gap-3 flex-wrap pt-4">
         <div
           className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
 "

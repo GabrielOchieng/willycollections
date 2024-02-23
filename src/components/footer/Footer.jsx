@@ -20,11 +20,11 @@ const Contact = () => {
         >
           <div className="contacttitle">
             <h1
-              className="text-black font-bolder fs-2
+              className="text-black font-bolder fs-5
 
 "
             >
-              ACMEMART
+              WILLYCOLLECTIONS
             </h1>
           </div>
           <div className="contactp">
@@ -120,7 +120,7 @@ const Contact = () => {
       <hr className="container" />
       <div className="lowest container pb-2 d-flex align-items-center flex-wrap justify-content-between">
         <div className="leftlowest">
-          <p>WILLYCOLLECTIONS &copy; 2024. All rights reserved</p>
+          <p>THEGABRIELSHOW &copy; 2024. All rights reserved</p>
         </div>
         <div className="rightlowest d-flex flex-wrap gap-2">
           {/* <img src={googleplay} alt="googleplay" /> */}

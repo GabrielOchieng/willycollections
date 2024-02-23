@@ -5,7 +5,7 @@ import good from "../../assets/good.jpg";
 
 const Product = () => {
   return (
-    <div>
+    <div className="container">
       <div className="container-fluid d-flex flex-column flex-sm-row pt-4 gap-5 align-items-center h-75 header-shop">
         <div className="leftp container position-relative">
           <img
