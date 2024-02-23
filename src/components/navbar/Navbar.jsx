@@ -67,18 +67,18 @@ const Navbar = () => {
         <div>
           <form
             role="search"
-            className="position-relative mb-2 collapse navbar-collapse show" // Always show search form
+            className="mb-2 border rounded-pill collapse me-2 p-1 d-flex navbar-collapse show" // Always show search form
           >
-            <IoSearch className="position-absolute top-30  searchicon cursor-pointer" />
+            <IoSearch className="searchicon cursor-pointer" />
             <input
-              className="form-control bg-body-tertiary me-2 rounded-pill ps-4 pe-5 "
+              className="form-control bg-body-tertiary border-0 shadow-none "
               type="search"
               placeholder="Search for products..."
               aria-label="Search"
             />
           </form>
         </div>
-        <div className="d-flex gap-3 align-items-center ms-4">
+        <div className="d-flex gap-3 align-items-center ms-0 ms-lg-4">
           <Link to="/product/:id" className="nav-link">
             <FiShoppingCart />
           </Link>

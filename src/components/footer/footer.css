@@ -1,0 +1,46 @@
+.contactitm {
+  flex: 1;
+}
+
+.contactitm p {
+  font-size: 12px;
+}
+
+.contactitm ul li {
+  font-size: 12px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.maindivc {
+  position: relative;
+}
+
+.updatedcomp {
+  position: absolute;
+  top: 50px;
+  color: aqua;
+}
+
+.lowest img {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.updatedcont {
+  position: absolute;
+  top: -100px;
+  left: 100px;
+}
+
+.upright {
+  width: 50%;
+  align-items: end;
+}
+
+.upright form input,
+.btnsub {
+  width: 100%;
+}
