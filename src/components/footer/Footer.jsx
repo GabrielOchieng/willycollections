@@ -1,15 +1,17 @@
-import React from "react";
+// import appstore from "../../assets/appstore.png";
+// import googleplay from "../../assets/googleplay.jpg";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
+import "./footer.css";
 
-const Footer = () => {
+const Contact = () => {
   return (
     <div className="bg-secondary-subtle column">
       <div
         className="container row d-flex flex-wrap p-3 mx-auto align-items-center justify-content-between gap-2
-  "
+    "
       >
         <div
           className="contactitm  col-lg-2  col-12 col-md-12  text-secondary d-flex flex-1 flex-column gap-1
@@ -38,7 +40,7 @@ const Footer = () => {
             <FaSquareInstagram />
           </div>
         </div>
-        <div className="contactitm col-12  col-lg-2 col-sm-5 text-secondary  d-flex flex-1 flex-column">
+        <div className="contactitm col-12  col-lg-2 col-sm-5 text-secondary  d-flex  flex-1 flex-column">
           <div className="contacthead">
             <h5
               className="text-black
@@ -118,7 +120,7 @@ const Footer = () => {
       <hr className="container" />
       <div className="lowest container pb-2 d-flex align-items-center flex-wrap justify-content-between">
         <div className="leftlowest">
-          <p>THEGABRIELSHOW &copy; 2024. All rights reserved</p>
+          <p>WILLYCOLLECTIONS &copy; 2024. All rights reserved</p>
         </div>
         <div className="rightlowest d-flex flex-wrap gap-2">
           {/* <img src={googleplay} alt="googleplay" /> */}
@@ -129,4 +131,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Contact;

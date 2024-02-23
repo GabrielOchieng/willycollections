@@ -3,7 +3,6 @@ import { FaStar } from "react-icons/fa";
 
 const Testimonials = () => {
   return (
-    // className="lowerdiv container-fluid row d-flex justify-content-center gap-3 flex-wrap pt-5
     <div className="lowerdiv container ms-0 row d-flex gap-3 flex-wrap pt-4">
       <div
         className="sectiont col-12 col-sm-5 col-lg-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
