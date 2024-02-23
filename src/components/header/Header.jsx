@@ -52,7 +52,7 @@ const Header = () => {
       <div className="right container">
         <img
           src={shopping}
-          className="img-fluid img-thumbnail"
+          className="img-fluid mt-2 img-thumbnail"
           alt="shopping image"
         />
       </div>
