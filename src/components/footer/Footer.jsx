@@ -121,25 +121,6 @@ const Contact = () => {
 
 "
             >
-              FAQ
-            </h5>
-          </div>
-          <div className="contactul">
-            <ul>
-              <li>Account</li>
-              <li>Manage Deliveries</li>
-              <li>Orders</li>
-              <li>Payments</li>
-            </ul>
-          </div>
-        </div>
-        <div className="contactitm col-12  col-lg-2 col-sm-5 text-secondary d-flex flex-1 flex-column">
-          <div className="contacthead">
-            <h5
-              className="text-black
-
-"
-            >
               Contacts
             </h5>
           </div>
@@ -181,6 +162,25 @@ const Contact = () => {
                   +254705956148
                 </Link>
               </li>
+            </ul>
+          </div>
+        </div>
+        <div className="contactitm col-12  col-lg-2 col-sm-5 text-secondary d-flex flex-1 flex-column">
+          <div className="contacthead">
+            <h5
+              className="text-black
+
+"
+            >
+              FAQ
+            </h5>
+          </div>
+          <div className="contactul">
+            <ul>
+              <li>Account</li>
+              <li>Manage Deliveries</li>
+              <li>Orders</li>
+              <li>Payments</li>
             </ul>
           </div>
         </div>
