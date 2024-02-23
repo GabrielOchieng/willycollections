@@ -17,7 +17,7 @@ const Choose = () => {
           className="section col-12 col-md-3 col-lg-2 p-3  d-flex flex-column text-center align-items-center gap-3
 "
         >
-          <FaTruckFast className="text-warning-emphasis fs-1" />
+          <FaTruckFast className="text-danger-emphasis fs-1" />
           <h3>Fast Delivery</h3>
           <p className="text-body-tertiary">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
@@ -29,7 +29,7 @@ const Choose = () => {
           className="section col-12 col-md-3 col-lg-2 p-3  d-flex flex-column text-center align-items-center gap-3
 "
         >
-          <FaTruckFast className="text-warning-emphasis fs-1" />
+          <MdLocalShipping className="text-danger-emphasis fs-1" />
           <h3>Free Shipping</h3>
           <p className="text-body-tertiary">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
@@ -41,7 +41,7 @@ const Choose = () => {
           className="section col-12 col-md-3 col-lg-2 p-3  d-flex flex-column text-center align-items-center gap-3
 "
         >
-          <FaTruckFast className="text-warning-emphasis fs-1" />
+          <SiFsecure className="text-danger-emphasis fs-1" />
           <h3>Secure Checkout</h3>
           <p className="text-body-tertiary">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
@@ -53,7 +53,7 @@ const Choose = () => {
           className="section col-12 col-md-3 col-lg-2 p-3  d-flex flex-column text-center align-items-center gap-3
 "
         >
-          <FaTruckFast className="text-warning-emphasis fs-1" />
+          <FaCartArrowDown className="text-danger-emphasis fs-1" />
           <h3>Easy Returns</h3>
           <p className="text-body-tertiary">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,
