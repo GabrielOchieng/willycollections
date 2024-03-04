@@ -83,7 +83,7 @@ const Navbar = () => {
           <Link to="/product/:id" className="nav-link">
             <FiShoppingCart />
           </Link>
-          <Link to="/login" className="nav-link">
+          <Link to="/auth" className="nav-link">
             <IoPersonCircleOutline />
           </Link>
         </div>
