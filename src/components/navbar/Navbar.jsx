@@ -80,7 +80,7 @@ const Navbar = () => {
           </form>
         </div>
         <div className="d-flex gap-3 align-items-center ms-0 ms-lg-4">
-          <Link to="/product/:id" className="nav-link">
+          <Link to="/create" className="nav-link">
             <FiShoppingCart />
           </Link>
           <Link to="/auth" className="nav-link">
