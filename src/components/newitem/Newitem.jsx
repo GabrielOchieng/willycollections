@@ -45,7 +45,7 @@ const Newitem = () => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
+            setData((prev) => ({ ...prev, img: downloadURL }));
           });
         }
       );
