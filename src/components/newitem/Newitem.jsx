@@ -1,15 +1,36 @@
-import React from "react";
-
-const handleLogin = (e) => {
-  e.preventDefault();
-};
+import React, { useState } from "react";
+import {
+  collection,
+  doc,
+  setDoc,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "../../firebase";
 
 const Newitem = () => {
+  const [email, setEmail] = useState("");
+  const [data, setData] = useState({});
+
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await addDoc(collection(db, "cities"), {
+        name: "Los Angeles",
+        state: "CA",
+        country: "USA",
+        timeStamp: serverTimestamp(),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="container d-flex flex-column align-items-center">
       <h1>New Item</h1>
       <div className="container border p-3 mt-2 rounded">
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleAdd}>
           <div className="mb-3">
             <label htmlFor="exampleInputname1" className="form-label">
               Item Name
