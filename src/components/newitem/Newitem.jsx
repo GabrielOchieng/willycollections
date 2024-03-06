@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   collection,
   doc,
@@ -7,17 +7,57 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase";
+import {
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  getStorage,
+} from "firebase/storage";
 
 const Newitem = () => {
   const [data, setData] = useState({});
+  const [file, setFile] = useState("");
+
+  useEffect(() => {
+    const uploadFile = () => {
+      const name = new Date().getTime() + file.name;
+      const storageRef = ref(storage, file.name);
+
+      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
+    };
+    file && uploadFile();
+  }, [file]);
 
   const handleInput = (e) => {
     const id = e.target.id;
     const value = e.target.value;
 
     setData({ ...data, [id]: value });
-
-    console.log(data);
   };
 
   const handleAdd = async (e) => {
@@ -82,9 +122,9 @@ const Newitem = () => {
             <input
               type="file"
               className="form-control"
-              id="exampleInputimage1"
+              id="file"
               aria-describedby="emailHelp"
-              onChange={handleInput}
+              onChange={(e) => setFile(e.target.files[0])}
             />
           </div>
 
