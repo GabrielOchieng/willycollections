@@ -9,8 +9,16 @@ import {
 import { db } from "../../firebase";
 
 const Newitem = () => {
-  const [email, setEmail] = useState("");
   const [data, setData] = useState({});
+
+  const handleInput = (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    setData({ ...data, [id]: value });
+
+    console.log(data);
+  };
 
   const handleAdd = async (e) => {
     e.preventDefault();
@@ -40,7 +48,7 @@ const Newitem = () => {
               className="form-control"
               id="exampleInputname1"
               aria-describedby="emailHelp"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleInput}
             />
           </div>
           <div className="mb-3">
@@ -52,7 +60,7 @@ const Newitem = () => {
               className="form-control"
               id="exampleInputtype1"
               aria-describedby="emailHelp"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleInput}
             />
           </div>
           <div className="mb-3">
@@ -64,7 +72,7 @@ const Newitem = () => {
               className="form-control"
               id="exampleInputprice1"
               aria-describedby="emailHelp"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleInput}
             />
           </div>
           <div className="mb-3">
@@ -76,7 +84,7 @@ const Newitem = () => {
               className="form-control"
               id="exampleInputimage1"
               aria-describedby="emailHelp"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleInput}
             />
           </div>
 
