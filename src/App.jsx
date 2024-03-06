@@ -13,7 +13,6 @@ function App() {
     return currentUser ? children : <Navigate to="/auth" />;
   };
 
-  console.log(currentUser);
   return (
     <>
       <Routes>

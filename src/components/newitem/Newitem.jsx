@@ -6,7 +6,7 @@ import {
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db, storage } from "../../firebase";
 import {
   ref,
   uploadBytesResumable,
@@ -17,12 +17,16 @@ import {
 const Newitem = () => {
   const [data, setData] = useState({});
   const [file, setFile] = useState("");
+  const [per, setPer] = useState(null);
 
   useEffect(() => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
-      const storageRef = ref(storage, file.name);
 
+      const metadata = {
+        contentType: "image/jpeg",
+      };
+      const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file, metadata);
 
       uploadTask.on(
@@ -31,6 +35,10 @@ const Newitem = () => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
+
+          //showing the progress
+          setPer(progress);
+
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -128,7 +136,11 @@ const Newitem = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary">
+          <button
+            disabled={per !== null && per < 100}
+            type="submit"
+            className="btn btn-primary"
+          >
             Add Item
           </button>
         </form>
