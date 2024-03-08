@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ItemDataService from "../../services/item_services";
 // import {
 //   collection,
 //   doc,
@@ -88,10 +89,29 @@ const Newitem = () => {
       // img: img,
     };
     console.log(newItem);
+
+    try {
+      await ItemDataService.addItems(newItem);
+      setMessage({ error: false, msg: "New item added successfully" });
+    } catch (error) {
+      setMessage({ error: true, msg: error.message });
+    }
+    setName("");
+    setType("");
+    setPrice("");
   };
 
   return (
     <div className="container d-flex flex-column align-items-center">
+      {/* {message?.msg && (
+        <Alert
+          variant={message?.error ? "danger" : "success"}
+          dismissible
+          onClose={() => setMessage("")}
+        >
+          {message?.msg}
+        </Alert>
+      )} */}
       <h1>New Item</h1>
       <div className="container border p-3 mt-2 rounded">
         <form onSubmit={handleAdd}>
