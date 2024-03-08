@@ -1,0 +1,43 @@
+import { db } from "../firebase";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  setDoc,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+
+const itemCollectionRef = collection(db, "items");
+
+const ItemDataService = () => {
+  addItems = (newItem) => {
+    return addDoc(itemCollectionRef, newItem);
+  };
+
+  updateItem = (id, updatedItem) => {
+    const itemDoc = doc(db, "items", id);
+    return updateDoc(itemDoc, updatedItem);
+  };
+
+  deleteItem = (id) => {
+    const itemDoc = doc(db, "items", id);
+    return deleteDoc(itemDoc);
+  };
+
+  getAllItems = () => {
+    return getDocs(itemCollectionRef);
+  };
+
+  getItem = (id) => {
+    const itemDoc = doc(db, "items", id);
+    return getDoc(itemDoc);
+  };
+
+  return;
+};
+
+export default ItemDataService;
