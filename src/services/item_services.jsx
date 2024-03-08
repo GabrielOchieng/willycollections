@@ -13,7 +13,7 @@ import {
 
 const itemCollectionRef = collection(db, "items");
 
-const ItemDataService = () => {
+class ItemDataService {
   addItems = (newItem) => {
     return addDoc(itemCollectionRef, newItem);
   };
@@ -38,6 +38,6 @@ const ItemDataService = () => {
   };
 
   return;
-};
+}
 
-export default ItemDataService;
+export default new ItemDataService();

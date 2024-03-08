@@ -21,21 +21,52 @@ import smart from "../../assets/smart.jpg";
 import trousermen from "../../assets/trousermen.jpg";
 import womend from "../../assets/women.jpg";
 import "./featured.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ItemDataService from "../../services/item_services";
 
 const Featured = () => {
+  const [items, setItems] = useState([]);
+
   useEffect(() => {
     AOS.init({ duration: 3000 });
+    getItems();
   }, []);
 
+  const getItems = async () => {
+    const data = await ItemDataService.getAllItems();
+    console.log(data.docs);
+    setItems(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
   return (
     <div className=" d-flex container flex-column align-items-center pt-5">
+      <pre>{JSON.stringify(items, undefined, 2)}</pre>
       <div className="upperdiv text-center">
         <p>Shop by category</p>
         <h3>Featured Products</h3>
         <hr />
       </div>
       <div className="lowerdiv container row d-flex justify-content-between gap-3 flex-wrap pt-4">
+        {items.map((doc, index) => {
+          return (
+            <div
+              key={doc.id}
+              data-aos="fade-right"
+              className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
+"
+            >
+              <div className="image">
+                <img src={womend} className="img-fluid" alt="shopping item" />
+              </div>
+              <div
+                className="wprice text-center w-100 p-2
+"
+              >
+                <h4 className="fs-6 fw-bolder">{doc.name}</h4>
+              </div>
+            </div>
+          );
+        })}
+
         <div
           data-aos="fade-right"
           className="sectionf  col-12 col-sm-5 col-lg-2 col-md-3 p-3  d-flex flex-column align-items-center gap-3 bg-secondary-subtle
