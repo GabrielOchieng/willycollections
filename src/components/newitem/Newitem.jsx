@@ -1,85 +1,93 @@
 import React, { useEffect, useState } from "react";
-import {
-  collection,
-  doc,
-  setDoc,
-  addDoc,
-  serverTimestamp,
-} from "firebase/firestore";
-import { db, storage } from "../../firebase";
-import {
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-  getStorage,
-} from "firebase/storage";
+// import {
+//   collection,
+//   doc,
+//   setDoc,
+//   addDoc,
+//   serverTimestamp,
+// } from "firebase/firestore";
+// import { db, storage } from "../../firebase";
+// import {
+//   ref,
+//   uploadBytesResumable,
+//   getDownloadURL,
+//   getStorage,
+// } from "firebase/storage";
 
 const Newitem = () => {
-  const [data, setData] = useState({});
   const [file, setFile] = useState("");
   const [per, setPer] = useState(null);
 
-  useEffect(() => {
-    const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
+  const [message, setMessage] = useState({ error: false, msg: "" });
 
-      const metadata = {
-        contentType: "image/jpeg",
-      };
-      const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+  // useEffect(() => {
+  //   const uploadFile = () => {
+  //     const name = new Date().getTime() + file.name;
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
+  //     const metadata = {
+  //       contentType: "image/jpeg",
+  //     };
+  //     const storageRef = ref(storage, file.name);
+  //     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
 
-          //showing the progress
-          setPer(progress);
+  //     uploadTask.on(
+  //       "state_changed",
+  //       (snapshot) => {
+  //         const progress =
+  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //         console.log("Upload is " + progress + "% done");
 
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-          }
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setData((prev) => ({ ...prev, img: downloadURL }));
-          });
-        }
-      );
-    };
-    file && uploadFile();
-  }, [file]);
+  //         //showing the progress
+  //         setPer(progress);
 
-  const handleInput = (e) => {
-    const id = e.target.id;
-    const value = e.target.value;
+  //         switch (snapshot.state) {
+  //           case "paused":
+  //             console.log("Upload is paused");
+  //             break;
+  //           case "running":
+  //             console.log("Upload is running");
+  //             break;
+  //         }
+  //       },
+  //       (error) => {
+  //         console.log(error);
+  //       },
+  //       () => {
+  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+  //           setData((prev) => ({ ...prev, img: downloadURL }));
+  //         });
+  //       }
+  //     );
+  //   };
+  //   file && uploadFile();
+  // }, [file]);
 
-    setData({ ...data, [id]: value });
+  const handleInput = async (e) => {
+    e.preventDefault();
+    setMessage;
   };
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    try {
-      const res = await addDoc(collection(db, "cities"), {
-        name: "Los Angeles",
-        state: "CA",
-        country: "USA",
-        timeStamp: serverTimestamp(),
+    setMessage("");
+    if (name === "" || type === "" || price === "") {
+      setMessage({
+        error: true,
+        msg: "Please fill all the fields",
       });
-    } catch (err) {
-      console.log(err);
+      return;
     }
+    const newItem = {
+      name,
+      type,
+      price,
+      // img: img,
+    };
+    console.log(newItem);
   };
 
   return (
@@ -96,7 +104,8 @@ const Newitem = () => {
               className="form-control"
               id="exampleInputname1"
               aria-describedby="emailHelp"
-              onChange={handleInput}
+              onChange={(e) => setName(e.target.value)}
+              value={name}
             />
           </div>
           <div className="mb-3">
@@ -108,7 +117,8 @@ const Newitem = () => {
               className="form-control"
               id="exampleInputtype1"
               aria-describedby="emailHelp"
-              onChange={handleInput}
+              onChange={(e) => setType(e.target.value)}
+              value={type}
             />
           </div>
           <div className="mb-3">
@@ -120,10 +130,11 @@ const Newitem = () => {
               className="form-control"
               id="exampleInputprice1"
               aria-describedby="emailHelp"
-              onChange={handleInput}
+              onChange={(e) => setPrice(e.target.value)}
+              value={price}
             />
           </div>
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <label htmlFor="exampleInputimage1" className="form-label">
               Item Image
             </label>
@@ -131,10 +142,11 @@ const Newitem = () => {
               type="file"
               className="form-control"
               id="file"
+              value={image}
               aria-describedby="emailHelp"
               onChange={(e) => setFile(e.target.files[0])}
             />
-          </div>
+          </div> */}
 
           <button
             disabled={per !== null && per < 100}
