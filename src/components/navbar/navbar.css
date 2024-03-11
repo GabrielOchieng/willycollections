@@ -9,3 +9,9 @@
   color: gray;
   font-size: 14px;
 }
+
+.active {
+  /* Customize active link styles (e.g., font-weight, background-color) */
+  font-weight: bold;
+  color: #007bff; /* Bootstrap primary color */
+}
