@@ -77,15 +77,6 @@ const NewItem = () => {
 
   return (
     <div className="container p-5 mt-5 d-flex flex-column align-items-center">
-      {/* {message?.msg && (
-      <Alert
-        variant={message?.error ? "danger" : "success"}
-        dismissible
-        onClose={() => setMessage("")}
-      >
-        {message?.msg}
-      </Alert>
-    )} */}
       <h1>New Item</h1>
       <div className="container border p-3 mt-2 rounded shadow">
         <form onSubmit={handleSubmit} className="row">
