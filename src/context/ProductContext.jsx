@@ -75,7 +75,7 @@ export const ProductContextProvider = ({ children }) => {
                 itemName: change.doc.data().name,
                 itemType: change.doc.data().type,
                 itemPrice: change.doc.data().price,
-                itemImg: change.doc.data().image,
+                itemImg: change.doc.data().imageUrl,
               },
             ]);
           } else if (change.type === "modified" || change.type === "removed") {

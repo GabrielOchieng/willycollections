@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid"; // Import uuid for unique ID generation
 import { serverTimestamp } from "firebase/firestore";
 import ItemDataService from "../../services/item_services";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+  uploadBytesResumable,
+} from "firebase/storage";
 
 const NewItem = () => {
   const [file, setFile] = useState(null);
@@ -42,11 +48,22 @@ const NewItem = () => {
 
       console.log("Uploading Data to Firestore: \n", newItem);
 
+      const name = new Date().getTime() + file.name;
       const storage = getStorage();
-      const storageRef = ref(storage, imageUrl);
+      const storageRef = ref(storage, file.name);
 
-      await uploadBytes(storageRef, image);
-      console.log("Image uploaded successfully");
+      const uploadTask = uploadBytesResumable(storageRef, image);
+
+      getDownloadURL(storageRef)
+        .then((url) => {
+          // Use the downloaded URL in the image src
+          // <img src={url} alt="My Image" />;
+          console.log(url);
+        })
+        .catch((error) => {
+          console.error("Error getting image URL:", error);
+          // Handle error gracefully, display a placeholder image, etc.
+        });
 
       setName("");
       setType("");
