@@ -7,8 +7,9 @@ import { getStorage, ref, uploadBytes } from "firebase/storage";
 const NewItem = () => {
   const [file, setFile] = useState(null);
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [price, setPrice] = useState("");
+  const [type, setType] = useState("");
+  const [per, setPer] = useState("");
 
   let image = file;
 
@@ -30,8 +31,8 @@ const NewItem = () => {
 
     const newItem = {
       name,
-      email,
-      message,
+      price,
+      type,
       imageUrl,
       timestamp: serverTimestamp(),
     };
@@ -48,8 +49,8 @@ const NewItem = () => {
       console.log("Image uploaded successfully");
 
       setName("");
-      setEmail("");
-      setMessage("");
+      setType("");
+      setPrice("");
       setFile(null); // Clear file input after successful submission
     } catch (error) {
       console.error("Error adding data:", error);
@@ -58,27 +59,79 @@ const NewItem = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="file" onChange={handleFileChange} />
-      <input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <textarea
-        placeholder="Message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-      <button type="submit">Submit</button>
-    </form>
+    <div className="container d-flex flex-column align-items-center">
+      {/* {message?.msg && (
+      <Alert
+        variant={message?.error ? "danger" : "success"}
+        dismissible
+        onClose={() => setMessage("")}
+      >
+        {message?.msg}
+      </Alert>
+    )} */}
+      <h1>New Item</h1>
+      <div className="container border p-3 mt-2 rounded shadow">
+        <form onSubmit={handleSubmit} className="row">
+          <div className="mb-3 col-md-6">
+            <label htmlFor="exampleInputname1" className="form-label">
+              Item Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputname1"
+              aria-describedby="emailHelp"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <label htmlFor="exampleInputtype1" className="form-label">
+              Item Type
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="exampleInputtype1"
+              aria-describedby="emailHelp"
+              onChange={(e) => setType(e.target.value)}
+              value={type}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <label htmlFor="exampleInputprice1" className="form-label">
+              Item Price
+            </label>
+            <input
+              type="number"
+              className="form-control"
+              id="exampleInputprice1"
+              aria-describedby="emailHelp"
+              onChange={(e) => setPrice(e.target.value)}
+              value={price}
+            />
+          </div>
+          <div className="mb-3 col-md-6">
+            <label htmlFor="fileInput" className="form-label">
+              Item Image
+            </label>
+            <input
+              type="file"
+              id="fileInput"
+              className="form-control"
+              onChange={handleFileChange}
+            />
+          </div>
+          <button
+            // disabled={per !== null && per < 100}
+            type="submit"
+            className="btn btn-primary col-12 mt-3"
+          >
+            Add Item
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 
