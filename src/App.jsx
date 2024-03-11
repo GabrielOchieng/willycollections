@@ -5,6 +5,8 @@ import LandingPage from "./pages/LandingPage";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import CreateItemPage from "./pages/CreateItemPage";
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -15,6 +17,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <Routes>
         <Route
           path="/"
@@ -34,6 +37,7 @@ function App() {
         />
         <Route path="/auth" element={<AuthPage />} />
       </Routes>
+      <Footer />
     </>
   );
 }
