@@ -1,4 +1,5 @@
-import { db } from "../firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { db, storage } from "../firebase";
 import {
   collection,
   doc,
@@ -11,9 +12,25 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-const itemCollectionRef = collection(db, "items");
+const itemCollectionRef = collection(db, "form-data");
 
 class ItemDataService {
+  // addItems = async (newItem, file) => {
+  //   try {
+  //     if (file && newItem.id) {
+  //       const storageRef = ref(storage, `items/${newItem.id}`); // Create storage reference
+  //       const uploadTask = await uploadBytes(storageRef, file); // Upload file
+  //       const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+  //       newItem.fileURL = downloadURL; // Add file URL to item data
+  //     }
+  //   } catch (error) {
+  //     console.error("Error adding item:", error); // Handle any errors
+  //     throw error; // Rethrow to allow for further handling
+  //   }
+
+  //   return addDoc(itemCollectionRef, newItem);
+  // };
+
   addItems = (newItem) => {
     return addDoc(itemCollectionRef, newItem);
   };

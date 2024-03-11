@@ -1,184 +1,85 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid"; // Import uuid for unique ID generation
+import { serverTimestamp } from "firebase/firestore";
 import ItemDataService from "../../services/item_services";
-// import {
-//   collection,
-//   doc,
-//   setDoc,
-//   addDoc,
-//   serverTimestamp,
-// } from "firebase/firestore";
-// import { db, storage } from "../../firebase";
-// import {
-//   ref,
-//   uploadBytesResumable,
-//   getDownloadURL,
-//   getStorage,
-// } from "firebase/storage";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 
-const Newitem = () => {
-  const [file, setFile] = useState("");
-  const [per, setPer] = useState(null);
-
+const NewItem = () => {
+  const [file, setFile] = useState(null);
   const [name, setName] = useState("");
-  const [type, setType] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
-  const [message, setMessage] = useState({ error: false, msg: "" });
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  // useEffect(() => {
-  //   const uploadFile = () => {
-  //     const name = new Date().getTime() + file.name;
+  let image = file;
 
-  //     const metadata = {
-  //       contentType: "image/jpeg",
-  //     };
-  //     const storageRef = ref(storage, file.name);
-  //     const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress =
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-  //         console.log("Upload is " + progress + "% done");
-
-  //         //showing the progress
-  //         setPer(progress);
-
-  //         switch (snapshot.state) {
-  //           case "paused":
-  //             console.log("Upload is paused");
-  //             break;
-  //           case "running":
-  //             console.log("Upload is running");
-  //             break;
-  //         }
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       },
-  //       () => {
-  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //           setData((prev) => ({ ...prev, img: downloadURL }));
-  //         });
-  //       }
-  //     );
-  //   };
-  //   file && uploadFile();
-  // }, [file]);
-
-  const handleInput = async (e) => {
-    e.preventDefault();
-    setMessage;
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
   };
 
-  const handleAdd = async (e) => {
-    e.preventDefault();
-    setMessage("");
-    if (name === "" || type === "" || price === "") {
-      setMessage({
-        error: true,
-        msg: "Please fill all the fields",
-      });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!file) {
+      // Handle case where no file is selected
+      console.error("Please select a file to upload.");
       return;
     }
+
+    const uniqueID = uuidv4();
+    const imageUrl = `/images/${uniqueID}/${image.name}`;
+
     const newItem = {
       name,
-      type,
-      price,
-      // img: img,
+      email,
+      message,
+      imageUrl,
+      timestamp: serverTimestamp(),
     };
-    console.log(newItem);
 
     try {
       await ItemDataService.addItems(newItem);
-      setMessage({ error: false, msg: "New item added successfully" });
+
+      console.log("Uploading Data to Firestore: \n", newItem);
+
+      const storage = getStorage();
+      const storageRef = ref(storage, imageUrl);
+
+      await uploadBytes(storageRef, image);
+      console.log("Image uploaded successfully");
+
+      setName("");
+      setEmail("");
+      setMessage("");
+      setFile(null); // Clear file input after successful submission
     } catch (error) {
-      setMessage({ error: true, msg: error.message });
+      console.error("Error adding data:", error);
+      // Handle errors appropriately, e.g., display error message to user
     }
-    setName("");
-    setType("");
-    setPrice("");
   };
 
   return (
-    <div className="container d-flex flex-column align-items-center">
-      {/* {message?.msg && (
-        <Alert
-          variant={message?.error ? "danger" : "success"}
-          dismissible
-          onClose={() => setMessage("")}
-        >
-          {message?.msg}
-        </Alert>
-      )} */}
-      <h1>New Item</h1>
-      <div className="container border p-3 mt-2 rounded">
-        <form onSubmit={handleAdd}>
-          <div className="mb-3">
-            <label htmlFor="exampleInputname1" className="form-label">
-              Item Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputname1"
-              aria-describedby="emailHelp"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputtype1" className="form-label">
-              Item Type
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="exampleInputtype1"
-              aria-describedby="emailHelp"
-              onChange={(e) => setType(e.target.value)}
-              value={type}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="exampleInputprice1" className="form-label">
-              Item Price
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              id="exampleInputprice1"
-              aria-describedby="emailHelp"
-              onChange={(e) => setPrice(e.target.value)}
-              value={price}
-            />
-          </div>
-          {/* <div className="mb-3">
-            <label htmlFor="exampleInputimage1" className="form-label">
-              Item Image
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              id="file"
-              value={image}
-              aria-describedby="emailHelp"
-              onChange={(e) => setFile(e.target.files[0])}
-            />
-          </div> */}
-
-          <button
-            disabled={per !== null && per < 100}
-            type="submit"
-            className="btn btn-primary"
-          >
-            Add Item
-          </button>
-        </form>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input type="file" onChange={handleFileChange} />
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <textarea
+        placeholder="Message"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 
-export default Newitem;
+export default NewItem;

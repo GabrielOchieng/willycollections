@@ -55,7 +55,11 @@ const Featured = () => {
 "
             >
               <div className="image">
-                <img src={womend} className="img-fluid" alt="shopping item" />
+                <img
+                  src={doc.image}
+                  className="img-fluid"
+                  alt="shopping item"
+                />
               </div>
               <div
                 className="wprice text-center w-100 p-2
