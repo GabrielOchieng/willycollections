@@ -7,6 +7,7 @@ import { AuthContext } from "./context/AuthContext";
 import CreateItemPage from "./pages/CreateItemPage";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
+import ItemPage from "./pages/ItemPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -36,6 +37,7 @@ function App() {
           }
         />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/item/:id" element={<ItemPage />} />
       </Routes>
       <Footer />
     </>
