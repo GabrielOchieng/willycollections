@@ -40,7 +40,7 @@ const Featured = () => {
                 />
               </div>
               <div className="wprice text-center w-100 p-2">
-                <h4>{item.itemName}</h4>
+                <h6 className="fs-6 text-capitalize">{item.itemName}</h6>
                 {/* Add the button here, wrapping it in a Link component */}
                 <Link to={`/item/${item.itemID}`}>
                   <button className="btn btn-primary">View Details</button>

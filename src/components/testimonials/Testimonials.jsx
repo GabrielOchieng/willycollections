@@ -32,9 +32,8 @@ const Testimonials = () => {
     "
           >
             <h6 className="fs-6 fw-medium">
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-              ipsa fugiat voluptatem praesentium laborum magni inventore.
-              Consectetur, tenetur deleniti. Animi!"
+              "Overall, I had a great experience shopping with WILLYCOLLECTIONS.
+              I'll definitely be back for more!"
             </h6>
           </div>
           <div className="name">
@@ -58,9 +57,8 @@ const Testimonials = () => {
     "
           >
             <h6 className="fs-6 fw-medium">
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-              ipsa fugiat voluptatem praesentium laborum magni inventore.
-              Consectetur, tenetur deleniti. Animi!"
+              "Ordering from WILLYCOLLLECTIONS was a breeze. The website is easy
+              to navigate and checkout was seamless."
             </h6>
           </div>
           <div className="name">
@@ -84,9 +82,8 @@ const Testimonials = () => {
     "
           >
             <h6 className="fs-6 fw-medium">
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-              ipsa fugiat voluptatem praesentium laborum magni inventore.
-              Consectetur, tenetur deleniti. Animi!"
+              "If you're on the fence about buying from WILLYCOLLECTIONS, I
+              highly recommend it. You won't be disappointed."
             </h6>
           </div>
           <div className="name">
