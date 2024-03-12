@@ -135,7 +135,7 @@ const Navbar = () => {
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/" className="nav-link active">
+              <Link to="/create" className="nav-link active">
                 SHOP ALL
               </Link>
             </li>
@@ -172,7 +172,7 @@ const Navbar = () => {
           </form>
         </div>
         <div className="d-flex gap-3 align-items-center ms-0 ms-lg-4">
-          <Link to="/create" className="nav-link">
+          <Link to="/cart" className="nav-link">
             <FiShoppingCart />
           </Link>
           <Link to="/auth" className="nav-link">

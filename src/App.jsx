@@ -10,6 +10,7 @@ import Footer from "./components/footer/Footer";
 import ItemPage from "./pages/ItemPage";
 import ProductContextProvider from "./context/ProductContext";
 import { CartContextProvider } from "./context/CartContext";
+import CartPage from "./pages/CartPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -38,6 +39,14 @@ function App() {
                 element={
                   <RequireAuth>
                     <CreateItemPage />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/cart"
+                element={
+                  <RequireAuth>
+                    <CartPage />
                   </RequireAuth>
                 }
               />
