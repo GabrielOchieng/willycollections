@@ -38,6 +38,8 @@ const ItemPage = () => {
     setQuantity(newQuantity);
   };
 
+  const totalPrice = item?.price ? item.price * quantity : 0; // Calculate total price
+
   return (
     <div className="container border rounded mb-5 pt-5 mt-5">
       <div className="row">
@@ -47,7 +49,8 @@ const ItemPage = () => {
           <img src={item.imageUrl} alt={item.name} className="img-fluid" />
         </div>
         <div className="col-md-6 d-flex flex-column justify-content-between">
-          <p>Price: ${item.price}</p>
+          <p>Price: ${totalPrice.toFixed(2)}</p>{" "}
+          {/* Display formatted total price */}
           <div className="d-flex align-items-center mb-3">
             <button
               className="btn btn-sm btn-secondary"
