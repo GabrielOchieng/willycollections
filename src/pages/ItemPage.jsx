@@ -49,22 +49,27 @@ const ItemPage = () => {
           <img src={item.imageUrl} alt={item.name} className="img-fluid" />
         </div>
         <div className="col-md-6 d-flex flex-column justify-content-between">
-          <p>Price: ${totalPrice.toFixed(2)}</p>{" "}
+          <p>Price: Ksh. {totalPrice.toFixed(2)}</p>{" "}
           {/* Display formatted total price */}
-          <div className="d-flex align-items-center mb-3">
-            <button
-              className="btn btn-sm btn-secondary"
-              onClick={() => handleQuantityChange(-1)}
-            >
-              -
-            </button>
-            <span className="mx-2">{quantity}</span>
-            <button
-              className="btn btn-sm btn-primary"
-              onClick={() => handleQuantityChange(1)}
-            >
-              +
-            </button>
+          <div className="d-flex  gap-2 mb-3">
+            <div>
+              <p> Number of items: </p>
+            </div>
+            <div>
+              <button
+                className="btn btn-sm btn-secondary"
+                onClick={() => handleQuantityChange(-1)}
+              >
+                -
+              </button>
+              <span className="mx-2">{quantity}</span>
+              <button
+                className="btn btn-sm btn-primary"
+                onClick={() => handleQuantityChange(1)}
+              >
+                +
+              </button>
+            </div>
           </div>
           {/* Add button for adding to cart or checkout (logic not included) */}
           <button className="btn btn-primary">Add to Cart</button>
