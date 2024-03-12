@@ -13,15 +13,12 @@ const LandingPage = () => {
   return (
     <>
       <ProductContextProvider>
-        {" "}
-        <Navbar />
         <Header />
         <Category />
         <Featured />
         <Product />
         <Testimonials />
         <Choose />
-        <Footer />
       </ProductContextProvider>
     </>
   );

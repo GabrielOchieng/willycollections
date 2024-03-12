@@ -8,6 +8,7 @@ import womend from "../../assets/women.jpg";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom"; // Import Link component for routing
 import { ProductContext } from "../../context/ProductContext";
+import { v4 as uuidv4 } from "uuid";
 
 const Featured = () => {
   const { items } = useContext(ProductContext);
@@ -27,7 +28,7 @@ const Featured = () => {
           )}
           {items.map((item) => (
             <div
-              key={item.itemID}
+              key={uuidv4()}
               data-aos="fade-right"
               className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
             >
@@ -35,7 +36,7 @@ const Featured = () => {
                 <img src={womend} className="img-fluid" alt={item.itemName} />
               </div>
               <div className="wprice text-center w-100 p-2">
-                <h4>{item.itemName}</h4>
+                <h4>{item.itemImg.Name}</h4>
                 {/* Add the button here, wrapping it in a Link component */}
                 <Link to={`/item/${item.itemID}`}>
                   <button className="btn btn-primary">View Details</button>
