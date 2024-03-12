@@ -11,7 +11,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="container-fluid header-shop d-flex flex-column flex-lg-row flex-md-row pt-5 gap-5 align-items-center h-75">
+    <div className="container-fluid header-shop d-flex flex-column flex-lg-row flex-md-row gap-5 align-items-center h-75">
       <div className="left container d-flex flex-column gap-3">
         <p>
           <span className="text-primary font-bold">

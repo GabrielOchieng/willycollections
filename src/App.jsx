@@ -19,26 +19,28 @@ function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <RequireAuth>
-              <LandingPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/create"
-          element={
-            <RequireAuth>
-              <CreateItemPage />
-            </RequireAuth>
-          }
-        />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/item/:id" element={<ItemPage />} />
-      </Routes>
+      <div className="content-container">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <LandingPage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <RequireAuth>
+                <CreateItemPage />
+              </RequireAuth>
+            }
+          />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/item/:id" element={<ItemPage />} />
+        </Routes>
+      </div>
       <Footer />
     </>
   );
