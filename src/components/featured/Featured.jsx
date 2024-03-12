@@ -33,10 +33,14 @@ const Featured = () => {
               className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
             >
               <div className="image">
-                <img src={womend} className="img-fluid" alt={item.itemName} />
+                <img
+                  src={item.itemImg}
+                  className="img-fluid"
+                  alt={item.itemName}
+                />
               </div>
               <div className="wprice text-center w-100 p-2">
-                <h4>{item.itemImg.Name}</h4>
+                <h4>{item.itemName}</h4>
                 {/* Add the button here, wrapping it in a Link component */}
                 <Link to={`/item/${item.itemID}`}>
                   <button className="btn btn-primary">View Details</button>

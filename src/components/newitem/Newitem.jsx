@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid"; // Import uuid for unique ID generation
 import { serverTimestamp } from "firebase/firestore";
 import ItemDataService from "../../services/item_services";
-import {
-  getDownloadURL,
-  getStorage,
-  ref,
-  uploadBytes,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"; // Removed uploadBytesResumable as not needed
 
 const NewItem = () => {
   const [file, setFile] = useState(null);
@@ -16,8 +10,6 @@ const NewItem = () => {
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
   const [per, setPer] = useState("");
-
-  let image = file;
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -27,51 +19,35 @@ const NewItem = () => {
     event.preventDefault();
 
     if (!file) {
-      // Handle case where no file is selected
       console.error("Please select a file to upload.");
       return;
     }
 
     const uniqueID = uuidv4();
-    const imageUrl = `/images/${uniqueID}/${image.name}`;
-
-    const newItem = {
-      name,
-      price,
-      type,
-      imageUrl,
-      timestamp: serverTimestamp(),
-    };
+    const storage = getStorage();
+    const storageRef = ref(storage, `images/${uniqueID}/${file.name}`); // Corrected storage path
 
     try {
+      const uploadTask = await uploadBytes(storageRef, file); // Use uploadBytes
+      const url = await getDownloadURL(storageRef); // Ensure URL is obtained after upload
+
+      const newItem = {
+        name,
+        price,
+        type,
+        imageUrl: url, // Use the actual download URL
+        timestamp: serverTimestamp(),
+      };
+
       await ItemDataService.addItems(newItem);
-
-      console.log("Uploading Data to Firestore: \n", newItem);
-
-      const name = new Date().getTime() + file.name;
-      const storage = getStorage();
-      const storageRef = ref(storage, file.name);
-
-      const uploadTask = uploadBytesResumable(storageRef, image);
-
-      getDownloadURL(storageRef)
-        .then((url) => {
-          // Use the downloaded URL in the image src
-          // <img src={url} alt="My Image" />;
-          console.log(url);
-        })
-        .catch((error) => {
-          console.error("Error getting image URL:", error);
-          // Handle error gracefully, display a placeholder image, etc.
-        });
 
       setName("");
       setType("");
       setPrice("");
-      setFile(null); // Clear file input after successful submission
+      setFile(null);
     } catch (error) {
       console.error("Error adding data:", error);
-      // Handle errors appropriately, e.g., display error message to user
+      // Handle errors gracefully, e.g., display error messages to the user
     }
   };
 
