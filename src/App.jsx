@@ -46,7 +46,7 @@ function App() {
                 path="/cart"
                 element={
                   <RequireAuth>
-                    <CartPage />
+                    <CartPage currentUser={currentUser} />
                   </RequireAuth>
                 }
               />

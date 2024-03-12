@@ -22,7 +22,7 @@ export const CartReducer = (state, action) => {
         updatedPrice = totalPrice + item.itemPrice;
 
         return {
-          shoppingCart: [product, ...shoppingCart],
+          shoppingCart: [item, ...shoppingCart],
           totalPrice: updatedPrice,
           totalQty: updatedQty,
         };
