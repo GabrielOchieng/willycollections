@@ -9,7 +9,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <div className="container d-flex flex-column align-items-center pt-5">
+    <div className="container d-flex flex-column mb-3 align-items-center pt-5">
       <div className="uppertest">
         <h1>TESTIMONIALS</h1>
         <hr className="container" />
