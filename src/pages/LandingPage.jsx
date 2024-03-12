@@ -12,14 +12,14 @@ import { ProductContextProvider } from "../context/ProductContext";
 const LandingPage = () => {
   return (
     <>
-      <ProductContextProvider>
-        <Header />
-        <Category />
-        <Featured />
-        <Product />
-        <Testimonials />
-        <Choose />
-      </ProductContextProvider>
+      {/* <ProductContextProvider> */}
+      <Header />
+      <Category />
+      <Featured />
+      <Product />
+      <Testimonials />
+      <Choose />
+      {/* </ProductContextProvider> */}
     </>
   );
 };

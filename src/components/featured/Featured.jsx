@@ -1,10 +1,7 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 import "./featured.css";
-import { useEffect, useState } from "react";
 
-import womend from "../../assets/women.jpg";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom"; // Import Link component for routing
 import { ProductContext } from "../../context/ProductContext";
@@ -12,7 +9,6 @@ import { v4 as uuidv4 } from "uuid";
 
 const Featured = () => {
   const { items } = useContext(ProductContext);
-  console.log(items);
 
   return (
     <>

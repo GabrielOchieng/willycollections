@@ -8,6 +8,8 @@ import CreateItemPage from "./pages/CreateItemPage";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import ItemPage from "./pages/ItemPage";
+import ProductContextProvider from "./context/ProductContext";
+import { CartContextProvider } from "./context/CartContext";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -18,30 +20,34 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <div className="content-container">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <RequireAuth>
-                <LandingPage />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/create"
-            element={
-              <RequireAuth>
-                <CreateItemPage />
-              </RequireAuth>
-            }
-          />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/item/:id" element={<ItemPage />} />
-        </Routes>
-      </div>
-      <Footer />
+      <ProductContextProvider>
+        <CartContextProvider>
+          <Navbar />
+          <div className="content-container">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <RequireAuth>
+                    <LandingPage />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/create"
+                element={
+                  <RequireAuth>
+                    <CreateItemPage />
+                  </RequireAuth>
+                }
+              />
+              <Route path="/auth" element={<AuthPage />} />
+              <Route path="/item/:id" element={<ItemPage />} />
+            </Routes>
+          </div>
+          <Footer />
+        </CartContextProvider>
+      </ProductContextProvider>
     </>
   );
 }
