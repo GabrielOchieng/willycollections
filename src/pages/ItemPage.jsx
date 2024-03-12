@@ -7,6 +7,7 @@ const ItemPage = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [quantity, setQuantity] = useState(1); // Initial quantity
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -25,16 +26,18 @@ const ItemPage = () => {
   }, [id]);
 
   if (isLoading) {
-    // Display a loading indicator while data is fetching
     return <div className="pt-5 mt-5">Loading product details...</div>;
   }
 
   if (!item) {
-    // Handle the case where loading finished but no item was found
     return <div className="pt-5 mt-5">Product not found</div>;
   }
 
-  // Render product details only when item is available
+  const handleQuantityChange = (change) => {
+    const newQuantity = Math.max(1, quantity + change); // Ensure quantity stays positive
+    setQuantity(newQuantity);
+  };
+
   return (
     <div className="container border rounded mb-5 pt-5 mt-5">
       <div className="row">
@@ -43,8 +46,25 @@ const ItemPage = () => {
           <p>{item.type}</p>
           <img src={item.imageUrl} alt={item.name} className="img-fluid" />
         </div>
-        <div className="col-md-6">
+        <div className="col-md-6 d-flex flex-column justify-content-between">
           <p>Price: ${item.price}</p>
+          <div className="d-flex align-items-center mb-3">
+            <button
+              className="btn btn-sm btn-secondary"
+              onClick={() => handleQuantityChange(-1)}
+            >
+              -
+            </button>
+            <span className="mx-2">{quantity}</span>
+            <button
+              className="btn btn-sm btn-primary"
+              onClick={() => handleQuantityChange(1)}
+            >
+              +
+            </button>
+          </div>
+          {/* Add button for adding to cart or checkout (logic not included) */}
+          <button className="btn btn-primary">Add to Cart</button>
         </div>
       </div>
     </div>
