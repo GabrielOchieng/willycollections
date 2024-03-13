@@ -40,16 +40,14 @@ class ItemDataService {
     return deleteDoc(itemDoc);
   };
 
-  getAllItems = () => {
-    return getDocs(itemCollectionRef);
-  };
+  // getAllItems = () => {
+  //   return getDocs(itemCollectionRef);
+  // };
 
-  getItem = (id) => {
-    const itemDoc = doc(db, "items", id);
-    return getDoc(itemDoc);
-  };
-
-  return;
+  // getItem = (id) => {
+  //   const itemDoc = doc(db, "items", id);
+  //   return getDoc(itemDoc);
+  // };
 }
 
 export default new ItemDataService();

@@ -1,21 +1,12 @@
-// import React, { useContext } from "react";
-// import { CartContext } from "../../context/CartContext";
-
-// const Cart = () => {
-//   const data = useContext(CartContext);
-//   console.log(data);
-
-//   return <div>Cart</div>;
-// };
-
-// export default Cart;
-
 import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { FaShoppingCart } from "react-icons/fa"; // Import shopping cart icon
 
 const Cart = () => {
   const { shoppingCart, totalPrice, totalQty } = useContext(CartContext);
+
+  console.log(shoppingCart[0].price);
+  console.log(typeof shoppingCart[0].price);
 
   const isEmpty = shoppingCart.length === 0;
 
@@ -35,7 +26,7 @@ const Cart = () => {
             >
               <div>{item.name}</div>
               <span>
-                ${item.itemPrice} x {item.qty} = ${item.itemPrice * item.qty}
+                ${item.price} x {item.qty} = Ksh. {item.price * item.qty}
               </span>
             </li>
           ))}
@@ -50,7 +41,7 @@ const Cart = () => {
       {!isEmpty && (
         <div className="d-flex justify-content-between w-100">
           <p className="text-muted">Total Price:</p>
-          <p className="fw-bold">${totalPrice}</p>
+          <p className="fw-bold">Ksh. {totalPrice}</p>
         </div>
       )}
       {/* Add buttons for checkout or other functionalities here */}
