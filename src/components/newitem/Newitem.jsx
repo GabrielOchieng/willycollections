@@ -10,6 +10,7 @@ const NewItem = () => {
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
   const [per, setPer] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -22,7 +23,7 @@ const NewItem = () => {
       console.error("Please select a file to upload.");
       return;
     }
-
+    setIsSubmitting(true);
     const uniqueID = uuidv4();
     const storage = getStorage();
     const storageRef = ref(storage, `images/${uniqueID}/${file.name}`); // Corrected storage path
@@ -32,6 +33,7 @@ const NewItem = () => {
       const url = await getDownloadURL(storageRef); // Ensure URL is obtained after upload
 
       const newItem = {
+        id: uniqueID,
         name,
         price,
         type,
@@ -40,14 +42,15 @@ const NewItem = () => {
       };
 
       await ItemDataService.addItems(newItem);
-
+    } catch (error) {
+      console.error("Error adding data:", error);
+      // Handle errors gracefully, e.g., display error messages to the user
+    } finally {
       setName("");
       setType("");
       setPrice("");
       setFile(null);
-    } catch (error) {
-      console.error("Error adding data:", error);
-      // Handle errors gracefully, e.g., display error messages to the user
+      setIsSubmitting(false);
     }
   };
 
@@ -107,6 +110,7 @@ const NewItem = () => {
             />
           </div>
           <button
+            disabled={isSubmitting}
             // disabled={per !== null && per < 100}
             type="submit"
             className="btn btn-primary col-12 mt-3"

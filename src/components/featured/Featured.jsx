@@ -9,7 +9,9 @@ import { v4 as uuidv4 } from "uuid";
 
 const Featured = () => {
   const { items } = useContext(ProductContext);
-
+  console.log(items);
+  console.log(items[14]);
+  console.log(items[6]);
   return (
     <>
       <div className="d-flex container containerfea flex-column align-items-center pt-5">

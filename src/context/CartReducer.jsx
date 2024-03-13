@@ -16,10 +16,10 @@ export const CartReducer = (state, action) => {
         return state;
       } else {
         item = action.item;
-        item["qty"] - 1;
-        item["totalItemPrice"] - item.itemPrice * item.qty;
+        item["qty"] = 1;
+        item["TotalItemPrice"] - item.ItemPrice * item.qty;
         updatedQty = totalQty + 1;
-        updatedPrice = totalPrice + item.itemPrice;
+        updatedPrice = totalPrice + item.ItemPrice;
 
         return {
           shoppingCart: [item, ...shoppingCart],

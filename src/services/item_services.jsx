@@ -15,8 +15,19 @@ import {
 export const itemCollectionRef = collection(db, "items");
 
 class ItemDataService {
-  addItems = (newItem) => {
-    return addDoc(itemCollectionRef, newItem);
+  // addItems = (newItem) => {
+  //   return addDoc(itemCollectionRef, newItem);
+  // };
+
+  addItems = async (newItem) => {
+    try {
+      const docRef = await addDoc(itemCollectionRef, newItem);
+      console.log("Document written with ID:", docRef.id);
+      // Handle successful addition (optional)
+    } catch (error) {
+      console.error("Error adding document:", error);
+      // Throw a custom error to the component
+    }
   };
 
   updateItem = (id, updatedItem) => {
