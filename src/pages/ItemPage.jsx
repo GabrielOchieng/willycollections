@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import Testimonials from "../components/testimonials/Testimonials";
 import { CartContext } from "../context/CartContext";
 
 const ItemPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -50,6 +51,11 @@ const ItemPage = () => {
   //ADDING ITEMS TO CART FUNCTIONALITY
 
   const { dispatch } = useContext(CartContext);
+
+  const handleCartAdd = (id) => {
+    dispatch({ type: "ADD_TO_CART", id: item.itemID, item });
+    navigate("/cart");
+  };
 
   return (
     <div>
@@ -107,12 +113,7 @@ const ItemPage = () => {
               </div>
             </div>
             {/* Add button for adding to cart or checkout (logic not included) */}
-            <button
-              className="btn btn-primary"
-              onClick={() =>
-                dispatch({ type: "ADD_TO_CART", id: item.itemID, item })
-              }
-            >
+            <button className="btn btn-primary" onClick={handleCartAdd}>
               Add to Cart
             </button>
           </div>
