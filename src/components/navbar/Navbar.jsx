@@ -121,7 +121,11 @@ const Navbar = () => {
           aria-expanded={isOpen}
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          {isOpen ? (
+            <span className="close-icon">&#10006;</span> // X symbol using character code
+          ) : (
+            <span className="navbar-toggler-icon"></span>
+          )}
         </button>
         <div>
           <Link to="/" className="navbar-brand font-bolder">
