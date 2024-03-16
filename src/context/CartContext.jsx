@@ -10,6 +10,9 @@ export const CartContextProvider = ({ children }) => {
     totalQty: 0,
   });
 
+  console.log(Array.isArray(cart.shoppingCart));
+  // console.log(cart.shoppingCart);
+
   // 1. Handle Potential Undefined State:
   useEffect(() => {
     // Use a conditional check for cart.shoppingCart

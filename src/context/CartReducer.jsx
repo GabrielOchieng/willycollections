@@ -72,6 +72,7 @@ export const CartReducer = (state, action) => {
         };
       }
     }
+
     // Handle other actions as needed...
     default:
       return state;
