@@ -9,15 +9,17 @@ const ItemPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // **All states declared at the top level**
+  // State variables declared upfront
   const [item, setItem] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [customerDetails, setCustomerDetails] = useState("");
 
-  // ... rest of your component code
+  // Memoize the total price calculation
+  const totalPrice = React.useMemo(() => {
+    return item?.price ? item.price * quantity : 0;
+  }, [item, quantity]);
 
-  // **useEffect moved to the end for consistent hook order**
   useEffect(() => {
     const fetchItem = async () => {
       try {
@@ -31,15 +33,18 @@ const ItemPage = () => {
         setIsLoading(false);
       }
     };
+
     fetchItem();
-  }, [id]);
+  }, [id]); // Only re-run effect when `id` changes
+
+  // ... rest of your component code (handleQuantityChange, handleDetailsChange, handleCartAdd)
 
   const handleQuantityChange = (change) => {
     const newQuantity = Math.max(1, quantity + change); // Ensure quantity stays positive
     setQuantity(newQuantity);
   };
 
-  const totalPrice = item?.price ? item.price * quantity : 0; // Calculate total price
+  // const totalPrice = item?.price ? item.price * quantity : 0; // Calculate total price
 
   const handleDetailsChange = (event) => {
     setCustomerDetails(event.target.value);
@@ -53,14 +58,6 @@ const ItemPage = () => {
     dispatch({ type: "ADD_TO_CART", id: item.itemID, item });
     navigate("/cart");
   };
-
-  // if (isLoading) {
-  //   return <div className="pt-5 mt-5">Loading product details...</div>;
-  // }
-
-  // if (!item) {
-  //   return <div className="pt-5 mt-5">Product not found</div>;
-  // }
 
   return (
     <div>
