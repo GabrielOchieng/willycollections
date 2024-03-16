@@ -33,8 +33,8 @@ const Featured = () => {
               >
                 <div className="ratio ratio-16x9 bg-light"></div>
                 <div className="p-2">
-                  <div className="skeleton h-50 bg-light rounded"></div>
-                  <div className="skeleton h-50 bg-light rounded mt-2"></div>
+                  <div className="skeleton h-25 bg-light rounded"></div>
+                  <div className="skeleton h-25 bg-light rounded mt-2"></div>
                 </div>
               </div>
             ))}
