@@ -50,13 +50,15 @@ const Featured = () => {
                 key={uuidv4()}
                 data-aos="fade-right"
                 className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
+                style={{ position: "relative" }} // Add this line
               >
                 <div className="image">
                   <img
                     src={item.itemImg}
-                    className="img-fluid lazyload"
+                    className="img-fluid lazyload" // Remove h-auto and object-fit
                     loading="lazy"
                     alt={item.itemName}
+                    style={{ width: "100%", height: "150px" }} // Add inline styles
                   />
                 </div>
                 <div className="wprice text-center w-100 p-2">
