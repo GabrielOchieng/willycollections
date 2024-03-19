@@ -15,34 +15,33 @@ import {
 export const CartCollectionRef = collection(db, "carts");
 
 class CartDataService {
-  // addItems = (newItem) => {
-  //   return addDoc(CartCollectionRef, newItem);
-  // };
-
   addToCartOnFirebase = async (itemData) => {
     const cartRef = collection(db, "carts" /* user ID here */); // Adapt this line
     const docRef = await addDoc(cartRef, itemData);
     return docRef.id; // Return the document ID
   };
 
-  //   updateItem = (id, updatedItem) => {
-  //     const itemDoc = doc(db, "items", id);
-  //     return updateDoc(itemDoc, updatedItem);
-  //   };
+  fetchCartItems = async (userId) => {
+    const cartRef = collection(db, "carts", userId);
+    const querySnapshot = await getDocs(cartRef);
+    const cartItems = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    return cartItems;
+  };
 
-  //   deleteItem = (id) => {
-  //     const itemDoc = doc(db, "items", id);
-  //     return deleteDoc(itemDoc);
-  //   };
+  updateCartItem = async (itemData, userId, itemId) => {
+    const cartRef = collection(db, "carts", userId);
+    const docRef = doc(cartRef, itemId);
+    await updateDoc(docRef, itemData);
+  };
 
-  // getAllItems = () => {
-  //   return getDocs(CartCollectionRef);
-  // };
-
-  // getItem = (id) => {
-  //   const itemDoc = doc(db, "items", id);
-  //   return getDoc(itemDoc);
-  // };
+  deleteCartItem = async (userId, itemId) => {
+    const cartRef = collection(db, "carts", userId);
+    const docRef = doc(cartRef, itemId);
+    await deleteDoc(docRef);
+  };
 }
 
 export default new CartDataService();
