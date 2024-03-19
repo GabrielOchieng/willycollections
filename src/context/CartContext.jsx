@@ -39,12 +39,88 @@
 //   );
 // };
 
+// import React, { createContext, useReducer, useEffect, useState } from "react";
+// import { collection, getDocs, doc, writeBatch } from "firebase/firestore";
+// import { auth, db } from "../firebase";
+// import { CartReducer } from "./CartReducer";
+// import { onAuthStateChanged } from "firebase/auth";
+
+// export const CartContext = createContext();
+
+// export const CartContextProvider = ({ children }) => {
+//   const [cart, dispatch] = useReducer(CartReducer, {
+//     shoppingCart: [],
+//     totalPrice: 0,
+//     totalQty: 0,
+//   });
+//   const [userId, setUserId] = useState(null);
+//   const [loading, setLoading] = useState(false);
+
+//   const loadCartFromFirebase = async () => {
+//     if (!userId) {
+//       return;
+//     }
+//     const userCart = collection(db, "users", userId, "cart");
+//     const snapshot = await getDocs(userCart);
+//     const cartItems = snapshot.docs.map((doc) => ({
+//       id: doc.id,
+//       ...doc.data(),
+//     }));
+//     dispatch({ type: "LOAD_FROM_FIREBASE", payload: cartItems });
+//   };
+
+//   useEffect(() => {
+//     // Initialize Firebase app (if needed)
+//     // ... initialization code here ...
+
+//     onAuthStateChanged(auth, (user) => {
+//       if (user) {
+//         console.log(user);
+//         setUserId(user.uid);
+//         loadCartFromFirebase();
+//       }
+//     });
+//   }, []);
+
+//   useEffect(() => {
+//     if (userId && cart.shoppingCart) {
+//       const cartRef = collection(db, "users", userId, "cart");
+//       console.log(userId);
+//       const batch = writeBatch(db);
+//       cart.shoppingCart.forEach((item) => {
+//         batch.set(doc(cartRef, item.id), item);
+//       });
+//       batch.commit();
+//     }
+//   }, [cart.shoppingCart, userId]);
+
+//   // ... CartReducer implementation ...
+
+//   const fetchCartItems = async () => {
+//     setLoading(true);
+//     try {
+//       await loadCartFromFirebase();
+//     } catch (error) {
+//       console.error("Error fetching cart items:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <CartContext.Provider
+//       value={{ ...cart, dispatch, loading, fetchCartItems }}
+//     >
+//       {children}
+//     </CartContext.Provider>
+//   );
+// };
+
 import React, { createContext, useReducer, useEffect, useState } from "react";
-// import { firebase } from "firebase/app"; // Import Firebase
-import { CartReducer } from "./CartReducer";
-import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, doc, writeBatch } from "firebase/firestore";
 import { auth, db } from "../firebase";
+import { CartReducer } from "./CartReducer";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const CartContext = createContext();
 
@@ -54,64 +130,71 @@ export const CartContextProvider = ({ children }) => {
     totalPrice: 0,
     totalQty: 0,
   });
-  const [userId, setUserId] = useState(null); // Store user ID for Firestore access
-  const [loading, setLoading] = useState(false); // Add a loading state
+  const [userId, setUserId] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // ... Existing code for loadCartFromFirebase and useEffect for initialization ...
   const loadCartFromFirebase = async () => {
     if (!userId) {
+      console.log("No user ID available yet.");
       return;
     }
-    const userCart = collection(db, "users", userId, "cart"); // Access user's cart collection
-    const snapshot = await getDocs(userCart);
-
-    const cartItems = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(), // Extract cart item data
-    }));
-    console.log(cartItems);
-
-    dispatch({ type: "LOAD_FROM_FIREBASE", payload: cartItems });
+    console.log("Fetching cart for user:", userId);
+    const userCart = collection(db, "users", userId, "cart");
+    try {
+      const snapshot = await getDocs(userCart);
+      const cartItems = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      dispatch({ type: "LOAD_FROM_FIREBASE", payload: cartItems });
+      console.log("Cart items fetched:", cartItems);
+    } catch (error) {
+      console.error("Error fetching cart items:", error);
+    }
   };
 
   useEffect(() => {
-    // Initialize Firebase app
-    (async () => {
-      // const app = firebase.initializeApp(firebaseConfig); // Replace with your Firebase config
-      // const auth = getAuth(app);
+    // Initialize Firebase app (if needed)
+    // ... initialization code here ...
 
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setUserId(user.uid);
-          loadCartFromFirebase();
-        }
-      });
-    })();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User authenticated:", user);
+        setUserId(user.uid);
+        loadCartFromFirebase();
+      } else {
+        console.log("User not authenticated.");
+      }
+    });
   }, []);
 
-  // Update cart data in Firebase on changes
   useEffect(() => {
     if (userId && cart.shoppingCart) {
+      console.log("Updating cart in Firestore for user:", userId);
       const cartRef = collection(db, "users", userId, "cart");
       const batch = writeBatch(db);
-
       cart.shoppingCart.forEach((item) => {
         batch.set(doc(cartRef, item.id), item);
       });
-
-      batch.commit();
+      try {
+        batch.commit();
+        console.log("Cart updated successfully.");
+      } catch (error) {
+        console.error("Error updating cart:", error);
+      }
     }
   }, [cart.shoppingCart, userId]);
 
+  // ... CartReducer implementation ...
+
   const fetchCartItems = async () => {
-    setLoading(true); // Set loading state to true
+    setLoading(true);
     try {
       await loadCartFromFirebase();
     } catch (error) {
-      // Handle any errors during fetching
       console.error("Error fetching cart items:", error);
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false);
     }
   };
 

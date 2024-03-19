@@ -13,7 +13,6 @@ const Navbar = () => {
   const { totalQty } = useContext(CartContext);
 
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser.email);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

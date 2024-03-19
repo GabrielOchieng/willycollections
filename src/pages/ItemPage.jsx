@@ -140,6 +140,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import Testimonials from "../components/testimonials/Testimonials";
 import { CartContext } from "../context/CartContext";
+import Cart_Services from "../services/Cart_Services";
 
 const ItemPage = () => {
   const navigate = useNavigate();
@@ -188,20 +189,44 @@ const ItemPage = () => {
 
   //ADDING ITEMS TO CART FUNCTIONALITY
 
+  // const { dispatch } = useContext(CartContext);
+
+  // const handleCartAdd = async () => {
+  //   try {
+  //     await dispatch({
+  //       type: "ADD_ITEM_TO_CART",
+  //       item: { ...item, quantity, customerDetails },
+  //     });
+  //     console.log("Item added to cart successfully!");
+  //     navigate("/cart");
+  //   } catch (error) {
+  //     console.error("Error adding item to cart:", error);
+  //     // Display an error message to the user
+  //   }
+  // };
+
   const { dispatch } = useContext(CartContext);
 
   const handleCartAdd = async () => {
     try {
-      // Dispatch a custom action to Firebase logic for cart updates
-      await dispatch({
-        type: "ADD_ITEM_TO_CART",
-        item: { ...item, quantity, customerDetails },
+      // Firebase Integration (Replace with your specific logic)
+      const itemId = await Cart_Services.addToCartOnFirebase({
+        ...item,
+        quantity,
+        customerDetails,
       });
-      console.log(item);
+
+      // Dispatch action with Firebase-generated ID (if applicable)
+      dispatch({
+        type: "ADD_ITEM_TO_CART",
+        payload: { ...item, quantity, customerDetails, id: itemId },
+      });
+
+      console.log("Item added to cart successfully!");
       navigate("/cart");
     } catch (error) {
       console.error("Error adding item to cart:", error);
-      // Handle any errors, e.g., display an error message to the user
+      // Display an error message to the user
     }
   };
 

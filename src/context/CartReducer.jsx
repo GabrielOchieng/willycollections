@@ -39,9 +39,73 @@
 //   }
 // };
 
+// export const CartReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case "FETCH_CART_SUCCESS": {
+//       return {
+//         ...state,
+//         shoppingCart: action.payload,
+//         loading: false, // Assuming a loading state is managed
+//         error: null,
+//       };
+//     }
+//     case "ADD_ITEM_TO_CART": {
+//       return {
+//         ...state,
+//         loading: true, // Set loading state to true while interacting with Firebase
+//       };
+//     }
+
+//     case "ADD_TO_CART_SUCCESS": {
+//       return {
+//         ...state,
+//         shoppingCart: [...state.shoppingCart, action.payload], // Add the new item
+//         loading: false, // Reset loading state
+//       };
+//     }
+
+//     case "ADD_TO_CART_FAILURE": {
+//       return {
+//         ...state,
+//         loading: false, // Reset loading state
+//         error: action.error.message,
+//       };
+//     }
+//     case "REMOVE_FROM_CART": {
+//       return {
+//         ...state,
+//         loading: true, // Set loading state to true while interacting with Firebase
+//       };
+//     }
+//     case "REMOVE_FROM_CART_SUCCESS": {
+//       // No need to modify state here as cart items are managed by Firebase
+//       return {
+//         ...state,
+//         loading: false, // Reset loading state
+//       };
+//     }
+//     case "REMOVE_FROM_CART_FAILURE": {
+//       return {
+//         ...state,
+//         loading: false, // Reset loading state
+//         error: action.error.message,
+//       };
+//     }
+//     default:
+//       return state;
+//   }
+// };
+
+// const initialState = {
+//   shoppingCart: [], // Initialize with an empty cart
+//   loading: false, // Add a loading state for asynchronous operations
+//   error: null, // Add an error state for potential errors
+// };
+
 export const CartReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_CART_SUCCESS": {
+      console.log("Fetched cart items:", action.payload);
       return {
         ...state,
         shoppingCart: action.payload,
@@ -49,20 +113,25 @@ export const CartReducer = (state = initialState, action) => {
         error: null,
       };
     }
-    case "ADD_TO_CART": {
+    case "ADD_ITEM_TO_CART": {
+      console.log("Adding item to cart:", action.payload);
       return {
         ...state,
         loading: true, // Set loading state to true while interacting with Firebase
       };
     }
+
     case "ADD_TO_CART_SUCCESS": {
-      // No need to modify state here as cart items are managed by Firebase
+      console.log("Item added to cart successfully:", action.payload);
       return {
         ...state,
+        shoppingCart: [...state.shoppingCart, action.payload], // Add the new item
         loading: false, // Reset loading state
       };
     }
+
     case "ADD_TO_CART_FAILURE": {
+      console.error("Error adding item to cart:", action.error.message);
       return {
         ...state,
         loading: false, // Reset loading state
@@ -70,19 +139,21 @@ export const CartReducer = (state = initialState, action) => {
       };
     }
     case "REMOVE_FROM_CART": {
+      console.log("Removing item from cart:", action.payload);
       return {
         ...state,
         loading: true, // Set loading state to true while interacting with Firebase
       };
     }
     case "REMOVE_FROM_CART_SUCCESS": {
-      // No need to modify state here as cart items are managed by Firebase
+      console.log("Item removed from cart successfully:", action.payload); // May not be necessary
       return {
         ...state,
         loading: false, // Reset loading state
       };
     }
     case "REMOVE_FROM_CART_FAILURE": {
+      console.error("Error removing item from cart:", action.error.message);
       return {
         ...state,
         loading: false, // Reset loading state

@@ -83,10 +83,14 @@ const Cart = () => {
 
   const isEmpty = shoppingCart.length === 0;
 
-  // Fetch cart items on component mount (assuming fetchCartItems is a function)
   useEffect(() => {
-    fetchCartItems();
+    fetchCartItems(); // Fetch cart items on mount
   }, []);
+
+  useEffect(() => {
+    // Re-render the component whenever the shoppingCart state changes
+    console.log("Cart items updated:", shoppingCart); // Optional for debugging
+  }, [shoppingCart]);
 
   const handleCheckout = () => {
     // Implement your checkout logic here
