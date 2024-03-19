@@ -139,7 +139,7 @@ export const CartContextProvider = ({ children }) => {
       return;
     }
     console.log("Fetching cart for user:", userId);
-    const userCart = collection(db, "users", userId, "cart");
+    const userCart = collection(db, "users", userId, "carts");
     try {
       const snapshot = await getDocs(userCart);
       const cartItems = snapshot.docs.map((doc) => ({
@@ -171,7 +171,7 @@ export const CartContextProvider = ({ children }) => {
   useEffect(() => {
     if (userId && cart.shoppingCart) {
       console.log("Updating cart in Firestore for user:", userId);
-      const cartRef = collection(db, "users", userId, "cart");
+      const cartRef = collection(db, "users", userId, "carts");
       const batch = writeBatch(db);
       cart.shoppingCart.forEach((item) => {
         batch.set(doc(cartRef, item.id), item);
