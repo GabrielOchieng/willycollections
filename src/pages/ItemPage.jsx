@@ -141,6 +141,7 @@ import { db } from "../firebase";
 import Testimonials from "../components/testimonials/Testimonials";
 import { CartContext } from "../context/CartContext";
 import Cart_Services from "../services/Cart_Services";
+import { AuthContext } from "../context/AuthContext";
 
 const ItemPage = () => {
   const navigate = useNavigate();
@@ -162,6 +163,7 @@ const ItemPage = () => {
       try {
         setIsLoading(true);
         const itemRef = doc(db, "items", id);
+
         const itemSnap = await getDoc(itemRef);
         setItem(itemSnap.data());
       } catch (error) {
@@ -204,17 +206,24 @@ const ItemPage = () => {
   //     // Display an error message to the user
   //   }
   // };
-
+  const { currentUser } = useContext(AuthContext);
+  console.log("Gabriel", currentUser);
   const { dispatch } = useContext(CartContext);
 
   const handleCartAdd = async () => {
     try {
+      // Access the user ID (replace with your actual logic for retrieving it)
+      const currentUserId = currentUser.uid; // Assuming you have a function to fetch the ID
+
       // Firebase Integration (Replace with your specific logic)
-      const itemId = await Cart_Services.addToCartOnFirebase({
-        ...item,
-        quantity,
-        customerDetails,
-      });
+      const itemId = await Cart_Services.addToCartOnFirebase(
+        {
+          ...item,
+          quantity,
+          customerDetails,
+        },
+        currentUserId
+      );
 
       // Dispatch action with Firebase-generated ID (if applicable)
       dispatch({
