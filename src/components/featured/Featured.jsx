@@ -29,12 +29,12 @@ const Featured = () => {
             {[...Array(4)].map((_, index) => (
               <div
                 key={index}
-                className="skeleton col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-center gap-3 bg-light"
+                className="skeleton loading-skeleton col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-center gap-3 bg-light"
               >
-                <div className="ratio ratio-16x9 bg-light"></div>
+                <div className="ratio ratio-16x9 bg-light loading-image"></div>
                 <div className="p-2">
-                  <div className="skeleton h-25 bg-light rounded"></div>
-                  <div className="skeleton h-25 bg-light rounded mt-2"></div>
+                  <div className="skeleton loading-text h-25 bg-light rounded"></div>
+                  <div className="skeleton loading-text h-25 bg-light rounded mt-2"></div>
                 </div>
               </div>
             ))}

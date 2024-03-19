@@ -5,3 +5,19 @@
 .lowerdiv .sectionf {
   cursor: pointer;
 }
+
+.loading-skeleton {
+  animation: pulse 1s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
