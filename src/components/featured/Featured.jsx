@@ -11,7 +11,7 @@ const Featured = () => {
     // Simulate data fetching delay (remove in production)
     setTimeout(() => {
       setIsLoading(false);
-    }, 10000);
+    }, 1000);
   }, []);
 
   return (

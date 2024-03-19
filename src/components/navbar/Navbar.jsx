@@ -5,11 +5,15 @@ import "./navbar.css";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // State variable for tracking menu visibility
 
   const { totalQty } = useContext(CartContext);
+
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser.email);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -88,6 +92,7 @@ const Navbar = () => {
             <FiShoppingCart />
           </Link>
           <Link to="/auth" className="nav-link">
+            <span className="text-danger">{currentUser.email}</span>
             <IoPersonCircleOutline />
           </Link>
         </div>
