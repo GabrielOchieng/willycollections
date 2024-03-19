@@ -29,9 +29,9 @@ function App() {
               <Route
                 path="/"
                 element={
-                  // <RequireAuth>
-                  <LandingPage />
-                  // </RequireAuth>
+                  <RequireAuth>
+                    <LandingPage />
+                  </RequireAuth>
                 }
               />
               <Route
@@ -45,9 +45,9 @@ function App() {
               <Route
                 path="/cart"
                 element={
-                  // <RequireAuth>
-                  <CartPage currentUser={currentUser} />
-                  // </RequireAuth>
+                  <RequireAuth>
+                    <CartPage currentUser={currentUser} />
+                  </RequireAuth>
                 }
               />
               <Route path="/auth" element={<AuthPage />} />
