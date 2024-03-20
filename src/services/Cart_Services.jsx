@@ -17,7 +17,7 @@
 // class CartDataService {
 //   addToCartOnFirebase = async (itemData, userId) => {
 //     // Include userId as an argument
-//     const cartRef = collection(db, "users", userId, "carts"); // Use userId here
+//     const cartRef = collection(db, "carts", userId, "carts"); // Use userId here
 //     const docRef = await addDoc(cartRef, itemData);
 //     return docRef.id; // Return the document ID
 //   };
@@ -36,7 +36,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 
-export const CartCollectionRef = collection(db, "carts"); // Define a reference for carts collection
+export const CartCollectionRef = collection(db, "users"); // Define a reference for carts collection
 
 class CartDataService {
   addToCartOnFirebase = async (itemData, userId) => {
@@ -46,15 +46,15 @@ class CartDataService {
     try {
       const cartDoc = await getDoc(userCartRef); // Check if user's cart document exists
 
-      // If document exists, add item to a subcollection named "items" within the user's cart
+      // If document exists, add item to a subcollection named "carts" within the user's cart
       if (cartDoc.exists()) {
-        const itemRef = collection(userCartRef, "items"); // Create a reference to the "items" subcollection
+        const itemRef = collection(userCartRef, "carts"); // Create a reference to the "carts" subcollection
         const docRef = await addDoc(itemRef, itemData);
         return docRef.id; // Return the document ID of the added item
       } else {
         // Create a new document for the user's cart if it doesn't exist
         await setDoc(userCartRef, {}); // Set an empty document for the user's cart
-        const itemRef = collection(userCartRef, "items"); // Create a reference to the "items" subcollection
+        const itemRef = collection(userCartRef, "carts"); // Create a reference to the "carts" subcollection
         const docRef = await addDoc(itemRef, itemData);
         return docRef.id; // Return the document ID of the added item
       }
@@ -66,20 +66,64 @@ class CartDataService {
 
   fetchCartItems = async (userId) => {
     try {
-      const cartRef = collection(db, "carts", userId);
-      const querySnapshot = await getDocs(cartRef);
+      const userCartRef = doc(CartCollectionRef, userId); // Reference user's cart document
 
-      const cartItems = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      const cartDoc = await getDoc(userCartRef); // Retrieve cart document
 
-      return cartItems;
+      if (cartDoc.exists()) {
+        const itemsCollectionRef = collection(userCartRef, "carts"); // Reference "carts" subcollection
+        const querySnapshot = await getDocs(itemsCollectionRef); // Fetch carts
+
+        const cartItems = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        return cartItems;
+      } else {
+        // Handle the case where the user's cart document doesn't exist
+        return []; // Or throw an error, depending on your logic
+      }
     } catch (error) {
-      console.error("Error fetching cart items:", error);
+      console.error("Error fetching cart carts:", error);
       // Handle errors (optional)
     }
   };
+
+  // fetchCartItems = async (userId) => {
+  //   try {
+  //     const cartRef = collection(db, "carts", userId); // Build the path with "carts" and userId
+  //     const querySnapshot = await getDocs(cartRef);
+  //     console.log("fetchref", cartRef);
+
+  //     const cartItems = querySnapshot.docs.map((doc) => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     }));
+
+  //     return cartItems;
+  //   } catch (error) {
+  //     console.error("Error fetching cart carts:", error);
+  //     // Handle errors (optional)
+  //   }
+  // };
+
+  // fetchCartItems = async (userId) => {
+  //   try {
+  //     const cartRef = collection(db, "carts", userId);
+  //     const querySnapshot = await getDocs(cartRef);
+
+  //     const cartItems = querySnapshot.docs.map((doc) => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     }));
+
+  //     return cartItems;
+  //   } catch (error) {
+  //     console.error("Error fetching cart carts:", error);
+  //     // Handle errors (optional)
+  //   }
+  // };
 
   updateCartItem = async (itemData, userId, itemId) => {
     const cartRef = collection(db, "carts", userId);

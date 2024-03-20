@@ -91,7 +91,7 @@ const Navbar = () => {
             <FiShoppingCart />
           </Link>
           <Link to="/auth" className="nav-link">
-            <span className="text-danger">{currentUser.email}</span>
+            {/* <span className="text-danger">{currentUser.email}</span> */}
             <IoPersonCircleOutline />
           </Link>
         </div>
