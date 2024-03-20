@@ -10,7 +10,7 @@ import { AuthContext } from "../../context/AuthContext";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // State variable for tracking menu visibility
 
-  const { totalQty } = useContext(CartContext);
+  const { totalQuantity } = useContext(CartContext);
 
   const { currentUser } = useContext(AuthContext);
 
@@ -87,7 +87,7 @@ const Navbar = () => {
         </div>
         <div className="d-flex gap-3 align-items-center ms-0 ms-lg-4">
           <Link to="/cart" className="nav-link">
-            <span className="text-danger">{totalQty}</span>
+            <span className="text-danger">{totalQuantity}</span>
             <FiShoppingCart />
           </Link>
           <Link to="/auth" className="nav-link">
