@@ -22,6 +22,7 @@ export const CartContextProvider = ({ children }) => {
     }
     console.log("Fetching cart for user:", userId);
     const userCart = collection(db, "users", userId, "carts");
+
     try {
       const snapshot = await getDocs(userCart);
       const cartItems = snapshot.docs.map((doc) => ({

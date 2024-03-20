@@ -189,25 +189,8 @@ const ItemPage = () => {
     setCustomerDetails(event.target.value);
   };
 
-  //ADDING ITEMS TO CART FUNCTIONALITY
-
-  // const { dispatch } = useContext(CartContext);
-
-  // const handleCartAdd = async () => {
-  //   try {
-  //     await dispatch({
-  //       type: "ADD_ITEM_TO_CART",
-  //       item: { ...item, quantity, customerDetails },
-  //     });
-  //     console.log("Item added to cart successfully!");
-  //     navigate("/cart");
-  //   } catch (error) {
-  //     console.error("Error adding item to cart:", error);
-  //     // Display an error message to the user
-  //   }
-  // };
   const { currentUser } = useContext(AuthContext);
-  console.log("Gabriel", currentUser);
+  // console.log("Gabriel", currentUser);
   const { dispatch } = useContext(CartContext);
 
   const handleCartAdd = async () => {

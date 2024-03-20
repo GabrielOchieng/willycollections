@@ -168,7 +168,7 @@ import { AuthContext } from "../../context/AuthContext";
 const Cart = () => {
   const { shoppingCart, totalPrice, totalQty, fetchCartItems } =
     useContext(CartContext);
-  console.log(shoppingCart);
+  // console.log(shoppingCart);
   const { currentUser } = useContext(AuthContext);
 
   const currentUserId = currentUser.uid;
@@ -181,17 +181,7 @@ const Cart = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        // Check if Cart_Services exists and the fetchCartItems function is defined
-        if (
-          Cart_Services &&
-          typeof Cart_Services.fetchCartItems === "function"
-        ) {
-          await Cart_Services.fetchCartItems(currentUserId); // Call context fetch if needed
-        } else {
-          console.error(
-            "Cart_Services.fetchCartItems is not defined or not a function"
-          );
-        }
+        fetchCartItems(currentUserId); // Call context fetch if needed
       } catch (error) {
         console.error("Error fetching cart items:", error);
       } finally {
@@ -200,7 +190,14 @@ const Cart = () => {
     };
 
     fetchData();
+    console.log("2", shoppingCart);
   }, [currentUser]);
+
+  const handleCheckout = () => {
+    // Implement your checkout logic here
+    // This function could redirect to a checkout page, trigger an API call, etc.
+    console.log(totalPrice);
+  };
 
   const handleDeleteItem = async (itemId) => {
     setIsLoading(true);
