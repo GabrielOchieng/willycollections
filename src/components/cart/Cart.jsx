@@ -67,7 +67,7 @@ const Cart = () => {
             {shoppingCart.map((item) => (
               <li
                 key={item.id}
-                className="list-group-item d-flex justify-content-between align-items-center"
+                className="list-group-item d-flex justify-content-between align-items-center position-relative"
               >
                 <div className="d-flex justify-content-between">
                   {/* Assuming you have image URL property in the item */}
@@ -96,14 +96,14 @@ const Cart = () => {
                       </p>
                     </div>
                   </div>
-                  <div>
-                    <button
-                      className="btn btn-sm btn-danger ms-2"
-                      onClick={() => handleDeleteItem(item.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
+
+                  {/* Delete button with positioning styles */}
+                  <button
+                    className="btn btn-sm btn-danger position-absolute top-0 end-0 mt-2 me-2"
+                    onClick={() => handleDeleteItem(item.id)}
+                  >
+                    Delete
+                  </button>
                 </div>
               </li>
             ))}
