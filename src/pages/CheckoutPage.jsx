@@ -10,6 +10,7 @@ import { CartContext } from "../context/CartContext";
 
 const CheckoutPage = () => {
   const { shoppingCart, totalPrice } = useContext(CartContext);
+  const [paymentMethod, setPaymentMethod] = useState("select"); // Initial payment method
   const [shippingInfo, setShippingInfo] = useState({
     address: "",
     city: "",
