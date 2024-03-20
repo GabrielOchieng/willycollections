@@ -69,7 +69,7 @@ const Cart = () => {
                 key={item.id}
                 className="list-group-item d-flex justify-content-between align-items-center position-relative"
               >
-                <div className="d-flex justify-content-between">
+                <div className="d-flex flex-column flex-grow-1  pe-3">
                   {/* Assuming you have image URL property in the item */}
                   <div className="d-flex flex-column ">
                     <div>
@@ -87,12 +87,12 @@ const Cart = () => {
                     <div>
                       <p className="mb-1">Name: {item.name}</p>
                       <p className="mb-1">Type: {item.type}</p>
+                      <p className="text-muted">
+                        Details: {item.customerDetails}
+                      </p>
                       <p className="text-muted">Ksh. {item.price} each</p>
                       <p className="text-muted">
                         Quantity: {item.quantity} piece(s)
-                      </p>
-                      <p className="text-muted">
-                        Details: {item.customerDetails}
                       </p>
                     </div>
                   </div>
