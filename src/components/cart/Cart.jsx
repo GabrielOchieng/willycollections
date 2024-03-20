@@ -168,27 +168,14 @@ import { AuthContext } from "../../context/AuthContext";
 const Cart = () => {
   const { shoppingCart, totalPrice, totalQty, fetchCartItems } =
     useContext(CartContext);
+  console.log(shoppingCart);
   const { currentUser } = useContext(AuthContext);
-  console.log("Herrera", currentUser);
+
   const currentUserId = currentUser.uid;
   // const cartService = new CartDataService(); // Create an instance of CartDataService
   const [isLoading, setIsLoading] = useState(false); // State for loading indicator
 
   const isEmpty = shoppingCart.length === 0;
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setIsLoading(true);
-  //     await Cart_Services.fetchCartItems(); // Optional: Call context fetch if needed
-  //     setIsLoading(false);
-  //   };
-  //   fetchData();
-  // }, []);
-
-  // const handleCheckout = () => {
-  //   // Implement your checkout logic here
-  //   console.log(totalPrice);
-  // };
 
   useEffect(() => {
     const fetchData = async () => {
