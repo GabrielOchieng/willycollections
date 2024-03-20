@@ -56,6 +56,15 @@ export const CartReducer = (state = initialState, action) => {
         error: action.error.message,
       };
     }
+
+    case "UPDATE_TOTALS": {
+      return {
+        ...state,
+        totalPrice: action.payload.totalPrice,
+        totalQty: action.payload.totalQty,
+      };
+    }
+
     default:
       return state;
   }
@@ -63,6 +72,8 @@ export const CartReducer = (state = initialState, action) => {
 
 const initialState = {
   shoppingCart: [], // Initialize with an empty cart
+  totalPrice: 0,
+  totalQty: 0,
   loading: false, // Add a loading state for asynchronous operations
   error: null, // Add an error state for potential errors
 };

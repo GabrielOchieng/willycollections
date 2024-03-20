@@ -81,6 +81,24 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
+  const calculateCartTotal = (cartItems) => {
+    let totalPrice = 0;
+    let totalQuantity = 0;
+
+    cartItems.forEach((item) => {
+      totalPrice += item.price * item.quantity;
+      totalQuantity += item.quantity;
+    });
+
+    return { totalPrice, totalQuantity };
+  };
+
+  useEffect(() => {
+    const { shoppingCart, totalPrice, totalQty } = cart;
+    const newTotals = calculateCartTotal(shoppingCart);
+    dispatch({ type: "UPDATE_TOTALS", payload: newTotals });
+  }, [cart.shoppingCart]);
+
   return (
     <CartContext.Provider
       value={{ ...cart, dispatch, loading, fetchCartItems }}
