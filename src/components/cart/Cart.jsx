@@ -3,11 +3,13 @@ import { CartContext } from "../../context/CartContext";
 import { FaShoppingCart } from "react-icons/fa"; // Import shopping cart icon
 import Cart_Services from "../../services/Cart_Services";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { shoppingCart, totalPrice, totalQuantity, fetchCartItems } =
     useContext(CartContext);
   const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const currentUserId = currentUser.uid;
   const [isLoading, setIsLoading] = useState(false); // State for loading indicator
@@ -33,6 +35,7 @@ const Cart = () => {
     // Implement your checkout logic here
     // This function could redirect to a checkout page, trigger an API call, etc.
     console.log(totalPrice);
+    navigate("/checkout");
   };
 
   const handleDeleteItem = async (itemId) => {

@@ -11,6 +11,7 @@ import ItemPage from "./pages/ItemPage";
 import ProductContextProvider from "./context/ProductContext";
 import { CartContextProvider } from "./context/CartContext";
 import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -47,6 +48,14 @@ function App() {
                 element={
                   <RequireAuth>
                     <CartPage currentUser={currentUser} />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/checkout"
+                element={
+                  <RequireAuth>
+                    <CheckoutPage currentUser={currentUser} />
                   </RequireAuth>
                 }
               />
