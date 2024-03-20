@@ -20,7 +20,7 @@ export const CartContextProvider = ({ children }) => {
       // console.log("No user ID available yet.");
       return;
     }
-    console.log("Fetching cart for user:", userId);
+    // console.log("Fetching cart for user:", userId);
     const userCart = collection(db, "users", userId, "carts");
 
     try {
@@ -30,7 +30,7 @@ export const CartContextProvider = ({ children }) => {
         ...doc.data(),
       }));
       dispatch({ type: "LOAD_FROM_FIREBASE", payload: cartItems });
-      console.log("Cart items fetched:", cartItems);
+      // console.log("Cart items fetched:", cartItems);
     } catch (error) {
       console.error("Error fetching cart items:", error);
     }
@@ -88,13 +88,14 @@ export const CartContextProvider = ({ children }) => {
     cartItems.forEach((item) => {
       totalPrice += item.price * item.quantity;
       totalQuantity += item.quantity;
+      console.log(item.quantity);
     });
 
     return { totalPrice, totalQuantity };
   };
 
   useEffect(() => {
-    const { shoppingCart, totalPrice, totalQty } = cart;
+    const { shoppingCart, totalPrice, totalQuantity } = cart;
     const newTotals = calculateCartTotal(shoppingCart);
     dispatch({ type: "UPDATE_TOTALS", payload: newTotals });
   }, [cart.shoppingCart]);

@@ -6,9 +6,9 @@ import { AuthContext } from "../../context/AuthContext";
 // import { CartDataService } from "./CartServices"; // Import CartDataService
 
 const Cart = () => {
-  const { shoppingCart, totalPrice, totalQty, fetchCartItems } =
+  const { shoppingCart, totalPrice, totalQuantity, fetchCartItems } =
     useContext(CartContext);
-  // console.log(shoppingCart);
+  console.log(shoppingCart, totalPrice, totalQuantity);
   const { currentUser } = useContext(AuthContext);
 
   const currentUserId = currentUser.uid;
@@ -30,7 +30,7 @@ const Cart = () => {
     };
 
     fetchData();
-    console.log("2", shoppingCart);
+    // console.log("2", shoppingCart);
   }, [currentUser]);
 
   const handleCheckout = () => {
@@ -100,7 +100,7 @@ const Cart = () => {
         {!isEmpty && (
           <div className="d-flex justify-content-between w-100 mt-3">
             <p className="text-muted">Total Items:</p>
-            <p className="text-muted">{totalQty}</p>
+            <p className="text-muted">{totalQuantity}</p>
           </div>
         )}
         {!isEmpty && (

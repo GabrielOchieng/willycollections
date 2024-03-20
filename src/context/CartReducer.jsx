@@ -1,7 +1,7 @@
 export const CartReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_FROM_FIREBASE": {
-      console.log("Fetched cart items:", action.payload);
+      // console.log("Fetched cart items:", action.payload);
       return {
         ...state,
         shoppingCart: action.payload,
@@ -61,7 +61,7 @@ export const CartReducer = (state = initialState, action) => {
       return {
         ...state,
         totalPrice: action.payload.totalPrice,
-        totalQty: action.payload.totalQty,
+        totalQuantity: action.payload.totalQuantity,
       };
     }
 
@@ -73,7 +73,7 @@ export const CartReducer = (state = initialState, action) => {
 const initialState = {
   shoppingCart: [], // Initialize with an empty cart
   totalPrice: 0,
-  totalQty: 0,
+  totalQuantity: 0,
   loading: false, // Add a loading state for asynchronous operations
   error: null, // Add an error state for potential errors
 };
