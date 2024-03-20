@@ -14,6 +14,12 @@ const Featured = () => {
     }, 1000);
   }, []);
 
+  // Filter unique items based on itemID so as to avoid duplicates as I was experiencing initially
+  const uniqueItems = items.filter(
+    (item, index, self) =>
+      index === self.findIndex((i) => i.itemID === item.itemID)
+  );
+
   return (
     <div className="d-flex container containerfea flex-column align-items-center pt-5">
       <div className="upperdiv text-center">
@@ -42,12 +48,12 @@ const Featured = () => {
         ) : (
           <>
             {/* Render actual items once data is fetched */}
-            {items.length === 0 && (
+            {uniqueItems.length === 0 && (
               <div>Slow internet.... no items to display</div>
             )}
-            {items.map((item) => (
+            {uniqueItems.map((item) => (
               <div
-                key={uuidv4()}
+                key={item.itemID}
                 data-aos="fade-right"
                 className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-center gap-3 bg-secondary-subtle"
                 style={{ position: "relative" }} // Add this line

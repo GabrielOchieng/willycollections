@@ -78,7 +78,7 @@ const ItemPage = () => {
         payload: { ...item, quantity, customerDetails, id: itemId },
       });
 
-      // console.log("Item added to cart successfully!");
+      console.log("Item added to cart successfully!");
       navigate("/cart");
     } catch (error) {
       console.error("Error adding item to cart:", error);
