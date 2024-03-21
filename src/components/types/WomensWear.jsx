@@ -1,40 +1,82 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import ItemPage from "../../pages/ItemPage";
-// Import your component for displaying a single item (replace with your component name)
-// import SingleItem from "./SingleItem";
+// import React, { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+// // Import Firebase SDK for accessing Firestore
+// import {
+//   getFirestore,
+//   collection,
+//   query,
+//   limit,
+//   orderBy,
+//   startAfter,
+// } from "firebase/firestore";
 
-// Replace with your data fetching logic or API call
-const fetchItemsByType = async (type) => {
-  // Simulate API call with some sample data (replace with your actual logic)
-  const items = [
-    { id: 1, name: "Women's Dress", price: 39.99, image: "path/to/image1.jpg" },
-    { id: 2, name: "Women's Top", price: 24.99, image: "path/to/image2.jpg" },
-    // ... more items
-  ];
-  return items.filter((item) => item.type.toLowerCase() === type.toLowerCase());
-};
+// // Assuming Firebase is configured correctly in your project
+// const db = getFirestore();
+
+// const WomensWear = () => {
+//   const [items, setItems] = useState([]);
+//   const { type } = useParams();
+//   const [lastVisible, setLastVisible] = useState(null); // For pagination
+
+//   useEffect(() => {
+//     const fetchItems = async () => {
+//       const q = query(
+//         collection(db, "items"),
+//         orderBy("name"),
+//         startAfter(lastVisible),
+//         limit(10)
+//       );
+//       try {
+//         const querySnapshot = await getDocs(q);
+//         const fetchedItems = querySnapshot.docs.map((doc) => ({
+//           id: doc.id,
+//           ...doc.data(),
+//         }));
+//         setItems(fetchedItems);
+//         setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+//       } catch (error) {
+//         console.error("Error fetching items:", error);
+//       }
+//     };
+
+//     fetchItems();
+//   }, [type, lastVisible]);
+
+//   return (
+//     <div className="container mt-5">
+//       <h1>{type.toUpperCase()} Wear</h1>
+//       <div className="row d-flex justify-content-between flex-wrap">
+//         {items.map((item) => (
+//           //   <SingleItem key={item.id} itemData={item} />
+//           <ItemPage key={item.id} itemData={item} />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default WomensWear;
+
+import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
+import { ProductContext } from "../../context/ProductContext";
 
 const WomensWear = () => {
-  const [items, setItems] = useState([]);
-  const { type } = useParams(); // Assuming your route path includes a type parameter (e.g., /womens-wear)
+  const { type } = useParams();
+  const { items } = useContext(ProductContext);
+  console.log(type, items);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedItems = await fetchItemsByType(type);
-      setItems(fetchedItems);
-    };
-
-    fetchData();
-  }, [type]); // Re-run effect when `type` parameter changes
+  const filteredItems = items.filter(
+    (item) => item.itemType.toLowerCase() === type.toLowerCase()
+  );
 
   return (
     <div className="container mt-5">
-      <h1>{type.toUpperCase()} Wear</h1>
+      <h1>{type.toUpperCase()}</h1>
       <div className="row d-flex justify-content-between flex-wrap">
-        {items.map((item) => (
-          //   <SingleItem key={item.id} itemData={item} />
-          <ItemPage key={item.id} itemData={item} />
+        {filteredItems.map((item) => (
+          // Assuming ItemPage component handles item data
+          <ItemPage key={item.itemID} itemData={item} />
         ))}
       </div>
     </div>
