@@ -1,34 +1,3 @@
-// import React, { useContext } from "react";
-// import { useParams } from "react-router-dom";
-// import { ProductContext } from "../../context/ProductContext";
-// import CartItem from "../CartItem/CartItem";
-
-// const WomensWear = () => {
-//   const { type } = useParams();
-//   const { items } = useContext(ProductContext);
-//   console.log(type, items);
-
-//   const filteredItems = items.filter(
-//     (item) => item.itemType.toLowerCase() === type.toLowerCase()
-//   );
-
-//   console.log(filteredItems);
-//   return (
-//     <div className="container mt-5">
-//       <h1>{type.toUpperCase()}</h1>
-//       <div className="row d-flex justify-content-between flex-wrap">
-//         {filteredItems.map((item) => (
-//           // Assuming ItemPage component handles item data
-//           <div>item.type</div>
-//           //   <CartItem key={item.itemID} itemData={item} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default WomensWear;
-
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../../context/ProductContext";
