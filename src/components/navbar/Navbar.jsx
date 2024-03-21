@@ -39,7 +39,7 @@ const Navbar = () => {
         </button>
         <div>
           <Link to="/" className="navbar-brand font-bolder">
-            WILLY COLLECTIONS
+            WILLYCOLLECTIONS
           </Link>
         </div>
 
