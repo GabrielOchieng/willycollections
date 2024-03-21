@@ -9,6 +9,7 @@ import sports from "../../assets/sports.webp";
 import "./category.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 const Category = () => {
   useEffect(() => {
@@ -37,6 +38,10 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">WOMEN'S WEAR</h4>
             <h5 className="fs-6 fw-normal">20 PRODUCTS</h5>
+            <Link to="/womens-wear" className="btn btn-primary mt-2">
+              Shop Now
+            </Link>{" "}
+            {/* Adjust the path as needed */}
           </div>
         </div>
         <div
@@ -52,6 +57,10 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">MEN'S WEAR</h4>
             <h5 className="fs-6 fw-normal">12 PRODUCTS</h5>
+            <Link to="/mens-wear" className="btn btn-primary mt-2">
+              Shop Now
+            </Link>{" "}
+            {/* Adjust the path as needed */}
           </div>
         </div>
         <div
@@ -67,6 +76,10 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">SHOES</h4>
             <h5 className="fs-6 fw-normal">15 PRODUCTS</h5>
+            <Link to="/shoes" className="btn btn-primary mt-2">
+              Shop Now
+            </Link>{" "}
+            {/* Adjust the path as needed */}
           </div>
         </div>
         <div
@@ -82,6 +95,10 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">HOUSEHOLD ITEMS</h4>
             <h5 className="fs-6 fw-normal">7 PRODUCTS</h5>
+            <Link to="/households" className="btn btn-primary mt-2">
+              Shop Now
+            </Link>{" "}
+            {/* Adjust the path as needed */}
           </div>
         </div>
         <div
@@ -97,6 +114,10 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">INNER CLOTHES</h4>
             <h5 className="fs-6 fw-normal">35 PRODUCTS</h5>
+            <Link to="/inners" className="btn btn-primary mt-2">
+              Shop Now
+            </Link>{" "}
+            {/* Adjust the path as needed */}
           </div>
         </div>
         <div
@@ -112,6 +133,10 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">SPORTS WEAR</h4>
             <h5 className="fs-6 fw-normal">16 PRODUCTS</h5>
+            <Link to="/sports-wear" className="btn btn-primary mt-2">
+              Shop Now
+            </Link>{" "}
+            {/* Adjust the path as needed */}
           </div>
         </div>
       </div>
