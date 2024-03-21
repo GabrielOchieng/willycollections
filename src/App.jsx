@@ -12,6 +12,7 @@ import ProductContextProvider from "./context/ProductContext";
 import { CartContextProvider } from "./context/CartContext";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import WomenwearPage from "./pages/WomenwearPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -61,6 +62,7 @@ function App() {
               />
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/item/:id" element={<ItemPage />} />
+              <Route path="/:type" element={<WomenwearPage />} />
             </Routes>
           </div>
           <Footer />
