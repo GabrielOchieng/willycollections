@@ -33,7 +33,9 @@ const WomensWear = () => {
 
   return (
     <div className="container mt-5 mb-5">
-      <h1 className="text-center mb-5 underline">{type.toUpperCase()}</h1>
+      <h1 className="text-center mb-5 text-decoration-underline">
+        {type.toUpperCase()}
+      </h1>
       <div className="row d-flex  gap-3 justify-content-between flex-wrap">
         {isLoading ? (
           <div className="col-12 text-center">Loading items...</div>

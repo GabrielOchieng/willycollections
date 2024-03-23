@@ -54,12 +54,12 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/wishlist" className="nav-link">
+              <Link to="/women" className="nav-link">
                 WOMEN'S WEAR
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/wishlist" className="nav-link">
+              <Link to="/men" className="nav-link">
                 MEN'S WEAR
               </Link>
             </li>
