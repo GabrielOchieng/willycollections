@@ -31,8 +31,7 @@ const Navbar = () => {
     setIsModalOpen(searchTerm.length > 0); // Open modal when there's a search term
   };
   const handleSearchSubmit = (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-    // You can optionally handle form submission here, e.g., navigate to a search results page
+    setIsModalOpen(false);
   };
 
   return (
@@ -107,6 +106,7 @@ const Navbar = () => {
             <ItemSearchModal
               searchResults={searchResults}
               searchTerm={searchTerm}
+              handleSearchSubmit={handleSearchSubmit}
               onClose={() => setIsModalOpen(false)}
             />
           )}
