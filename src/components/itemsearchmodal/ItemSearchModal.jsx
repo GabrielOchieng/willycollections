@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ItemSearchModal = ({ searchResults, onClose }) => {
+const ItemSearchModal = ({ searchResults, onClose, searchTerm }) => {
+  console.log(searchTerm);
   return (
     <div className="search-results-modal position-absolute top-100 start-0 w-100">
       <div className="bg-light rounded p-3 shadow">
@@ -15,8 +16,10 @@ const ItemSearchModal = ({ searchResults, onClose }) => {
         {searchResults.length > 0 ? (
           <ul className="list-group">
             {searchResults.map((item) => (
-              <li key={item.itemID} className="list-group-item link">
-                <Link to={`/item/${item.itemID}`}>{item.itemName}</Link>
+              <li key={item.itemID} className="list-group-item">
+                <Link to={`/item/${item.itemID}`} className="link">
+                  {item.itemName}
+                </Link>
               </li>
             ))}
           </ul>

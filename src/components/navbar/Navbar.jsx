@@ -106,6 +106,7 @@ const Navbar = () => {
           {isModalOpen && (
             <ItemSearchModal
               searchResults={searchResults}
+              searchTerm={searchTerm}
               onClose={() => setIsModalOpen(false)}
             />
           )}
