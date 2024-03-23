@@ -32,6 +32,7 @@ const Navbar = () => {
   };
   const handleSearchSubmit = (event) => {
     setIsModalOpen(false);
+    setSearchTerm("");
   };
 
   return (
