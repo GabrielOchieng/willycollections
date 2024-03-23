@@ -38,7 +38,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">WOMEN'S WEAR</h4>
             <h5 className="fs-6 fw-normal">20 PRODUCTS</h5>
-            <Link to="/women" className="btn btn-primary mt-2">
+            <Link to="/type/women" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}
@@ -57,7 +57,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">MEN'S WEAR</h4>
             <h5 className="fs-6 fw-normal">12 PRODUCTS</h5>
-            <Link to="/men" className="btn btn-primary mt-2">
+            <Link to="/type/men" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}
@@ -76,7 +76,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">SHOES</h4>
             <h5 className="fs-6 fw-normal">15 PRODUCTS</h5>
-            <Link to="/shoes" className="btn btn-primary mt-2">
+            <Link to="/type/shoes" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}
@@ -95,7 +95,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">HOUSEHOLD ITEMS</h4>
             <h5 className="fs-6 fw-normal">7 PRODUCTS</h5>
-            <Link to="/households" className="btn btn-primary mt-2">
+            <Link to="/type/households" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}
@@ -114,7 +114,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">INNER CLOTHES</h4>
             <h5 className="fs-6 fw-normal">35 PRODUCTS</h5>
-            <Link to="/inners" className="btn btn-primary mt-2">
+            <Link to="/type/inners" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}
@@ -133,7 +133,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">SPORTS WEAR</h4>
             <h5 className="fs-6 fw-normal">16 PRODUCTS</h5>
-            <Link to="/sports" className="btn btn-primary mt-2">
+            <Link to="/type/sports" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}

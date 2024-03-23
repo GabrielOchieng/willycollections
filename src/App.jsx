@@ -13,6 +13,7 @@ import { CartContextProvider } from "./context/CartContext";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import WomenwearPage from "./pages/WomenwearPage";
+import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -60,9 +61,17 @@ function App() {
                   </RequireAuth>
                 }
               />
+              <Route
+                path="/orderconfirmation"
+                element={
+                  <RequireAuth>
+                    <OrderConfirmationPage currentUser={currentUser} />
+                  </RequireAuth>
+                }
+              />
               <Route path="/auth" element={<AuthPage />} />
               <Route path="/item/:id" element={<ItemPage />} />
-              <Route path="/:type" element={<WomenwearPage />} />
+              <Route path="/type/:type" element={<WomenwearPage />} />
             </Routes>
           </div>
           <Footer />

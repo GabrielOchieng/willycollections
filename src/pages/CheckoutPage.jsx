@@ -7,6 +7,7 @@ import {
   FaShippingFast,
 } from "react-icons/fa"; // Import icons
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 const CheckoutPage = () => {
   const { shoppingCart, totalPrice } = useContext(CartContext);
@@ -36,6 +37,14 @@ const CheckoutPage = () => {
     console.log("Checkout with:", shoppingCart, shippingInfo, totalPrice);
     alert("Order details submitted successfully! (placeholder)");
   };
+
+  // .. Implement your checkout logic here ...
+  const orderDetails = {
+    shippingInfo,
+    orderItems: shoppingCart, // Assuming shoppingCart contains ordered items
+    totalPrice,
+  };
+  console.log("Order details:", orderDetails); // For verification
 
   return (
     <div className="container border mt-5 mb-5 rounded shadow">
@@ -171,6 +180,11 @@ const CheckoutPage = () => {
               </label>
             </div>
           </div>
+          <Link to="/order-confirmation" state={{ orderDetails }}>
+            <button type="button" className="btn btn-primary w-100 mt-5">
+              Place Order
+            </button>
+          </Link>
         </div>
       </div>
     </div>
