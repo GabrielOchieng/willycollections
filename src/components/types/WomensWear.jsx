@@ -5,7 +5,6 @@ import { ProductContext } from "../../context/ProductContext";
 const WomensWear = () => {
   const { type } = useParams();
   const { items } = useContext(ProductContext);
-
   const [filteredItems, setFilteredItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
 
