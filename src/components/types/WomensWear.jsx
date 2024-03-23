@@ -31,28 +31,67 @@ const WomensWear = () => {
     }, 3000); // Adjust delay as needed
   }, [items, type]);
 
+  // return (
+  //   <div className="container mt-5">
+  //     <h1 className="text-center mb-5 underline">{type.toUpperCase()}</h1>
+  //     <div className="row d-flex justify-content-between flex-wrap">
+  //       {isLoading ? (
+  //         <div className="col-12 text-center">Loading items...</div>
+  //       ) : filteredItems.length > 0 ? (
+  //         filteredItems.map((item) => (
+  //           <div className="col-md-4 col-sm-6">
+  //             {" "}
+  //             {/* Adjust for item layout */}
+  //             <div className="card mb-4 shadow-sm">
+  //               <img
+  //                 className="card-img-top"
+  //                 src={item.itemImg}
+  //                 alt={item.itemName}
+  //               />
+  //               <div className="card-body">
+  //                 <h5 className="card-title">Name: {item.itemName}</h5>
+  //                 <p className="card-text text-muted">Type: {item.itemType}</p>
+  //                 <p className="card-text">Price: Ksh. {item.itemPrice}</p>{" "}
+  //                 {/* Add buttons or links for actions (e.g., View Details, Add to Cart) */}
+  //                 <Link to={`/item/${item.itemID}`}>
+  //                   <button className="btn btn-primary w-100">
+  //                     View Details
+  //                   </button>
+  //                 </Link>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         ))
+  //       ) : (
+  //         <div>No items found for this category.</div>
+  //       )}
+  //     </div>
+  //   </div>
+  // );
+
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 mb-5">
       <h1 className="text-center mb-5 underline">{type.toUpperCase()}</h1>
       <div className="row d-flex justify-content-between flex-wrap">
         {isLoading ? (
           <div className="col-12 text-center">Loading items...</div>
         ) : filteredItems.length > 0 ? (
           filteredItems.map((item) => (
-            <div className="col-md-4 col-sm-6">
+            <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-start gap-3 bg-secondary-subtle ">
               {" "}
-              {/* Adjust for item layout */}
-              <div className="card mb-4 shadow-sm">
+              {/* New classes */}
+              <div className="image">
                 <img
-                  className="card-img-top"
+                  className="img-fluid lazyload"
+                  loading="lazy"
                   src={item.itemImg}
                   alt={item.itemName}
+                  style={{ width: "100%", height: "150px" }}
                 />
-                <div className="card-body">
-                  <h5 className="card-title">Name: {item.itemName}</h5>
-                  <p className="card-text text-muted">Type: {item.itemType}</p>
-                  <p className="card-text">Price: Ksh. {item.itemPrice}</p>{" "}
-                  {/* Add buttons or links for actions (e.g., View Details, Add to Cart) */}
+                <div className="wprice text-center w-100 p-2">
+                  <h5 className="fs-6 text-capitalize">{item.itemName}</h5>
+                  <p className="fs-6"> {item.itemType}</p>
+                  <p className="fs-6"> Ksh. {item.itemPrice}</p>
                   <Link to={`/item/${item.itemID}`}>
                     <button className="btn btn-primary w-100">
                       View Details

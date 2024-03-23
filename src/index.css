@@ -23,3 +23,11 @@ ul {
 .link {
   text-decoration: none;
 }
+
+.cateitems {
+  height: 350px;
+}
+
+.cateitems img {
+  height: 300px;
+}
