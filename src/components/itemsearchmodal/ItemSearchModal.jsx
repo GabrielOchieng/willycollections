@@ -9,15 +9,18 @@ const ItemSearchModal = ({
 }) => {
   console.log(searchTerm);
   return (
-    <div className="search-results-modal position-absolute top-100 start-0 w-100">
+    <div className="search-results-modal position-absolute top-100 end-0 col-sm-12 col-md-6 col-lg-3">
       <div className="bg-light rounded p-3 shadow">
-        <h6 className="mb-2">Search Results</h6>
-        <button
-          type="button"
-          className="btn-close float-end"
-          aria-label="Close"
-          onClick={onClose}
-        />
+        <div className="d-flex justify-content-between mb-3">
+          <h6 className="mb-2">Search Results</h6>
+          <button
+            type="button"
+            className="btn-close"
+            aria-label="Close"
+            onClick={onClose}
+          />
+        </div>
+
         {searchResults.length > 0 ? (
           <ul className="list-group">
             {searchResults.map((item) => (
