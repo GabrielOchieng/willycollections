@@ -38,7 +38,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">WOMEN'S WEAR</h4>
             <h5 className="fs-6 fw-normal">20 PRODUCTS</h5>
-            <Link to="/womens-wear" className="btn btn-primary mt-2">
+            <Link to="/women's wear" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}

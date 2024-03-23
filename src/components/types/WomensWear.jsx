@@ -6,6 +6,7 @@ import CartItem from "../CartItem/CartItem";
 const WomensWear = () => {
   const { type } = useParams();
   const { items } = useContext(ProductContext);
+  console.log(items);
 
   const [filteredItems, setFilteredItems] = useState([]); // State for filtered data
 
@@ -16,9 +17,10 @@ const WomensWear = () => {
         (item) => item.itemType.toLowerCase() === type.toLowerCase()
       );
       setFilteredItems(filtered);
+      console.log(filteredItems);
     } else {
       // Handle empty or missing items (e.g., show a loading indicator)
-      // console.log("Items are not yet available");
+      console.log("Items are not yet available");
     }
   }, [items, type]);
 
