@@ -72,12 +72,12 @@ const WomensWear = () => {
   return (
     <div className="container mt-5 mb-5">
       <h1 className="text-center mb-5 underline">{type.toUpperCase()}</h1>
-      <div className="row d-flex justify-content-between flex-wrap">
+      <div className="row d-flex  gap-3 justify-content-between flex-wrap">
         {isLoading ? (
           <div className="col-12 text-center">Loading items...</div>
         ) : filteredItems.length > 0 ? (
           filteredItems.map((item) => (
-            <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-start gap-3 bg-secondary-subtle ">
+            <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-start gap-3 bg-secondary-subtle">
               {" "}
               {/* New classes */}
               <div className="image">
