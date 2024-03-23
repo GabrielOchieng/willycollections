@@ -38,7 +38,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">WOMEN'S WEAR</h4>
             <h5 className="fs-6 fw-normal">20 PRODUCTS</h5>
-            <Link to="/women's wear" className="btn btn-primary mt-2">
+            <Link to="/women" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}
@@ -57,7 +57,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">MEN'S WEAR</h4>
             <h5 className="fs-6 fw-normal">12 PRODUCTS</h5>
-            <Link to="/mens-wear" className="btn btn-primary mt-2">
+            <Link to="/men" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}
@@ -133,7 +133,7 @@ const Category = () => {
           >
             <h4 className="fs-6 fw-bolder">SPORTS WEAR</h4>
             <h5 className="fs-6 fw-normal">16 PRODUCTS</h5>
-            <Link to="/sports-wear" className="btn btn-primary mt-2">
+            <Link to="/sports" className="btn btn-primary mt-2">
               Shop Now
             </Link>{" "}
             {/* Adjust the path as needed */}
