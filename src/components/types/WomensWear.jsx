@@ -26,7 +26,7 @@
 //   }, [items, type]);
 
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ProductContext } from "../../context/ProductContext";
 
 const WomensWear = () => {
@@ -71,8 +71,12 @@ const WomensWear = () => {
                   <h5 className="card-title">{item.itemName}</h5>
                   <p className="card-text text-muted">{item.itemType}</p>
                   <p className="card-text">Ksh. {item.itemPrice}</p>{" "}
-                  {/* Assuming currency is Kenyan Shilling */}
                   {/* Add buttons or links for actions (e.g., View Details, Add to Cart) */}
+                  <Link to={`/item/${item.itemID}`}>
+                    <button className="btn btn-primary w-100">
+                      View Details
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -83,21 +87,6 @@ const WomensWear = () => {
       </div>
     </div>
   );
-
-  // return (
-  //   <div className="container mt-5">
-  //     <h1>{type.toUpperCase()}</h1>
-  //     <div className="row d-flex justify-content-between flex-wrap">
-  //       {filteredItems.length > 0 ? (
-  //         filteredItems.map((item) => (
-
-  //         ))
-  //       ) : (
-  //         <div>No items found for this category.</div>
-  //       )}
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default WomensWear;
