@@ -16,7 +16,7 @@ const CheckoutPage = () => {
     address: "",
     city: "",
     postalCode: "",
-    country: "",
+    country: "Kenya",
   });
 
   const handleInputChange = (event) => {

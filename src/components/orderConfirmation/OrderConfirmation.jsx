@@ -1,11 +1,17 @@
 import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
-const OrderConfirmation = ({ orderDetails }) => {
+const OrderConfirmation = () => {
+  const location = useLocation();
   // Ensure orderDetails is defined before destructuring
-  if (!orderDetails) {
-    return <div className="p-5">Loading order details...</div>; // Or handle the error differently
-  }
+  // if (!orderDetails) {
+  //   return <div className="p-5">Loading order details...</div>; // Or handle the error differently
+  // }
+
+  const orderDetails = location.state?.orderDetails; // Access state from location prop
+
+  console.log(location);
 
   const { shippingInfo, orderItems, totalPrice } = orderDetails;
   console.log(totalPrice);
