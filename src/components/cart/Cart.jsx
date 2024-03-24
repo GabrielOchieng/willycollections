@@ -16,11 +16,11 @@ const Cart = () => {
 
   const isEmpty = shoppingCart.length === 0;
 
-  useEffect(() => {
-    // Fetch cart items when the component mounts
-    // and when the user changes (as a safety measure)
-    fetchCartItems(currentUserId);
-  }, [currentUserId, fetchCartItems]); // Add fetchCartItems to dependencies
+  // useEffect(() => {
+  //   // Fetch cart items when the component mounts
+  //   // and when the user changes (as a safety measure)
+  //   fetchCartItems(currentUserId);
+  // }, [currentUserId, fetchCartItems]); // Add fetchCartItems to dependencies
 
   useEffect(() => {
     const fetchData = async () => {

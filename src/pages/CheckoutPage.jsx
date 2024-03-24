@@ -14,6 +14,7 @@ const CheckoutPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("select"); // Initial payment method
   const [shippingInfo, setShippingInfo] = useState({
     address: "",
+    phone_number: "",
     city: "",
     postalCode: "",
     country: "Kenya",
@@ -69,6 +70,20 @@ const CheckoutPage = () => {
               ></textarea>
             </div>
             <div className="d-flex mb-3">
+              <div className="me-3">
+                <label htmlFor="city" className="form-label">
+                  Phone No.:
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="phone_number"
+                  name="phone_number"
+                  value={shippingInfo.phone_number}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
               <div className="me-3">
                 <label htmlFor="city" className="form-label">
                   City:

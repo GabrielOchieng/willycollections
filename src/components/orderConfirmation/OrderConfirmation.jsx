@@ -5,16 +5,15 @@ import { useLocation } from "react-router-dom";
 const OrderConfirmation = () => {
   const location = useLocation();
   // Ensure orderDetails is defined before destructuring
-  // if (!orderDetails) {
-  //   return <div className="p-5">Loading order details...</div>; // Or handle the error differently
-  // }
 
   const orderDetails = location.state?.orderDetails; // Access state from location prop
 
-  console.log(location);
-
   const { shippingInfo, orderItems, totalPrice } = orderDetails;
   console.log(totalPrice);
+
+  if (!orderDetails) {
+    return <div className="p-5">Loading order details...</div>; // Or handle the error differently
+  }
 
   // Handle potential missing shippingInfo gracefully
   if (!shippingInfo) {
@@ -39,6 +38,10 @@ const OrderConfirmation = () => {
           <li className="list-group-item">
             <p className="mb-1">City:</p>
             <p>{shippingInfo.city}</p>
+          </li>
+          <li className="list-group-item">
+            <p className="mb-1">Phone No.:</p>
+            <p>{shippingInfo.phone_number}</p>
           </li>
           <li className="list-group-item">
             <p className="mb-1">Postal Code:</p>
