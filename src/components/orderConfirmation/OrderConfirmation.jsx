@@ -2,8 +2,18 @@ import React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
 const OrderConfirmation = ({ orderDetails }) => {
+  // Ensure orderDetails is defined before destructuring
+  if (!orderDetails) {
+    return <div className="p-5">Loading order details...</div>; // Or handle the error differently
+  }
+
   const { shippingInfo, orderItems, totalPrice } = orderDetails;
   console.log(totalPrice);
+
+  // Handle potential missing shippingInfo gracefully
+  if (!shippingInfo) {
+    return <div className="p-5">Shipping information not available.</div>;
+  }
 
   return (
     <div className="container border mt-5 mb-5 rounded shadow p-4">
