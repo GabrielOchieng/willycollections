@@ -3,11 +3,13 @@ import { IoSearch } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import "./navbar.css"; // Assuming your styles are in this file
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { AuthContext } from "../../context/AuthContext";
 import ItemSearchModal from "../itemsearchmodal/ItemSearchModal";
 import { ProductContext } from "../../context/ProductContext";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,6 +22,15 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    dispatch({ type: "LOGOUT" }); // Dispatch a logout action to the AuthContext
+    navigate("/"); // Redirect to the desired path after logout
   };
 
   const handleSearchChange = (event) => {
@@ -121,6 +132,9 @@ const Navbar = () => {
             {/* <span className="text-danger">{currentUser.email}</span> */}
             <IoPersonCircleOutline />
           </Link>
+          <button onClick={handleLogout} className="btn btn-secondary">
+            Logout
+          </button>
         </div>{" "}
       </div>
     </nav>

@@ -10,11 +10,29 @@ export const CartReducer = (state = initialState, action) => {
       };
     }
     case "ADD_ITEM_TO_CART": {
-      console.log("Adding item to cart:", action.payload);
-      return {
-        ...state,
-        loading: true, // Set loading state to true while interacting with Firebase
-      };
+      if (state.shoppingCart.length === 0) {
+        return state; // Wait for cart data to be loaded before checking for duplicates
+      }
+      const existingItem = state.shoppingCart.find(
+        (item) => item.id === action.payload.id
+      );
+
+      // Check if item already exists in the cart
+      if (!existingItem) {
+        console.log("Adding item to cart:", action.payload);
+
+        return {
+          ...state,
+          loading: true, // Set loading state to true while interacting with Firebase
+        };
+      } else {
+        console.log("Item already exists in cart:", action.payload.id);
+        // Handle duplicate item case (optional)
+        // You can choose to:
+        // - Show a notification to the user
+        // - Increase the quantity of the existing item (implement logic for quantity)
+        return state; // Don't modify state if item already exists
+      }
     }
 
     case "ADD_TO_CART_SUCCESS": {
