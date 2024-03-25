@@ -46,13 +46,25 @@ export const CartReducer = (state = initialState, action) => {
         error: action.error.message,
       };
     }
+
     case "REMOVE_FROM_CART": {
-      console.log("Removing item from cart:", action.payload);
+      const itemIdToRemove = action.payload;
       return {
         ...state,
-        loading: true, // Set loading state to true while interacting with Firebase
+        loading: true, // Set loading state while removing from Firebase
+        shoppingCart: state.shoppingCart.filter(
+          (item) => item.itemID !== itemIdToRemove
+        ),
       };
     }
+
+    // case "REMOVE_FROM_CART": {
+    //   console.log("Removing item from cart:", action.payload);
+    //   return {
+    //     ...state,
+    //     loading: true, // Set loading state to true while interacting with Firebase
+    //   };
+    // }
     case "REMOVE_FROM_CART_SUCCESS": {
       console.log("Item removed from cart successfully:", action.payload); // May not be necessary
       return {

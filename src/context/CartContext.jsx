@@ -1,5 +1,11 @@
 import React, { createContext, useReducer, useEffect, useState } from "react";
-import { collection, getDocs, doc, writeBatch } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  writeBatch,
+  deleteDoc,
+} from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { CartReducer } from "./CartReducer";
 import { onAuthStateChanged } from "firebase/auth";
@@ -81,6 +87,21 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
+  // ... CartReducer implementation (with REMOVE_FROM_CART case)
+
+  const removeItemFromCart = async (itemIdToRemove) => {
+    try {
+      dispatch({ type: "REMOVE_FROM_CART", payload: itemIdToRemove }); // Update state immediately
+
+      const cartRef = collection(db, "users", userId, "carts");
+      await deleteDoc(doc(cartRef, itemIdToRemove)); // Remove from Firebase
+
+      dispatch({ type: "REMOVE_FROM_CART_SUCCESS", payload: itemIdToRemove }); // Handle success
+    } catch (error) {
+      dispatch({ type: "REMOVE_FROM_CART_FAILURE", error: error.message }); // Handle failure
+    }
+  };
+
   const calculateCartTotal = (cartItems) => {
     let totalPrice = 0;
     let totalQuantity = 0;
@@ -101,7 +122,7 @@ export const CartContextProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ ...cart, dispatch, loading, fetchCartItems }}
+      value={{ ...cart, dispatch, loading, fetchCartItems, removeItemFromCart }}
     >
       {children}
     </CartContext.Provider>

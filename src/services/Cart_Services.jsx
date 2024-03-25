@@ -72,10 +72,29 @@ class CartDataService {
     await updateDoc(docRef, itemData);
   };
 
+  // deleteCartItem = async (userId, itemId) => {
+  //   const cartRef = collection(db, "carts", userId);
+  //   const docRef = doc(cartRef, itemId);
+  //   await deleteDoc(docRef);
+  // };
+
   deleteCartItem = async (userId, itemId) => {
-    const cartRef = collection(db, "carts", userId);
-    const docRef = doc(cartRef, itemId);
-    await deleteDoc(docRef);
+    // Get a reference to the carts collection
+    const cartsRef = collection(db, "carts");
+
+    // Construct the document reference using the user ID
+    const docRef = doc(cartsRef, userId); // Document reference within carts
+
+    // Create a subcollection reference for items (if applicable)
+    const itemRef = collection(docRef, "items"); // Optional subcollection
+
+    // Construct the final document reference for the item (optional)
+    const specificItemRef = doc(itemRef, itemId); // Specific item within subcollection
+
+    // Choose the appropriate reference based on your data structure
+    const deleteRef = itemRef ? specificItemRef : docRef; // Delete from subcollection or document
+
+    await deleteDoc(deleteRef);
   };
 }
 

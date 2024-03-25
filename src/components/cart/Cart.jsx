@@ -41,13 +41,14 @@ const Cart = () => {
   const handleDeleteItem = async (itemId) => {
     setIsLoading(true);
     try {
-      await cartService.deleteCartItem(userId, itemId); // Call delete function from service
+      await Cart_Services.deleteCartItem(currentUserId, itemId); // Call delete function from service
       fetchCartItems(); // Refetch cart items after deletion (consider context update)
     } catch (error) {
       console.error("Error deleting item:", error);
       // Handle errors appropriately (e.g., display error message to user)
     } finally {
       setIsLoading(false);
+      console.log("item deleted successfully");
     }
   };
 
