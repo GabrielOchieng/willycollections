@@ -72,12 +72,6 @@ class CartDataService {
     await updateDoc(docRef, itemData);
   };
 
-  // deleteCartItem = async (userId, itemId) => {
-  //   const cartRef = collection(db, "carts", userId);
-  //   const docRef = doc(cartRef, itemId);
-  //   await deleteDoc(docRef);
-  // };
-
   deleteCartItem = async (userId, itemId) => {
     // Get a reference to the carts collection
     const cartsRef = collection(db, "carts");

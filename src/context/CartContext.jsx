@@ -9,6 +9,7 @@ import {
 import { auth, db } from "../firebase";
 import { CartReducer } from "./CartReducer";
 import { onAuthStateChanged } from "firebase/auth";
+import Cart_Services from "../services/Cart_Services";
 
 export const CartContext = createContext();
 
@@ -21,22 +22,27 @@ export const CartContextProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // const cartDataService = new CartDataService();
   const loadCartFromFirebase = async () => {
     if (!userId) {
       // console.log("No user ID available yet.");
       return;
     }
     // console.log("Fetching cart for user:", userId);
-    const userCart = collection(db, "users", userId, "carts");
+    // const userCart = collection(db, "users", userId, "carts");
+
+    // try {
+    //   const snapshot = await getDocs(userCart);
+    //   const cartItems = snapshot.docs.map((doc) => ({
+    //     id: doc.id,
+    //     ...doc.data(),
+    //   }));
+    //   dispatch({ type: "LOAD_FROM_FIREBASE", payload: cartItems });
+    //   // console.log("Cart items fetched:", cartItems);
 
     try {
-      const snapshot = await getDocs(userCart);
-      const cartItems = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      dispatch({ type: "LOAD_FROM_FIREBASE", payload: cartItems });
-      // console.log("Cart items fetched:", cartItems);
+      const fetchedCartItems = await Cart_Services.fetchCartItems(userId);
+      dispatch({ type: "LOAD_FROM_FIREBASE", payload: fetchedCartItems });
     } catch (error) {
       console.error("Error fetching cart items:", error);
     }
@@ -76,16 +82,16 @@ export const CartContextProvider = ({ children }) => {
 
   // ... CartReducer implementation ...
 
-  const fetchCartItems = async () => {
-    setLoading(true);
-    try {
-      await loadCartFromFirebase();
-    } catch (error) {
-      console.error("Error fetching cart items:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const fetchCartItems = async () => {
+  //   setLoading(true);
+  //   try {
+  //     await loadCartFromFirebase();
+  //   } catch (error) {
+  //     console.error("Error fetching cart items:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   // ... CartReducer implementation (with REMOVE_FROM_CART case)
 
@@ -93,8 +99,7 @@ export const CartContextProvider = ({ children }) => {
     try {
       dispatch({ type: "REMOVE_FROM_CART", payload: itemIdToRemove }); // Update state immediately
 
-      const cartRef = collection(db, "users", userId, "carts");
-      await deleteDoc(doc(cartRef, itemIdToRemove)); // Remove from Firebase
+      await Cart_Services.deleteCartItem(userId, itemIdToRemove);
 
       dispatch({ type: "REMOVE_FROM_CART_SUCCESS", payload: itemIdToRemove }); // Handle success
     } catch (error) {
@@ -122,7 +127,13 @@ export const CartContextProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ ...cart, dispatch, loading, fetchCartItems, removeItemFromCart }}
+      value={{
+        ...cart,
+        dispatch,
+        loading,
+        loadCartFromFirebase,
+        removeItemFromCart,
+      }}
     >
       {children}
     </CartContext.Provider>

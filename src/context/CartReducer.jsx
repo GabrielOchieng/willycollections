@@ -58,13 +58,6 @@ export const CartReducer = (state = initialState, action) => {
       };
     }
 
-    // case "REMOVE_FROM_CART": {
-    //   console.log("Removing item from cart:", action.payload);
-    //   return {
-    //     ...state,
-    //     loading: true, // Set loading state to true while interacting with Firebase
-    //   };
-    // }
     case "REMOVE_FROM_CART_SUCCESS": {
       console.log("Item removed from cart successfully:", action.payload); // May not be necessary
       return {

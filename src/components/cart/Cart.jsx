@@ -6,8 +6,13 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { shoppingCart, totalPrice, totalQuantity, fetchCartItems } =
-    useContext(CartContext);
+  const {
+    shoppingCart,
+    totalPrice,
+    totalQuantity,
+    loadCartFromFirebase,
+    removeItemFromCart,
+  } = useContext(CartContext);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -20,7 +25,7 @@ const Cart = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        fetchCartItems(currentUserId); // Call context fetch if needed
+        loadCartFromFirebase(currentUserId); // Call context fetch if needed
       } catch (error) {
         console.error("Error fetching cart items:", error);
       } finally {
@@ -41,8 +46,8 @@ const Cart = () => {
   const handleDeleteItem = async (itemId) => {
     setIsLoading(true);
     try {
-      await Cart_Services.deleteCartItem(currentUserId, itemId); // Call delete function from service
-      fetchCartItems(); // Refetch cart items after deletion (consider context update)
+      await removeItemFromCart(currentUserId, itemId); // Call delete function from service
+      loadCartFromFirebase(); // Refetch cart items after deletion (consider context update)
     } catch (error) {
       console.error("Error deleting item:", error);
       // Handle errors appropriately (e.g., display error message to user)
