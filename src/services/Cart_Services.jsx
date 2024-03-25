@@ -1,27 +1,3 @@
-// import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-// import { db, storage } from "../firebase";
-// import {
-//   collection,
-//   doc,
-//   getDoc,
-//   getDocs,
-//   updateDoc,
-//   deleteDoc,
-//   setDoc,
-//   addDoc,
-//   serverTimestamp,
-// } from "firebase/firestore";
-
-// export const CartCollectionRef = collection(db, "carts");
-
-// class CartDataService {
-//   addToCartOnFirebase = async (itemData, userId) => {
-//     // Include userId as an argument
-//     const cartRef = collection(db, "carts", userId, "carts"); // Use userId here
-//     const docRef = await addDoc(cartRef, itemData);
-//     return docRef.id; // Return the document ID
-//   };
-
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../firebase";
 import {
@@ -89,41 +65,6 @@ class CartDataService {
       // Handle errors (optional)
     }
   };
-
-  // fetchCartItems = async (userId) => {
-  //   try {
-  //     const cartRef = collection(db, "carts", userId); // Build the path with "carts" and userId
-  //     const querySnapshot = await getDocs(cartRef);
-  //     console.log("fetchref", cartRef);
-
-  //     const cartItems = querySnapshot.docs.map((doc) => ({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     }));
-
-  //     return cartItems;
-  //   } catch (error) {
-  //     console.error("Error fetching cart carts:", error);
-  //     // Handle errors (optional)
-  //   }
-  // };
-
-  // fetchCartItems = async (userId) => {
-  //   try {
-  //     const cartRef = collection(db, "carts", userId);
-  //     const querySnapshot = await getDocs(cartRef);
-
-  //     const cartItems = querySnapshot.docs.map((doc) => ({
-  //       id: doc.id,
-  //       ...doc.data(),
-  //     }));
-
-  //     return cartItems;
-  //   } catch (error) {
-  //     console.error("Error fetching cart carts:", error);
-  //     // Handle errors (optional)
-  //   }
-  // };
 
   updateCartItem = async (itemData, userId, itemId) => {
     const cartRef = collection(db, "carts", userId);
