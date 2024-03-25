@@ -81,10 +81,10 @@ export const CartContextProvider = ({ children }) => {
   }, [cart.shoppingCart, userId]);
 
   // ... CartReducer implementation (with REMOVE_FROM_CART case)
-  const removeItemFromCart = async (itemIdToRemove) => {
+  const removeItemFromCart = async (userId, itemId) => {
     try {
-      await Cart_Services.deleteCartItem(userId, itemIdToRemove);
-      dispatch({ type: "REMOVE_FROM_CART", payload: itemIdToRemove }); // Dispatch after successful deletion
+      await Cart_Services.deleteCartItem(userId, itemId);
+      // dispatch({ type: "REMOVE_FROM_CART", payload: itemId }); // Dispatch after successful deletion
     } catch (error) {
       dispatch({ type: "REMOVE_FROM_CART_FAILURE", error: error.message });
     }

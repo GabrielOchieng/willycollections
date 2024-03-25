@@ -16,6 +16,7 @@ export const CartCollectionRef = collection(db, "users"); // Define a reference 
 
 class CartDataService {
   addToCartOnFirebase = async (itemData, userId) => {
+    console.log(itemData.id);
     // Include userId as an argument
     const userCartRef = doc(CartCollectionRef, userId); // Create a document reference for the user's cart
 
@@ -73,31 +74,38 @@ class CartDataService {
   };
 
   // deleteCartItem = async (userId, itemId) => {
-  //   // Get a reference to the carts collection
-  //   const cartsRef = collection(db, "carts");
+  //   try {
+  //     const cartsRef = collection(db, "users", userId, "carts");
+  //     const itemDocRef = doc(cartsRef, itemId);
 
-  //   // Construct the document reference using the user ID
-  //   const docRef = doc(cartsRef, userId); // Document reference within carts
-
-  //   // Construct the final document reference for the item (optional)
-  //   const specificItemRef = doc(itemRef, itemId); // Specific item within subcollection
-
-  //   // Choose the appropriate reference based on your data structure
-  //   const deleteRef = itemRef ? specificItemRef : docRef; // Delete from subcollection or document
-
-  //   await deleteDoc(deleteRef);
+  //     await deleteDoc(itemDocRef);
+  //     console.log("Item deleted successfully:", itemId); // Log success
+  //   } catch (error) {
+  //     console.error("Error deleting item:", error);
+  //     // Handle errors appropriately (e.g., display error message to user)
+  //   }
   // };
 
   deleteCartItem = async (userId, itemId) => {
-    try {
-      const cartsRef = collection(db, "users", userId, "carts");
-      const itemDocRef = doc(cartsRef, itemId);
+    // Include userId and itemId as arguments
+    const userCartRef = doc(CartCollectionRef, userId); // Reference to user's cart document
+    console.log(userId);
+    console.log(itemId);
 
-      await deleteDoc(itemDocRef);
-      console.log("Item deleted successfully:", itemId); // Log success
+    try {
+      const cartDoc = await getDoc(userCartRef); // Check if user's cart document exists
+
+      if (cartDoc.exists()) {
+        const itemRef = collection(userCartRef, "carts"); // Reference to "carts" subcollection
+        const itemToDeleteRef = doc(itemRef, itemId); // Reference to specific item document
+
+        await deleteDoc(itemToDeleteRef); // Delete the item document
+      } else {
+        console.warn("Cart document not found for user:", userId); // Handle potential errors
+      }
     } catch (error) {
-      console.error("Error deleting item:", error);
-      // Handle errors appropriately (e.g., display error message to user)
+      console.error("Error removing item from cart:", error);
+      // Handle errors (optional)
     }
   };
 }

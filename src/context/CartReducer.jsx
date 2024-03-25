@@ -49,14 +49,16 @@ export const CartReducer = (state = initialState, action) => {
 
     case "REMOVE_FROM_CART":
       async (state, action) => {
-        const itemIdToRemove = action.payload;
+        const itemId = action.payload;
+        console.log(itemId);
+        console.log(action.payload);
         try {
-          await cartDataService.deleteCartItem(userId, itemIdToRemove);
+          await cartDataService.deleteCartItem(userId, itemId);
           // Dispatch successful deletion action (e.g., "REMOVE_FROM_CART_SUCCESS") with itemId
           return {
             ...state,
             shoppingCart: state.shoppingCart.filter(
-              (item) => item.id !== itemIdToRemove
+              (item) => item.id !== itemId
             ),
           };
         } catch (error) {
@@ -67,12 +69,10 @@ export const CartReducer = (state = initialState, action) => {
       };
 
     case "REMOVE_FROM_CART_SUCCESS": {
-      const itemIdToRemove = action.payload;
+      const itemId = action.payload;
       return {
         ...state,
-        shoppingCart: state.shoppingCart.filter(
-          (item) => item.id !== itemIdToRemove
-        ),
+        shoppingCart: state.shoppingCart.filter((item) => item.id !== itemId),
       };
     }
 
