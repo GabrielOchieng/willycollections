@@ -80,30 +80,13 @@ export const CartContextProvider = ({ children }) => {
     }
   }, [cart.shoppingCart, userId]);
 
-  // ... CartReducer implementation ...
-
-  // const fetchCartItems = async () => {
-  //   setLoading(true);
-  //   try {
-  //     await loadCartFromFirebase();
-  //   } catch (error) {
-  //     console.error("Error fetching cart items:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   // ... CartReducer implementation (with REMOVE_FROM_CART case)
-
   const removeItemFromCart = async (itemIdToRemove) => {
     try {
-      dispatch({ type: "REMOVE_FROM_CART", payload: itemIdToRemove }); // Update state immediately
-
       await Cart_Services.deleteCartItem(userId, itemIdToRemove);
-
-      dispatch({ type: "REMOVE_FROM_CART_SUCCESS", payload: itemIdToRemove }); // Handle success
+      dispatch({ type: "REMOVE_FROM_CART", payload: itemIdToRemove }); // Dispatch after successful deletion
     } catch (error) {
-      dispatch({ type: "REMOVE_FROM_CART_FAILURE", error: error.message }); // Handle failure
+      dispatch({ type: "REMOVE_FROM_CART_FAILURE", error: error.message });
     }
   };
 

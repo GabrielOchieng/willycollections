@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import { FaShoppingCart } from "react-icons/fa"; // Import shopping cart icon
-import Cart_Services from "../../services/Cart_Services";
+// import Cart_Services from "../../services/Cart_Services";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +15,7 @@ const Cart = () => {
   } = useContext(CartContext);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { dispatch } = useContext(CartContext);
 
   const currentUserId = currentUser.uid;
   const [isLoading, setIsLoading] = useState(false); // State for loading indicator
@@ -44,7 +45,11 @@ const Cart = () => {
   };
 
   const handleDeleteItem = async (itemId) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: itemId });
+
     setIsLoading(true);
+    console.log(itemId);
+
     try {
       await removeItemFromCart(currentUserId, itemId); // Call delete function from service
       loadCartFromFirebase(); // Refetch cart items after deletion (consider context update)
@@ -53,6 +58,8 @@ const Cart = () => {
       // Handle errors appropriately (e.g., display error message to user)
     } finally {
       setIsLoading(false);
+      console.log(itemId, "", currentUserId);
+      console.log(shoppingCart[0].id);
       console.log("item deleted successfully");
     }
   };

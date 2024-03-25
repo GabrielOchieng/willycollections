@@ -49,11 +49,12 @@ export const CartReducer = (state = initialState, action) => {
 
     case "REMOVE_FROM_CART": {
       const itemIdToRemove = action.payload;
+      console.log(itemIdToRemove);
       return {
         ...state,
         loading: true, // Set loading state while removing from Firebase
         shoppingCart: state.shoppingCart.filter(
-          (item) => item.itemID !== itemIdToRemove
+          (item) => item.id !== itemIdToRemove
         ),
       };
     }

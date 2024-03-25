@@ -43,7 +43,7 @@ const WomensWear = () => {
             <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-start gap-3 bg-secondary-subtle">
               {" "}
               {/* New classes */}
-              <div className="w-100">
+              <div className="w-100" key={item.itemID}>
                 <img
                   className="img-fluid lazyload w-100"
                   loading="lazy"
