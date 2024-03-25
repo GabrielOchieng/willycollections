@@ -88,7 +88,6 @@ export const CartContextProvider = ({ children }) => {
     cartItems.forEach((item) => {
       totalPrice += item.price * item.quantity;
       totalQuantity += item.quantity;
-      console.log(item.quantity);
     });
 
     return { totalPrice, totalQuantity };

@@ -1,47 +1,40 @@
 export const CartReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_FROM_FIREBASE": {
-      // console.log("Fetched cart items:", action.payload);
       return {
         ...state,
         shoppingCart: action.payload,
-        loading: false, // Assuming a loading state is managed
+        loading: false,
         error: null,
       };
     }
     case "ADD_ITEM_TO_CART": {
-      if (state.shoppingCart.length === 0) {
-        return state; // Wait for cart data to be loaded before checking for duplicates
-      }
+      return {
+        ...state,
+        loading: true, // Set loading state immediately
+      };
+    }
+    case "ADD_TO_CART_SUCCESS": {
       const existingItem = state.shoppingCart.find(
         (item) => item.id === action.payload.id
       );
 
-      // Check if item already exists in the cart
       if (!existingItem) {
-        console.log("Adding item to cart:", action.payload);
-
         return {
           ...state,
-          loading: true, // Set loading state to true while interacting with Firebase
+          shoppingCart: [...state.shoppingCart, action.payload],
+          loading: false,
         };
       } else {
-        console.log("Item already exists in cart:", action.payload.id);
-        // Handle duplicate item case (optional)
-        // You can choose to:
-        // - Show a notification to the user
-        // - Increase the quantity of the existing item (implement logic for quantity)
-        return state; // Don't modify state if item already exists
+        // Handle duplicate item:
+        // - Show notification, increase quantity, or both
+        console.log(
+          "Item already exists in cart, handling accordingly:",
+          action.payload.id
+        );
+        // Implement your desired duplicate handling logic here
+        return state;
       }
-    }
-
-    case "ADD_TO_CART_SUCCESS": {
-      console.log("Item added to cart successfully:", action.payload);
-      return {
-        ...state,
-        shoppingCart: [...state.shoppingCart, action.payload], // Add the new item
-        loading: false, // Reset loading state
-      };
     }
 
     case "ADD_TO_CART_FAILURE": {
