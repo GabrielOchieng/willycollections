@@ -14,9 +14,10 @@ export const CartReducer = (state = initialState, action) => {
         loading: true, // Set loading state immediately
       };
     }
+
     case "ADD_TO_CART_SUCCESS": {
       const existingItem = state.shoppingCart.find(
-        (item) => item.id === action.payload.id
+        (item) => item.itemID === action.payload.id
       );
 
       if (!existingItem) {
