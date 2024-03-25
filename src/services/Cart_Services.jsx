@@ -72,23 +72,33 @@ class CartDataService {
     await updateDoc(docRef, itemData);
   };
 
+  // deleteCartItem = async (userId, itemId) => {
+  //   // Get a reference to the carts collection
+  //   const cartsRef = collection(db, "carts");
+
+  //   // Construct the document reference using the user ID
+  //   const docRef = doc(cartsRef, userId); // Document reference within carts
+
+  //   // Construct the final document reference for the item (optional)
+  //   const specificItemRef = doc(itemRef, itemId); // Specific item within subcollection
+
+  //   // Choose the appropriate reference based on your data structure
+  //   const deleteRef = itemRef ? specificItemRef : docRef; // Delete from subcollection or document
+
+  //   await deleteDoc(deleteRef);
+  // };
+
   deleteCartItem = async (userId, itemId) => {
-    // Get a reference to the carts collection
-    const cartsRef = collection(db, "carts");
+    try {
+      const cartsRef = collection(db, "users", userId, "carts");
+      const itemDocRef = doc(cartsRef, itemId);
 
-    // Construct the document reference using the user ID
-    const docRef = doc(cartsRef, userId); // Document reference within carts
-
-    // Create a subcollection reference for items (if applicable)
-    const itemRef = collection(docRef, "items"); // Optional subcollection
-
-    // Construct the final document reference for the item (optional)
-    const specificItemRef = doc(itemRef, itemId); // Specific item within subcollection
-
-    // Choose the appropriate reference based on your data structure
-    const deleteRef = itemRef ? specificItemRef : docRef; // Delete from subcollection or document
-
-    await deleteDoc(deleteRef);
+      await deleteDoc(itemDocRef);
+      console.log("Item deleted successfully:", itemId); // Log success
+    } catch (error) {
+      console.error("Error deleting item:", error);
+      // Handle errors appropriately (e.g., display error message to user)
+    }
   };
 }
 

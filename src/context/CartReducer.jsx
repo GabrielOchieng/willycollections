@@ -47,25 +47,35 @@ export const CartReducer = (state = initialState, action) => {
       };
     }
 
-    case "REMOVE_FROM_CART": {
+    case "REMOVE_FROM_CART":
+      async (state, action) => {
+        const itemIdToRemove = action.payload;
+        try {
+          await cartDataService.deleteCartItem(userId, itemIdToRemove);
+          // Dispatch successful deletion action (e.g., "REMOVE_FROM_CART_SUCCESS") with itemId
+          return {
+            ...state,
+            shoppingCart: state.shoppingCart.filter(
+              (item) => item.id !== itemIdToRemove
+            ),
+          };
+        } catch (error) {
+          // Handle deletion error (e.g., dispatch "REMOVE_FROM_CART_FAILURE")
+          console.error("Error removing item from cart:", error);
+          return { ...state }; // Or return a state with an error flag
+        }
+      };
+
+    case "REMOVE_FROM_CART_SUCCESS": {
       const itemIdToRemove = action.payload;
-      console.log(itemIdToRemove);
       return {
         ...state,
-        loading: true, // Set loading state while removing from Firebase
         shoppingCart: state.shoppingCart.filter(
           (item) => item.id !== itemIdToRemove
         ),
       };
     }
 
-    case "REMOVE_FROM_CART_SUCCESS": {
-      console.log("Item removed from cart successfully:", action.payload); // May not be necessary
-      return {
-        ...state,
-        loading: false, // Reset loading state
-      };
-    }
     case "REMOVE_FROM_CART_FAILURE": {
       console.error("Error removing item from cart:", action.error.message);
       return {
