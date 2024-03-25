@@ -44,23 +44,48 @@ const Cart = () => {
     navigate("/checkout");
   };
 
+  // const handleDeleteItem = async (itemId) => {
+  //   dispatch({ type: "REMOVE_FROM_CART", payload: itemId });
+
+  //   setIsLoading(true);
+  //   console.log(itemId);
+
+  //   try {
+  //     await removeItemFromCart(currentUserId, itemId); // Call delete function from service
+  //     loadCartFromFirebase(); // Refetch cart items after deletion (consider context update)
+  //   } catch (error) {
+  //     console.error("Error deleting item:", error);
+  //     // Handle errors appropriately (e.g., display error message to user)
+  //   } finally {
+  //     setIsLoading(false);
+  //     console.log(itemId, "", currentUserId);
+  //     console.log(shoppingCart[0].id);
+  //     console.log("item deleted successfully");
+  //   }
+  // };
+
   const handleDeleteItem = async (itemId) => {
-    dispatch({ type: "REMOVE_FROM_CART", payload: itemId });
+    dispatch({ type: "REMOVE_FROM_CART", payload: itemId }); // Dispatch for deletion
 
     setIsLoading(true);
     console.log(itemId);
 
+    const updatedCart = shoppingCart.filter((item) => item.id !== itemId); // Optimistic update
+
     try {
-      await removeItemFromCart(currentUserId, itemId); // Call delete function from service
-      loadCartFromFirebase(); // Refetch cart items after deletion (consider context update)
+      await removeItemFromCart(currentUserId, itemId);
+      dispatch({ type: "REMOVE_FROM_CART_SUCCESS" }); // Dispatch success
+      setShoppingCart(updatedCart); // Update local state (optional, might be handled by context)
+      loadCartFromFirebase(); // Refetch cart (consider context update)
     } catch (error) {
+      dispatch({ type: "REMOVE_FROM_CART_FAILURE", error: error.message }); // Dispatch failure
+      setShoppingCart(shoppingCart); // Revert local update if necessary
       console.error("Error deleting item:", error);
-      // Handle errors appropriately (e.g., display error message to user)
     } finally {
       setIsLoading(false);
       console.log(itemId, "", currentUserId);
-      console.log(shoppingCart[0].id);
-      console.log("item deleted successfully");
+      console.log(shoppingCart[0].id); // Maybe remove for production
+      console.log("item deleted successfully"); // Maybe remove for production
     }
   };
 
