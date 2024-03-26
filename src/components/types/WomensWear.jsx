@@ -10,25 +10,16 @@ const WomensWear = () => {
 
   useEffect(() => {
     // Simulate data fetching with a delay
-    setTimeout(() => {
-      if (items.length > 0) {
-        const filtered = items.filter(
-          (item) => item.itemType.toLowerCase() === type.toLowerCase()
-        );
 
-        // Remove duplicates
-        const seenItems = {};
-        const uniqueItems = filtered.filter((item) => {
-          const isDuplicate = seenItems.hasOwnProperty(item.itemID);
-          seenItems[item.itemID] = true;
-          return !isDuplicate;
-        });
+    if (items.length > 0) {
+      const filtered = items.filter(
+        (item) => item.itemType.toLowerCase() === type.toLowerCase()
+      );
 
-        setFilteredItems(uniqueItems);
-      }
-      setIsLoading(false); // Indicate loading finished
-    }, 3000); // Adjust delay as needed
-  }, [items, type]);
+      setFilteredItems(filtered); // Directly set filtered items
+    }
+    setIsLoading(false); // Indicate loading finished
+  }, [items]);
 
   return (
     <div className="container mt-5 mb-5">
@@ -40,10 +31,11 @@ const WomensWear = () => {
           <div className="col-12 text-center">Loading items...</div>
         ) : filteredItems.length > 0 ? (
           filteredItems.map((item) => (
-            <div className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-start gap-3 bg-secondary-subtle">
-              {" "}
-              {/* New classes */}
-              <div className="w-100" key={item.itemID}>
+            <div
+              key={item.itemID} // Add key using item.itemID
+              className="sectionf col-12 col-sm-5 col-lg-2 col-md-3 p-3 d-flex flex-column align-items-start gap-3 bg-secondary-subtle"
+            >
+              <div className="w-100">
                 <img
                   className="img-fluid lazyload w-100"
                   loading="lazy"
