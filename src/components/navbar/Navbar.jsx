@@ -128,13 +128,7 @@ const Navbar = () => {
             <span className="text-danger">{totalQuantity}</span>
             <FiShoppingCart />
           </Link>
-          {/* <Link to="/auth" className="nav-link"> */}
-          {/* <span className="text-danger">{currentUser.email}</span> */}
-          {/* <IoPersonCircleOutline />
-          </Link>
-          <button onClick={handleLogout} className="btn btn-secondary">
-            Logout
-          </button> */}
+
           {currentUser ? (
             <button onClick={handleLogout} className="btn btn-secondary">
               Logout
