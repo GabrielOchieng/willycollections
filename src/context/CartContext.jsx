@@ -22,23 +22,30 @@ export const CartContextProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // const cartDataService = new CartDataService();
+  const addToCart = async (itemData) => {
+    setLoading(true); // Set loading state
+
+    try {
+      const addedItemId = await Cart_Services.addToCartOnFirebase(
+        itemData,
+        userId
+      );
+      dispatch({
+        type: "ADD_TO_CART_SUCCESS",
+        payload: { ...itemData, id: addedItemId },
+      });
+    } catch (error) {
+      dispatch({ type: "ADD_TO_CART_FAILURE", error: error.message });
+    } finally {
+      setLoading(false); // Reset loading state
+    }
+  };
+
   const loadCartFromFirebase = async () => {
     if (!userId) {
       // console.log("No user ID available yet.");
       return;
     }
-    // console.log("Fetching cart for user:", userId);
-    // const userCart = collection(db, "users", userId, "carts");
-
-    // try {
-    //   const snapshot = await getDocs(userCart);
-    //   const cartItems = snapshot.docs.map((doc) => ({
-    //     id: doc.id,
-    //     ...doc.data(),
-    //   }));
-    //   dispatch({ type: "LOAD_FROM_FIREBASE", payload: cartItems });
-    //   // console.log("Cart items fetched:", cartItems);
 
     try {
       const fetchedCartItems = await Cart_Services.fetchCartItems(userId);
@@ -114,6 +121,7 @@ export const CartContextProvider = ({ children }) => {
         ...cart,
         dispatch,
         loading,
+        addToCart,
         loadCartFromFirebase,
         removeItemFromCart,
       }}

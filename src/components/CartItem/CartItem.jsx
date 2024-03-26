@@ -1,16 +1,105 @@
+// import React, { useContext, useEffect, useState } from "react";
+// import { useNavigate, useParams } from "react-router-dom";
+// import { doc, getDoc } from "firebase/firestore";
+
+// import Testimonials from "../testimonials/Testimonials";
+// import { CartContext } from "../../context/CartContext";
+// import Cart_Services from "../../services/Cart_Services";
+// import { AuthContext } from "../../context/AuthContext";
+// import { db } from "../../firebase";
+
+// const CartItem = () => {
+//   const navigate = useNavigate();
+//   const { id } = useParams();
+
+//   // State variables declared upfront
+//   const [item, setItem] = useState(null);
+//   const [isLoading, setIsLoading] = useState(true);
+//   const [quantity, setQuantity] = useState(1);
+//   const [customerDetails, setCustomerDetails] = useState("");
+
+//   // Memoize the total price calculation
+//   const totalPrice = React.useMemo(() => {
+//     return item?.price ? item.price * quantity : 0;
+//   }, [item, quantity]);
+
+//   useEffect(() => {
+//     const fetchItem = async () => {
+//       try {
+//         setIsLoading(true);
+//         const itemRef = doc(db, "items", id);
+
+//         const itemSnap = await getDoc(itemRef);
+//         setItem(itemSnap.data());
+//       } catch (error) {
+//         console.error("Error fetching product:", error);
+//       } finally {
+//         setIsLoading(false);
+//       }
+//     };
+
+//     fetchItem();
+//   }, [id]); // Only re-run effect when `id` changes
+
+//   // ... rest of your component code (handleQuantityChange, handleDetailsChange, handleCartAdd)
+
+//   const handleQuantityChange = (change) => {
+//     const newQuantity = Math.max(1, quantity + change); // Ensure quantity stays positive
+//     setQuantity(newQuantity);
+//   };
+
+//   // const totalPrice = item?.price ? item.price * quantity : 0; // Calculate total price
+
+//   const handleDetailsChange = (event) => {
+//     setCustomerDetails(event.target.value);
+//   };
+
+//   const { currentUser } = useContext(AuthContext);
+//   console.log("Gabriel", currentUser);
+//   const { dispatch } = useContext(CartContext);
+
+//   const handleCartAdd = async () => {
+//     try {
+//       // Access the user ID (replace with your actual logic for retrieving it)
+//       const currentUserId = currentUser.uid; // Assuming you have a function to fetch the ID
+
+//       // Firebase Integration (Replace with your specific logic)
+//       const itemId = await Cart_Services.addToCartOnFirebase(
+//         {
+//           ...item,
+//           quantity,
+//           customerDetails,
+//         },
+//         currentUserId
+//       );
+
+//       // Dispatch action with Firebase-generated ID (if applicable)
+//       dispatch({
+//         type: "ADD_ITEM_TO_CART",
+//         payload: { ...item, quantity, customerDetails, id: itemId },
+//       });
+
+//       console.log("Item added to cart successfully!");
+//       navigate("/cart");
+//     } catch (error) {
+//       console.error("Error adding item to cart:", error);
+//       // Display an error message to the user
+//     }
+//   };
+
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
-
-import Testimonials from "../testimonials/Testimonials";
 import { CartContext } from "../../context/CartContext";
-import Cart_Services from "../../services/Cart_Services";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from "../../firebase";
+import Testimonials from "../testimonials/Testimonials";
 
 const CartItem = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { cart, dispatch, addToCart } = useContext(CartContext);
+  const { currentUser } = useContext(AuthContext);
 
   // State variables declared upfront
   const [item, setItem] = useState(null);
@@ -28,7 +117,6 @@ const CartItem = () => {
       try {
         setIsLoading(true);
         const itemRef = doc(db, "items", id);
-
         const itemSnap = await getDoc(itemRef);
         setItem(itemSnap.data());
       } catch (error) {
@@ -41,8 +129,7 @@ const CartItem = () => {
     fetchItem();
   }, [id]); // Only re-run effect when `id` changes
 
-  // ... rest of your component code (handleQuantityChange, handleDetailsChange, handleCartAdd)
-
+  // ... rest of your component code (handleQuantityChange, handleDetailsChange)
   const handleQuantityChange = (change) => {
     const newQuantity = Math.max(1, quantity + change); // Ensure quantity stays positive
     setQuantity(newQuantity);
@@ -54,37 +141,15 @@ const CartItem = () => {
     setCustomerDetails(event.target.value);
   };
 
-  const { currentUser } = useContext(AuthContext);
-  console.log("Gabriel", currentUser);
-  const { dispatch } = useContext(CartContext);
-
   const handleCartAdd = async () => {
-    try {
-      // Access the user ID (replace with your actual logic for retrieving it)
-      const currentUserId = currentUser.uid; // Assuming you have a function to fetch the ID
-
-      // Firebase Integration (Replace with your specific logic)
-      const itemId = await Cart_Services.addToCartOnFirebase(
-        {
-          ...item,
-          quantity,
-          customerDetails,
-        },
-        currentUserId
-      );
-
-      // Dispatch action with Firebase-generated ID (if applicable)
-      dispatch({
-        type: "ADD_ITEM_TO_CART",
-        payload: { ...item, quantity, customerDetails, id: itemId },
-      });
-
-      console.log("Item added to cart successfully!");
-      navigate("/cart");
-    } catch (error) {
-      console.error("Error adding item to cart:", error);
-      // Display an error message to the user
-    }
+    const itemToAdd = {
+      ...item,
+      quantity,
+      customerDetails,
+    };
+    await addToCart(itemToAdd); // Call addToCart from context
+    console.log("Item added to cart successfully!");
+    navigate("/cart");
   };
 
   return (
