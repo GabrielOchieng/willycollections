@@ -27,6 +27,7 @@ class CartDataService {
       if (cartDoc.exists()) {
         const itemRef = collection(userCartRef, "carts"); // Create a reference to the "carts" subcollection
         const docRef = await addDoc(itemRef, itemData);
+        console.log(docRef.id);
         return docRef.id; // Return the document ID of the added item
       } else {
         // Create a new document for the user's cart if it doesn't exist

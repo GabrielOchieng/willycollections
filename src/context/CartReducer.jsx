@@ -16,26 +16,11 @@ export const CartReducer = (state = initialState, action) => {
     }
 
     case "ADD_TO_CART_SUCCESS": {
-      const existingItem = state.shoppingCart.find(
-        (item) => item.itemID === action.payload.id
-      );
-
-      if (!existingItem) {
-        return {
-          ...state,
-          shoppingCart: [...state.shoppingCart, action.payload],
-          loading: false,
-        };
-      } else {
-        // Handle duplicate item:
-        // - Show notification, increase quantity, or both
-        console.log(
-          "Item already exists in cart, handling accordingly:",
-          action.payload.id
-        );
-        // Implement your desired duplicate handling logic here
-        return state;
-      }
+      return {
+        ...state,
+        shoppingCart: [...state.shoppingCart, action.payload],
+        loading: false,
+      };
     }
 
     case "ADD_TO_CART_FAILURE": {

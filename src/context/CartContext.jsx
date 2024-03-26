@@ -30,16 +30,39 @@ export const CartContextProvider = ({ children }) => {
         itemData,
         userId
       );
-      dispatch({
-        type: "ADD_TO_CART_SUCCESS",
-        payload: { ...itemData, id: addedItemId },
-      });
+
+      // Only dispatch success if the item was actually added (not a duplicate)
+      if (addedItemId) {
+        dispatch({
+          type: "ADD_TO_CART_SUCCESS",
+          payload: { ...itemData, id: addedItemId },
+        });
+      }
     } catch (error) {
       dispatch({ type: "ADD_TO_CART_FAILURE", error: error.message });
     } finally {
       setLoading(false); // Reset loading state
     }
   };
+
+  // const addToCart = async (itemData) => {
+  //   setLoading(true); // Set loading state
+
+  //   try {
+  //     const addedItemId = await Cart_Services.addToCartOnFirebase(
+  //       itemData,
+  //       userId
+  //     );
+  //     dispatch({
+  //       type: "ADD_TO_CART_SUCCESS",
+  //       payload: { ...itemData, id: addedItemId },
+  //     });
+  //   } catch (error) {
+  //     dispatch({ type: "ADD_TO_CART_FAILURE", error: error.message });
+  //   } finally {
+  //     setLoading(false); // Reset loading state
+  //   }
+  // };
 
   const loadCartFromFirebase = async () => {
     if (!userId) {
