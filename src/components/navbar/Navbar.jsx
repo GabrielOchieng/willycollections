@@ -11,8 +11,6 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { ItemContext } from "../../context/ItemContext";
 
-ItemContext;
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");

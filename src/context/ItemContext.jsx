@@ -1,11 +1,14 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useReducer, createContext, useEffect } from "react";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase"; // Import Firebase Firestore instance
+import ItemReducer from "./ItemReducer";
 
 export const ItemContext = createContext();
 
+const initialState = { items: [] };
+
 export const ItemContextProvider = ({ children }) => {
-  const [items, setItems] = useState([]);
+  const [state, dispatch] = useReducer(ItemReducer, initialState);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -19,7 +22,7 @@ export const ItemContextProvider = ({ children }) => {
           itemPrice: doc.data().price,
           itemImg: doc.data().imageUrl,
         }));
-        setItems(fetchedItems);
+        dispatch({ type: "SET_ITEMS", payload: fetchedItems });
       } catch (error) {
         console.error("Error fetching items:", error);
       }
@@ -30,29 +33,30 @@ export const ItemContextProvider = ({ children }) => {
         const changes = snapshot.docChanges();
         changes.forEach((change) => {
           if (change.type === "added") {
-            setItems((prevItems) => [
-              ...prevItems,
-              {
+            dispatch({
+              type: "ADD_ITEM",
+              payload: {
                 itemID: change.doc.id,
                 itemName: change.doc.data().name,
                 itemType: change.doc.data().type,
                 itemPrice: change.doc.data().price,
                 itemImg: change.doc.data().imageUrl,
               },
-            ]);
-          } else if (change.type === "modified" || change.type === "removed") {
-            // Handle updates or deletions (optional)
+            });
           }
+          // Handle updates or deletions with appropriate actions (optional)
         });
       });
     };
 
-    fetchItems(); // Fetch initial data
-    subscribeToItems(); // Listen for real-time changes
+    fetchItems();
+    subscribeToItems();
   }, []); // Empty dependency array to run only once on mount
 
   return (
-    <ItemContext.Provider value={{ items }}>{children}</ItemContext.Provider>
+    <ItemContext.Provider value={{ items: state.items, dispatch }}>
+      {children}
+    </ItemContext.Provider>
   );
 };
 
