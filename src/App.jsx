@@ -8,12 +8,12 @@ import CreateItemPage from "./pages/CreateItemPage";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import ItemPage from "./pages/ItemPage";
-import ProductContextProvider from "./context/ProductContext";
 import { CartContextProvider } from "./context/CartContext";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import WomenwearPage from "./pages/WomenwearPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
+import ItemContextProvider from "./context/ItemContext";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -24,7 +24,7 @@ function App() {
 
   return (
     <>
-      <ProductContextProvider>
+      <ItemContextProvider>
         <CartContextProvider>
           <Navbar />
           <div className="content-container">
@@ -76,7 +76,7 @@ function App() {
           </div>
           <Footer />
         </CartContextProvider>
-      </ProductContextProvider>
+      </ItemContextProvider>
     </>
   );
 }

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ProductContext } from "../../context/ProductContext";
+import { ItemContext } from "../../context/ItemContext";
 
 const WomensWear = () => {
   const { type } = useParams();
-  const { items } = useContext(ProductContext);
+  const { items } = useContext(ItemContext);
   const [filteredItems, setFilteredItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Add loading state
 

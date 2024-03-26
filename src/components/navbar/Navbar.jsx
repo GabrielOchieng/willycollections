@@ -7,9 +7,11 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { AuthContext } from "../../context/AuthContext";
 import ItemSearchModal from "../itemsearchmodal/ItemSearchModal";
-import { ProductContext } from "../../context/ProductContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
+import { ItemContext } from "../../context/ItemContext";
+
+ItemContext;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +20,7 @@ const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { totalQuantity } = useContext(CartContext);
   const { currentUser } = useContext(AuthContext);
-  const { items } = useContext(ProductContext);
+  const { items } = useContext(ItemContext);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

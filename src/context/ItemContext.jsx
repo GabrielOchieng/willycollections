@@ -2,9 +2,9 @@ import React, { createContext, useEffect, useState } from "react";
 import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase"; // Import Firebase Firestore instance
 
-export const ProductContext = createContext();
+export const ItemContext = createContext();
 
-export const ProductContextProvider = ({ children }) => {
+export const ItemContextProvider = ({ children }) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -52,10 +52,8 @@ export const ProductContextProvider = ({ children }) => {
   }, []); // Empty dependency array to run only once on mount
 
   return (
-    <ProductContext.Provider value={{ items }}>
-      {children}
-    </ProductContext.Provider>
+    <ItemContext.Provider value={{ items }}>{children}</ItemContext.Provider>
   );
 };
 
-export default ProductContextProvider;
+export default ItemContextProvider;

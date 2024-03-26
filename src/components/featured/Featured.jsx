@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ProductContext } from "../../context/ProductContext";
+import { ItemContext } from "../../context/ItemContext";
 import { v4 as uuidv4 } from "uuid";
 
 const Featured = () => {
-  const { items } = useContext(ProductContext);
+  const { items } = useContext(ItemContext);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
