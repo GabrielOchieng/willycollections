@@ -1,3 +1,57 @@
+// import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// import { db, storage } from "../firebase";
+// import {
+//   collection,
+//   doc,
+//   getDoc,
+//   getDocs,
+//   updateDoc,
+//   deleteDoc,
+//   setDoc,
+//   addDoc,
+//   serverTimestamp,
+// } from "firebase/firestore";
+
+// export const itemCollectionRef = collection(db, "items");
+
+// class ItemDataService {
+//   // addItems = (newItem) => {
+//   //   return addDoc(itemCollectionRef, newItem);
+//   // };
+
+//   addItems = async (newItem) => {
+//     try {
+//       const docRef = await addDoc(itemCollectionRef, newItem);
+//       console.log("Document written with ID:", docRef.id);
+//       // Handle successful addition (optional)
+//     } catch (error) {
+//       console.error("Error adding document:", error);
+//       // Throw a custom error to the component
+//     }
+//   };
+
+//   updateItem = (id, updatedItem) => {
+//     const itemDoc = doc(db, "items", id);
+//     return updateDoc(itemDoc, updatedItem);
+//   };
+
+//   deleteItem = (id) => {
+//     const itemDoc = doc(db, "items", id);
+//     return deleteDoc(itemDoc);
+//   };
+
+//   // getAllItems = () => {
+//   //   return getDocs(itemCollectionRef);
+//   // };
+
+//   // getItem = (id) => {
+//   //   const itemDoc = doc(db, "items", id);
+//   //   return getDoc(itemDoc);
+//   // };
+// }
+
+// export default new ItemDataService();
+
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../firebase";
 import {
@@ -15,18 +69,13 @@ import {
 export const itemCollectionRef = collection(db, "items");
 
 class ItemDataService {
-  // addItems = (newItem) => {
-  //   return addDoc(itemCollectionRef, newItem);
-  // };
-
   addItems = async (newItem) => {
     try {
       const docRef = await addDoc(itemCollectionRef, newItem);
       console.log("Document written with ID:", docRef.id);
-      // Handle successful addition (optional)
     } catch (error) {
       console.error("Error adding document:", error);
-      // Throw a custom error to the component
+      // Throw a custom error to the component (optional)
     }
   };
 
@@ -40,14 +89,38 @@ class ItemDataService {
     return deleteDoc(itemDoc);
   };
 
-  // getAllItems = () => {
-  //   return getDocs(itemCollectionRef);
-  // };
+  getItem = async (id) => {
+    const itemDoc = doc(db, "items", id);
+    const snapshot = await getDoc(itemDoc);
+    if (snapshot.exists) {
+      // Document data can be accessed with snapshot.data()
+      return snapshot.data();
+    } else {
+      // Handle document not found scenario (optional)
+      console.log("No item found with that ID");
+      return null;
+    }
+  };
 
-  // getItem = (id) => {
-  //   const itemDoc = doc(db, "items", id);
-  //   return getDoc(itemDoc);
-  // };
+  getAllItems = async () => {
+    try {
+      const itemsCollection = collection(db, "items");
+      const snapshot = await getDocs(itemsCollection);
+      const fetchedItems = snapshot.docs.map((doc) => ({
+        itemID: doc.id,
+        itemName: doc.data().name,
+        itemType: doc.data().type,
+        itemPrice: doc.data().price,
+        itemImg: doc.data().imageUrl,
+      }));
+      return fetchedItems;
+    } catch (error) {
+      console.error("Error fetching items:", error);
+      return []; // Handle errors by returning an empty array (optional)
+    }
+  };
+
+  // Add methods for uploading and downloading files with Firebase Storage (optional)
 }
 
 export default new ItemDataService();

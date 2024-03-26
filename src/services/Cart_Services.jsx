@@ -73,19 +73,6 @@ class CartDataService {
     await updateDoc(docRef, itemData);
   };
 
-  // deleteCartItem = async (userId, itemId) => {
-  //   try {
-  //     const cartsRef = collection(db, "users", userId, "carts");
-  //     const itemDocRef = doc(cartsRef, itemId);
-
-  //     await deleteDoc(itemDocRef);
-  //     console.log("Item deleted successfully:", itemId); // Log success
-  //   } catch (error) {
-  //     console.error("Error deleting item:", error);
-  //     // Handle errors appropriately (e.g., display error message to user)
-  //   }
-  // };
-
   deleteCartItem = async (userId, itemId) => {
     // Include userId and itemId as arguments
     const userCartRef = doc(CartCollectionRef, userId); // Reference to user's cart document
