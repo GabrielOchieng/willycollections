@@ -33,6 +33,10 @@ const OrderConfirmation = () => {
         <ul className="list-group mb-0">
           <li className="list-group-item">
             <p className="mb-1">Name:</p>
+            <p>{shippingInfo.name}</p>
+          </li>
+          <li className="list-group-item">
+            <p className="mb-1">Address:</p>
             <p>{shippingInfo.address}</p>
           </li>
           <li className="list-group-item">
@@ -64,6 +68,7 @@ const OrderConfirmation = () => {
               <div>
                 <p className="mb-1">{item.name}</p>
                 <p className="text-muted">Quantity: {item.quantity}</p>
+                <p className="text-muted">Details: {item.customerDetails}</p>
               </div>
               <p className="text-muted">Ksh. {item.price * item.quantity}</p>
             </li>

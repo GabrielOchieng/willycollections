@@ -56,6 +56,20 @@ const CheckoutPage = () => {
           <h3>Shipping Information</h3>
           <form>
             <div className="mb-3">
+              <label htmlFor="name" className="form-label">
+                Name:
+              </label>
+              <textarea
+                className="form-control"
+                id="name"
+                name="name"
+                rows="1"
+                value={shippingInfo.name}
+                onChange={handleInputChange}
+                required
+              ></textarea>
+            </div>
+            <div className="mb-3">
               <label htmlFor="address" className="form-label">
                 Address:
               </label>
@@ -63,7 +77,7 @@ const CheckoutPage = () => {
                 className="form-control"
                 id="address"
                 name="address"
-                rows="3"
+                rows="2"
                 value={shippingInfo.address}
                 onChange={handleInputChange}
                 required
@@ -142,6 +156,9 @@ const CheckoutPage = () => {
                 <div>
                   <p className="mb-1">{item.name}</p>
                   <p className="text-muted">Quantity: {item.quantity}</p>
+                  <p className="text-muted">
+                    Customer Details: {item.customerDetails}
+                  </p>
                 </div>
                 <p className="text-muted">Ksh. {item.price * item.quantity}</p>
               </li>
