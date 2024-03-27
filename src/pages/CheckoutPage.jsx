@@ -44,6 +44,7 @@ const CheckoutPage = () => {
   // .. Implement your checkout logic here ...
   const orderDetails = {
     shippingInfo,
+    paymentMethod,
     orderItems: shoppingCart, // Assuming shoppingCart contains ordered items
     totalPrice,
   };

@@ -8,7 +8,7 @@ const OrderConfirmation = () => {
 
   const orderDetails = location.state?.orderDetails; // Access state from location prop
 
-  const { shippingInfo, orderItems, totalPrice } = orderDetails;
+  const { shippingInfo, orderItems, totalPrice, paymentMethod } = orderDetails;
   console.log(totalPrice);
 
   if (!orderDetails) {
@@ -54,6 +54,10 @@ const OrderConfirmation = () => {
           <li className="list-group-item">
             <p className="mb-1">Country:</p>
             <p>{shippingInfo.country}</p>
+          </li>
+          <li className="list-group-item">
+            <p className="mb-1">Payment Method:</p>
+            <p>{paymentMethod}</p>
           </li>
         </ul>
       </div>
