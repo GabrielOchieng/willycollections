@@ -84,7 +84,8 @@ const OrderConfirmation = () => {
         </div>
       </div>
       <p className="text-muted">
-        You will receive a confirmation email with additional details shortly.
+        You will receive a confirmation email with additional details shortly
+        and then we'll contact you once you make the payment.
       </p>
     </div>
   );
