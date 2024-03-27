@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa"; // Import icons
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import mpesa from "../assets/mpesa.png";
 
 const CheckoutPage = () => {
   const { shoppingCart, totalPrice } = useContext(CartContext);
@@ -190,12 +191,17 @@ const CheckoutPage = () => {
                 className="form-check-input"
                 type="radio"
                 name="paymentMethod"
-                id="paypal"
-                value="paypal"
+                id="mpesa"
+                value="mpesa"
                 onChange={handlePaymentMethodChange}
               />
               <label className="form-check-label" htmlFor="paypal">
-                PayPal <FaPaypal className="ms-2" />
+                MPESA{" "}
+                <img
+                  src={mpesa}
+                  alt="mpesa"
+                  style={{ width: "40px", height: "auto" }}
+                />
               </label>
             </div>
             <div className="form-check">
