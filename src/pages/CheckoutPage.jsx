@@ -9,6 +9,7 @@ import {
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import mpesa from "../assets/mpesa.png";
+import MpesaComp from "../components/mpesacomp/MpesaComp";
 
 const CheckoutPage = () => {
   const { shoppingCart, totalPrice } = useContext(CartContext);
@@ -218,6 +219,8 @@ const CheckoutPage = () => {
               </label>
             </div>
           </div>
+          {paymentMethod === "mpesa" && <MpesaComp />}{" "}
+          {/* Conditionally render MpesaComp */}
           <Link to="/order-confirmation" state={{ orderDetails }}>
             <button type="button" className="btn btn-primary w-100 mt-5">
               Place Order
