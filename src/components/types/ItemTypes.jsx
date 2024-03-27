@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ItemContext } from "../../context/ItemContext";
 
-const WomensWear = () => {
+const ItemTypes = () => {
   const { type } = useParams();
   const { items } = useContext(ItemContext);
   const [filteredItems, setFilteredItems] = useState([]);
@@ -64,4 +64,4 @@ const WomensWear = () => {
   );
 };
 
-export default WomensWear;
+export default ItemTypes;
