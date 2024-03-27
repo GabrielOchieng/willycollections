@@ -219,7 +219,7 @@ const CheckoutPage = () => {
               </label>
             </div>
           </div>
-          {paymentMethod === "mpesa" && <MpesaComp />}{" "}
+          {paymentMethod === "mpesa" && <MpesaComp totalPrice={totalPrice} />}{" "}
           {/* Conditionally render MpesaComp */}
           <Link to="/order-confirmation" state={{ orderDetails }}>
             <button type="button" className="btn btn-primary w-100 mt-5">
