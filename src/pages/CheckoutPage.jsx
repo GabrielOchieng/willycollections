@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import {
   FaMoneyBillAlt,
@@ -35,6 +35,13 @@ const CheckoutPage = () => {
     setPaymentMethod(event.target.value);
   };
 
+  const orderDetails = {
+    shippingInfo,
+    paymentMethod,
+    orderItems: shoppingCart, // Assuming shoppingCart contains ordered items
+    totalPrice,
+  };
+  console.log("Order details:", orderDetails); // For verification
   const handleCheckout = async () => {
     try {
       // Call the createOrder function from CartContext
@@ -44,43 +51,17 @@ const CheckoutPage = () => {
       // Clear shopping cart after successful order creation
       dispatch({ type: "CLEAR_CART" });
 
-      // Update orderId in CartContext
-      // setOrderId(orderId);
-
       // Redirect to order confirmation page with order ID
-
-      navigate(`/order-confirmation/${orderId}`);
+      navigate(`/order-confirmation/${orderId}`, {
+        replace: true,
+        state: { orderDetails },
+      });
     } catch (error) {
-      // ... handle errors
+      // Handle errors appropriately, notify the user
+      console.error("Error creating order:", error);
+      // Display an error message to the user
     }
   };
-
-  // const handleCheckout = async () => {
-  //   try {
-  //     // Call the createOrder function from CartContext to create the order
-  //     const orderId = await createOrder(orderDetails);
-  //     console.log(orderId);
-  //     // Clear shopping cart after successful order creation
-  //     dispatch({ type: "CLEAR_CART" });
-
-  //     // Redirect to order confirmation page with order ID
-  //     // navigate(`/order-confirmation/:${orderId}`);
-
-  //     alert("Order placed successfully!");
-  //   } catch (error) {
-  //     console.error("Error creating order:", error);
-  //     alert("Error: Failed to create order. Please try again.");
-  //   }
-  // };
-
-  // .. Implement your checkout logic here ...
-  const orderDetails = {
-    shippingInfo,
-    paymentMethod,
-    orderItems: shoppingCart, // Assuming shoppingCart contains ordered items
-    totalPrice,
-  };
-  console.log("Order details:", orderDetails); // For verification
 
   return (
     <div className="container border mt-5 mb-5 rounded shadow">
@@ -254,7 +235,7 @@ const CheckoutPage = () => {
           </div>
           {paymentMethod === "mpesa" && <MpesaComp totalPrice={totalPrice} />}{" "}
           {/* Conditionally render MpesaComp */}
-          {/* <Link to="/order-confirmation" state={{ orderDetails }}> */}
+          {/* <Link to="/order-confirmation/:orderId" state={{ orderDetails }}> */}
           <button
             type="button"
             onClick={handleCheckout}
