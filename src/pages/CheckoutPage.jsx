@@ -10,9 +10,11 @@ import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import mpesa from "../assets/mpesa.png";
 import MpesaComp from "../components/mpesacomp/MpesaComp";
+import Cart_Services from "../services/Cart_Services";
 
 const CheckoutPage = () => {
-  const { shoppingCart, totalPrice } = useContext(CartContext);
+  const { dispatch, shoppingCart, totalPrice, createOrder } =
+    useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState("select"); // Initial payment method
   const [shippingInfo, setShippingInfo] = useState({
     address: "",
@@ -38,7 +40,7 @@ const CheckoutPage = () => {
     // - Processing payment (if applicable)
     // - Redirecting to confirmation or order tracking page
     console.log("Checkout with:", shoppingCart, shippingInfo, totalPrice);
-    alert("Order details submitted successfully! (placeholder)");
+    alert("Order details submitted successfully!");
   };
 
   // .. Implement your checkout logic here ...
@@ -223,7 +225,11 @@ const CheckoutPage = () => {
           {paymentMethod === "mpesa" && <MpesaComp totalPrice={totalPrice} />}{" "}
           {/* Conditionally render MpesaComp */}
           <Link to="/order-confirmation" state={{ orderDetails }}>
-            <button type="button" className="btn btn-primary w-100 mt-5">
+            <button
+              type="button"
+              onClick={handleCheckout}
+              className="btn btn-primary w-100 mt-5"
+            >
               Place Order
             </button>
           </Link>

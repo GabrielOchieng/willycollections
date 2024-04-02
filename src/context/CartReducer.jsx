@@ -78,6 +78,31 @@ export const CartReducer = (state = initialState, action) => {
       };
     }
 
+    case "CREATE_ORDER_REQUEST":
+      return {
+        ...state,
+        loading: true, // Set loading state to indicate order creation in progress
+      };
+
+    case "CREATE_ORDER_SUCCESS":
+      return {
+        ...state,
+        shoppingCart: [], // Clear cart upon successful order
+        totalPrice: 0,
+        totalQuantity: 0,
+        loading: false,
+        error: null,
+        orderId: action.payload, // Update state with order ID
+      };
+
+    case "CREATE_ORDER_FAILURE":
+      console.error("Error creating order:", action.error.message);
+      return {
+        ...state,
+        loading: false,
+        error: action.error.message,
+      };
+
     default:
       return state;
   }

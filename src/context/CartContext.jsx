@@ -21,6 +21,7 @@ export const CartContextProvider = ({ children }) => {
   });
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [orderId, setOrderId] = useState(null); // Added state for order ID
 
   const addToCart = async (itemData) => {
     setLoading(true); // Set loading state
@@ -44,25 +45,6 @@ export const CartContextProvider = ({ children }) => {
       setLoading(false); // Reset loading state
     }
   };
-
-  // const addToCart = async (itemData) => {
-  //   setLoading(true); // Set loading state
-
-  //   try {
-  //     const addedItemId = await Cart_Services.addToCartOnFirebase(
-  //       itemData,
-  //       userId
-  //     );
-  //     dispatch({
-  //       type: "ADD_TO_CART_SUCCESS",
-  //       payload: { ...itemData, id: addedItemId },
-  //     });
-  //   } catch (error) {
-  //     dispatch({ type: "ADD_TO_CART_FAILURE", error: error.message });
-  //   } finally {
-  //     setLoading(false); // Reset loading state
-  //   }
-  // };
 
   const loadCartFromFirebase = async () => {
     if (!userId) {
@@ -120,6 +102,23 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
+  const createOrder = async (orderDetails) => {
+    dispatch({ type: "CREATE_ORDER_REQUEST" }); // Dispatch request action
+    try {
+      const generatedOrderId = await Cart_Services.createOrder(
+        userId,
+        orderDetails
+      ); // Call Cart_Services
+      dispatch({ type: "CREATE_ORDER_SUCCESS", payload: generatedOrderId }); // Dispatch success with order ID
+      alert("Order placed successfully! Your order ID is: " + generatedOrderId);
+      // Redirect to order confirmation page (optional)
+    } catch (error) {
+      console.error("Error creating order:", error);
+      dispatch({ type: "CREATE_ORDER_FAILURE", error: error.message }); // Dispatch failure action
+      alert("Order placement failed. Please try again later.");
+    }
+  };
+
   const calculateCartTotal = (cartItems) => {
     let totalPrice = 0;
     let totalQuantity = 0;
@@ -147,6 +146,8 @@ export const CartContextProvider = ({ children }) => {
         addToCart,
         loadCartFromFirebase,
         removeItemFromCart,
+        createOrder,
+        orderId,
       }}
     >
       {children}
