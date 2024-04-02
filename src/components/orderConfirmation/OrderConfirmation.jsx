@@ -107,49 +107,86 @@
 
 // export default OrderConfirmation;
 
+// import React, { useContext, useEffect, useState } from "react";
+// import { getDoc, doc } from "firebase/firestore";
+// import { db } from "../../firebase";
+// import { useParams } from "react-router-dom";
+
+// const OrderConfirmation = () => {
+//   const [orderDetails, setOrderDetails] = useState(null);
+//   const { id } = useParams();
+//   // Fetch order details from Firebase on component mount
+
+//   useEffect(() => {
+//     const fetchOrderDetails = async () => {
+//       // if (!orderId) return;
+
+//       try {
+//         const orderDoc = doc(db, "orders", orderId, userId);
+//         const orderSnap = await getDoc(orderDoc);
+//         console.log(orderSnap);
+//         if (orderSnap.exists) {
+//           setOrderDetails(orderSnap.data());
+//         } else {
+//           console.warn("Order not found:", orderId);
+//         }
+//       } catch (error) {
+//         console.error("Error fetching order details:", error);
+//       }
+//     };
+
+//     fetchOrderDetails();
+//   }, [id]);
+
+//   if (!orderDetails) {
+//     return (
+//       <div
+//         className="container alert alert-info mt-5 mt-md-0 pt-5 pt-md-0"
+//         role="alert"
+//       >
+//         Your order has been placed successfully. <br /> Thank you for your
+//         order! Your order details have been sent to your email address. Your
+//         items will be delivered upon confirmation of your payment.
+//       </div>
+//     );
+//   }
+
+// const { shippingInfo, paymentMethod, orderItems, totalPrice } = orderDetails;
+
 import React, { useContext, useEffect, useState } from "react";
-import { getDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { CartContext } from "../../context/CartContext";
 
-const OrderConfirmation = ({ orderId }) => {
-  const [orderDetails, setOrderDetails] = useState(null);
+const OrderConfirmation = () => {
+  const { loading, orderDetails, error, fetchOrder, orderId } =
+    useContext(CartContext);
 
-  // Fetch order details from Firebase on component mount
   useEffect(() => {
-    const fetchOrderDetails = async () => {
-      if (!orderId) return;
-
-      try {
-        const orderDoc = doc(db, "orders", orderId);
-        const orderSnap = await getDoc(orderDoc);
-        if (orderSnap.exists) {
-          setOrderDetails(orderSnap.data());
-        } else {
-          console.warn("Order not found:", orderId);
-        }
-      } catch (error) {
-        console.error("Error fetching order details:", error);
-      }
-    };
-
-    fetchOrderDetails();
+    fetchOrder(orderId);
   }, [orderId]);
 
-  if (!orderDetails) {
+  if (loading) {
     return (
-      <div
-        className="container alert alert-info mt-5 mt-md-0 pt-5 pt-md-0"
-        role="alert"
-      >
-        Your order has been placed successfully. <br /> Thank you for your
-        order! Your order details have been sent to your email address. Your
-        items will be delivered upon confirmation of your payment.
+      <div className="container mt-5 mt-md-0 pt-5 pt-md-0">
+        Loading order details...
       </div>
     );
   }
 
-  const { shippingInfo, paymentMethod, orderItems, totalPrice } = orderDetails;
+  if (error) {
+    return (
+      <div className="container alert alert-danger mt-5 mt-md-0 pt-5 pt-md-0">
+        Error fetching order details: {error}
+      </div>
+    );
+  }
 
+  if (!orderDetails) {
+    return (
+      <div className="container alert alert-info mt-5 mt-md-0 pt-5 pt-md-0">
+        Order not found: {orderId}
+      </div>
+    );
+  }
   return (
     <div className="container mt-5 mb-5">
       <h2>Order Confirmation</h2>

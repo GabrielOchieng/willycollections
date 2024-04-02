@@ -145,26 +145,47 @@ class CartDataService {
     }
   };
 
+  //   fetchOrder = async (orderId) => {
+  //     try {
+  //       // Reference the orders collection
+  //       const ordersRef = collection(db, "orders");
+
+  //       // Get the specific order document by ID
+  //       const orderDoc = await getDoc(doc(ordersRef, orderId));
+
+  //       if (orderDoc.exists) {
+  //         // Retrieve the order data
+  //         const orderData = orderDoc.data();
+  //         return orderData;
+  //       } else {
+  //         // Handle the case where the order doesn't exist
+  //         console.warn("Order not found:", orderId);
+  //         return null;
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching order:", error);
+  //       throw error; // Re-throw the error for higher-level handling
+  //     }
+  //   };
+
   fetchOrder = async (orderId) => {
     try {
-      // Reference the orders collection
-      const ordersRef = collection(db, "orders");
+      if (!orderId) {
+        throw new Error("Order ID cannot be empty."); // Throw a specific error
+      }
 
-      // Get the specific order document by ID
+      const ordersRef = collection(db, "orders");
       const orderDoc = await getDoc(doc(ordersRef, orderId));
 
       if (orderDoc.exists) {
-        // Retrieve the order data
-        const orderData = orderDoc.data();
-        return orderData;
+        return orderDoc.data();
       } else {
-        // Handle the case where the order doesn't exist
         console.warn("Order not found:", orderId);
         return null;
       }
     } catch (error) {
       console.error("Error fetching order:", error);
-      throw error; // Re-throw the error for higher-level handling
+      throw error; // Re-throw for higher-level handling
     }
   };
 }
