@@ -110,28 +110,16 @@ export const CartContextProvider = ({ children }) => {
         orderDetails
       );
       dispatch({ type: "CREATE_ORDER_SUCCESS", payload: generatedOrderId });
+      alert("Order placed successfully! Your order ID is: " + generatedOrderId);
+
       return generatedOrderId; // Return the generated order ID
     } catch (error) {
       // ... handle errors
+      console.error("Error creating order:", error);
+      dispatch({ type: "CREATE_ORDER_FAILURE", error: error.message }); // Dispatch failure action
+      alert("Order placement failed. Please try again later.");
     }
   };
-
-  // const createOrder = async (orderDetails) => {
-  //   dispatch({ type: "CREATE_ORDER_REQUEST" }); // Dispatch request action
-  //   try {
-  //     const generatedOrderId = await Cart_Services.createOrder(
-  //       userId,
-  //       orderDetails
-  //     ); // Call Cart_Services
-  //     dispatch({ type: "CREATE_ORDER_SUCCESS", payload: generatedOrderId }); // Dispatch success with order ID
-  //     alert("Order placed successfully! Your order ID is: " + generatedOrderId);
-  //     // Redirect to order confirmation page (optional)
-  //   } catch (error) {
-  //     console.error("Error creating order:", error);
-  //     dispatch({ type: "CREATE_ORDER_FAILURE", error: error.message }); // Dispatch failure action
-  //     alert("Order placement failed. Please try again later.");
-  //   }
-  // };
 
   const calculateCartTotal = (cartItems) => {
     let totalPrice = 0;
