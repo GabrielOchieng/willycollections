@@ -117,6 +117,7 @@ class CartDataService {
 
         // Generate a unique order ID (consider using a library like `uuid`)
         const orderId = crypto.randomUUID();
+        console.log(orderId);
 
         // Create a new order document in Firestore (replace 'orders' with your collection name)
         const ordersRef = collection(db, "orders");

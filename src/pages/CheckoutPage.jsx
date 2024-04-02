@@ -35,32 +35,42 @@ const CheckoutPage = () => {
     setPaymentMethod(event.target.value);
   };
 
-  // const handleCheckout = async () => {
-  //   // Implement your checkout logic here, including:
-  //   // - Sending order details (cart items, shipping info, total price) to your backend
-  //   // - Processing payment (if applicable)
-  //   // - Redirecting to confirmation or order tracking page
-  //   console.log("Checkout with:", shoppingCart, shippingInfo, totalPrice);
-  //   alert("Order details submitted successfully!");
-  // };
-
   const handleCheckout = async () => {
     try {
-      // Call the createOrder function from CartContext to create the order
+      // Call the createOrder function from CartContext
       const orderId = await createOrder(orderDetails);
+      console.log(orderId); // Log the order ID
 
       // Clear shopping cart after successful order creation
       dispatch({ type: "CLEAR_CART" });
 
+      // Update orderId in CartContext
+      setOrderId(orderId);
+
       // Redirect to order confirmation page with order ID
       navigate(`/order-confirmation/${orderId}`);
-
-      alert("Order placed successfully!");
     } catch (error) {
-      console.error("Error creating order:", error);
-      alert("Error: Failed to create order. Please try again.");
+      // ... handle errors
     }
   };
+
+  // const handleCheckout = async () => {
+  //   try {
+  //     // Call the createOrder function from CartContext to create the order
+  //     const orderId = await createOrder(orderDetails);
+  //     console.log(orderId);
+  //     // Clear shopping cart after successful order creation
+  //     dispatch({ type: "CLEAR_CART" });
+
+  //     // Redirect to order confirmation page with order ID
+  //     // navigate(`/order-confirmation/:${orderId}`);
+
+  //     alert("Order placed successfully!");
+  //   } catch (error) {
+  //     console.error("Error creating order:", error);
+  //     alert("Error: Failed to create order. Please try again.");
+  //   }
+  // };
 
   // .. Implement your checkout logic here ...
   const orderDetails = {
