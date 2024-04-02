@@ -45,7 +45,7 @@ const CheckoutPage = () => {
       dispatch({ type: "CLEAR_CART" });
 
       // Update orderId in CartContext
-      setOrderId(orderId);
+      // setOrderId(orderId);
 
       // Redirect to order confirmation page with order ID
       navigate(`/order-confirmation/${orderId}`);
@@ -253,15 +253,15 @@ const CheckoutPage = () => {
           </div>
           {paymentMethod === "mpesa" && <MpesaComp totalPrice={totalPrice} />}{" "}
           {/* Conditionally render MpesaComp */}
-          <Link to="/order-confirmation" state={{ orderDetails }}>
-            <button
-              type="button"
-              onClick={handleCheckout}
-              className="btn btn-primary w-100 mt-5"
-            >
-              Place Order
-            </button>
-          </Link>
+          {/* <Link to="/order-confirmation" state={{ orderDetails }}> */}
+          <button
+            type="button"
+            onClick={handleCheckout}
+            className="btn btn-primary w-100 mt-5"
+          >
+            Place Order
+          </button>
+          {/* </Link> */}
         </div>
       </div>
     </div>

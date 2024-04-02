@@ -62,7 +62,7 @@ function App() {
                 }
               />
               <Route
-                path="/order-confirmation/orderId"
+                path="/order-confirmation/:orderId"
                 element={
                   <RequireAuth>
                     <OrderConfirmationPage currentUser={currentUser} />
