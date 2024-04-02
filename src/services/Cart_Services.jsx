@@ -130,7 +130,7 @@ class CartDataService {
         // Clear the user's cart after successful order creation (optional)
         await setDoc(userCartRef, {});
 
-        dispatch({ type: "CREATE_ORDER_SUCCESS", payload: orderId }); // Dispatch success action with order ID
+        // dispatch({ type: "CREATE_ORDER_SUCCESS", payload: orderId }); // Dispatch success action with order ID
 
         return orderId; // Return the created order ID
       } else {

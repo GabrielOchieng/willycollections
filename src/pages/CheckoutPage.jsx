@@ -7,12 +7,13 @@ import {
   FaShippingFast,
 } from "react-icons/fa"; // Import icons
 import { CartContext } from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import mpesa from "../assets/mpesa.png";
 import MpesaComp from "../components/mpesacomp/MpesaComp";
 import Cart_Services from "../services/Cart_Services";
 
 const CheckoutPage = () => {
+  const navigate = useNavigate();
   const { dispatch, shoppingCart, totalPrice, createOrder } =
     useContext(CartContext);
   const [paymentMethod, setPaymentMethod] = useState("select"); // Initial payment method
@@ -34,13 +35,31 @@ const CheckoutPage = () => {
     setPaymentMethod(event.target.value);
   };
 
+  // const handleCheckout = async () => {
+  //   // Implement your checkout logic here, including:
+  //   // - Sending order details (cart items, shipping info, total price) to your backend
+  //   // - Processing payment (if applicable)
+  //   // - Redirecting to confirmation or order tracking page
+  //   console.log("Checkout with:", shoppingCart, shippingInfo, totalPrice);
+  //   alert("Order details submitted successfully!");
+  // };
+
   const handleCheckout = async () => {
-    // Implement your checkout logic here, including:
-    // - Sending order details (cart items, shipping info, total price) to your backend
-    // - Processing payment (if applicable)
-    // - Redirecting to confirmation or order tracking page
-    console.log("Checkout with:", shoppingCart, shippingInfo, totalPrice);
-    alert("Order details submitted successfully!");
+    try {
+      // Call the createOrder function from CartContext to create the order
+      const orderId = await createOrder(orderDetails);
+
+      // Clear shopping cart after successful order creation
+      dispatch({ type: "CLEAR_CART" });
+
+      // Redirect to order confirmation page with order ID
+      navigate(`/order-confirmation/${orderId}`);
+
+      alert("Order placed successfully!");
+    } catch (error) {
+      console.error("Error creating order:", error);
+      alert("Error: Failed to create order. Please try again.");
+    }
   };
 
   // .. Implement your checkout logic here ...
