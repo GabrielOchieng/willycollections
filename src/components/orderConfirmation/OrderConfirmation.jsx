@@ -137,7 +137,7 @@ const OrderConfirmation = ({ orderId }) => {
 
   if (!orderDetails) {
     return (
-      <div className="container alert alert-info" role="alert">
+      <div className="container alert alert-info pt-5" role="alert">
         Your order has been placed successfully. <br /> Thank you for your
         order! Your order details have been sent to your email address. Your
         items will be delivered upon confirmation of your payment.
