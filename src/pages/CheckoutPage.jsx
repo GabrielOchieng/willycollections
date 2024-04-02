@@ -48,6 +48,7 @@ const CheckoutPage = () => {
       // setOrderId(orderId);
 
       // Redirect to order confirmation page with order ID
+
       navigate(`/order-confirmation/${orderId}`);
     } catch (error) {
       // ... handle errors

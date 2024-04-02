@@ -121,6 +121,22 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
+  const fetchOrder = async (orderId) => {
+    setLoading(true); // Set loading state
+    try {
+      const fetchedOrder = await Cart_Services.fetchOrder(orderId);
+      if (fetchedOrder) {
+        dispatch({ type: "FETCH_ORDER_SUCCESS", payload: fetchedOrder });
+      } else {
+        console.warn("Order not found:", orderId);
+      }
+    } catch (error) {
+      dispatch({ type: "FETCH_ORDER_FAILURE", error: error.message });
+    } finally {
+      setLoading(false); // Reset loading state
+    }
+  };
+
   const calculateCartTotal = (cartItems) => {
     let totalPrice = 0;
     let totalQuantity = 0;
@@ -149,6 +165,7 @@ export const CartContextProvider = ({ children }) => {
         loadCartFromFirebase,
         removeItemFromCart,
         createOrder,
+        fetchOrder,
         orderId,
       }}
     >

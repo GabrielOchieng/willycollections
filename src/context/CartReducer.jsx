@@ -103,6 +103,27 @@ export const CartReducer = (state = initialState, action) => {
         error: action.error.message,
       };
 
+    case "FETCH_ORDER_REQUEST":
+      return {
+        ...state,
+        loading: true, // Set loading state to indicate order fetching
+        error: null, // Clear any previous error
+      };
+
+    case "FETCH_ORDER_SUCCESS":
+      return {
+        ...state,
+        loading: false,
+        order: action.payload, // Store fetched order data
+      };
+
+    case "FETCH_ORDER_FAILURE":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload, // Store error information
+      };
+
     default:
       return state;
   }
