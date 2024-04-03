@@ -16,19 +16,7 @@ const OrderSuccess = ({ orderDetails }) => {
       try {
         const email = orderDetails.shippingInfo.email; // Extract customer email
         console.log(email);
-        await emailjs.send(
-          serviceId,
-          templateId,
-
-          {
-            to_email: email, // Recipient's email
-            templateParams: {
-              to_name: orderDetails.shippingInfo.name, // Assuming name is in shippingInfo
-              orderDetails: orderDetails,
-            },
-          },
-          publicKey
-        );
+        await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
         console.log("Email sent successfully!");
         dispatch({ type: "CLEAR_CART" });
@@ -39,10 +27,6 @@ const OrderSuccess = ({ orderDetails }) => {
     handleOrderSuccess();
   }, []);
 
-  // useEffect(() => {
-  //   // Call handleOrderSuccess directly without event trigger
-  //   handleOrderSuccess();
-  // }, []);
   return (
     <div className="container mt-5 mb-5 text-center">
       <h2 className="text-center">Order Successful!</h2>
