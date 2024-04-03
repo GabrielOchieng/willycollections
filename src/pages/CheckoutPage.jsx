@@ -44,7 +44,13 @@ const CheckoutPage = () => {
     totalPrice,
   };
   console.log("Order details:", orderDetails); // For verification
-  const handleCheckout = async () => {
+  const handleCheckout = async (e) => {
+    e.preventDefault();
+    if (!orderDetails) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     try {
       const orderId = await createOrder(orderDetails);
 
@@ -66,102 +72,11 @@ const CheckoutPage = () => {
         <div className="checkout d-flex flex-column pt-5 pb-5 px-4 align-items-center">
           <h2>Checkout</h2>
           <hr className="w-100 mb-4" />
-          <div className="shipping-info mb-4">
-            <h3>Shipping Information</h3>
-            <form>
-              <div className="mb-3">
-                <label htmlFor="name" className="form-label">
-                  Name:
-                </label>
-                <textarea
-                  className="form-control"
-                  id="name"
-                  name="name"
-                  rows="1"
-                  value={shippingInfo.name}
-                  onChange={handleInputChange}
-                  required
-                ></textarea>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="address" className="form-label">
-                  Address:
-                </label>
-                <textarea
-                  className="form-control"
-                  id="address"
-                  name="address"
-                  rows="2"
-                  value={shippingInfo.address}
-                  onChange={handleInputChange}
-                  required
-                ></textarea>
-              </div>
-              <div className="d-flex mb-3">
-                <div className="me-3">
-                  <label htmlFor="city" className="form-label">
-                    Phone No.:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="phone_number"
-                    name="phone_number"
-                    value={shippingInfo.phone_number}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                <div className="me-3">
-                  <label htmlFor="city" className="form-label">
-                    City:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="city"
-                    name="city"
-                    value={shippingInfo.city}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                <div className="me-3">
-                  <label htmlFor="postalCode" className="form-label">
-                    Postal Code:
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="postalCode"
-                    name="postalCode"
-                    value={shippingInfo.postalCode}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="country" className="form-label">
-                    Country:
-                  </label>
-                  <select
-                    className="form-select"
-                    id="country"
-                    name="country"
-                    value={shippingInfo.country}
-                    onChange={handleInputChange}
-                    required
-                  >
-                    <option value="">Select Country...</option>
-                    {/* Add options for different countries */}
-                  </select>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div className="order-summary mb-4">
+
+          <div className="order-summary mb-4 full-width">
             <h3>Order Summary</h3>
-            <ul className="list-group mb-3">
+
+            <ul className="list-group  mb-3">
               {shoppingCart.map((item) => (
                 <li
                   key={item.id}
@@ -185,6 +100,8 @@ const CheckoutPage = () => {
               <p className="fw-bold">Ksh. {totalPrice}</p>
             </div>
           </div>
+          <hr className="w-100 mb-4" />
+
           <div className="payment-info mb-4">
             <h3>Payment Information</h3>
             <div className="d-flex mb-3">
@@ -234,16 +151,112 @@ const CheckoutPage = () => {
               </div>
             </div>
             {paymentMethod === "mpesa" && <MpesaComp totalPrice={totalPrice} />}{" "}
-            {/* Conditionally render MpesaComp */}
-            {/* <Link to="/order-confirmation/:orderId" state={{ orderDetails }}> */}
-            <button
-              type="button"
-              onClick={handleCheckout}
-              className="btn btn-primary w-100 mt-5"
-            >
-              Place Order
-            </button>
-            {/* </Link> */}
+            <hr className="w-100 mb-4" />
+            <div className="shipping-info mb-4 mt-5">
+              <h3>Shipping Information</h3>
+              <form onSubmit={handleCheckout}>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">
+                    Name:
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="name"
+                    name="name"
+                    rows="1"
+                    value={shippingInfo.name}
+                    onChange={handleInputChange}
+                    required
+                  ></textarea>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="address" className="form-label">
+                    Address:
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="address"
+                    name="address"
+                    rows="2"
+                    value={shippingInfo.address}
+                    onChange={handleInputChange}
+                    required
+                  ></textarea>
+                </div>
+                <div className="d-flex mb-3">
+                  <div className="me-3">
+                    <label htmlFor="city" className="form-label">
+                      Phone No.:
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="phone_number"
+                      name="phone_number"
+                      value={shippingInfo.phone_number}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="me-3">
+                    <label htmlFor="city" className="form-label">
+                      City:
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="city"
+                      name="city"
+                      value={shippingInfo.city}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div className="me-3">
+                    <label htmlFor="postalCode" className="form-label">
+                      Postal Code:
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="postalCode"
+                      name="postalCode"
+                      value={shippingInfo.postalCode}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="country" className="form-label">
+                      Country:
+                    </label>
+                    <select
+                      className="form-select"
+                      id="country"
+                      name="country"
+                      value={shippingInfo.country}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="">Select Country...</option>
+                      <option value="KE">Kenya</option>
+                      <option value="TZ">Tanzania</option>
+                      <option value="UG">Uganda</option>
+                      <option value="RW">Rwanda</option>
+                      <option value="BI">Burundi</option>
+                      <option value="SS">South Sudan</option>
+                      <option value="ET">Ethiopia</option>
+                      <option value="ER">Eritrea</option>
+                      <option value="DJ">Djibouti</option>
+                      <option value="SO">Somalia</option>
+                    </select>
+                  </div>
+                </div>
+                <button type="submit" className="btn btn-primary w-100 mt-5">
+                  Place Order
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       )}
