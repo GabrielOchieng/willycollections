@@ -14,6 +14,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import ItemContextProvider from "./context/ItemContext";
 import ItemTypesPage from "./pages/ItemTypesPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -70,6 +71,7 @@ function App() {
                 }
               />
               <Route path="/auth" element={<AuthPage />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="/item/:id" element={<ItemPage />} />
               <Route path="/type/:type" element={<ItemTypesPage />} />
             </Routes>
