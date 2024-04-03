@@ -6,9 +6,9 @@ import emailjs from "@emailjs/browser";
 const OrderSuccess = ({ orderDetails }) => {
   const { dispatch } = useContext(CartContext);
 
-  const serviceId = "service_24lvd9i"; // Replace with your actual EmailJS service ID
-  const templateId = "template_lihqopb"; // Replace with your actual EmailJS template ID
-  const publicKey = "WrLNFNzq0IHmm7g4_"; // Replace with your EmailJS public key
+  const serviceId = "service_24lvd9i";
+  const templateId = "template_lihqopb";
+  const publicKey = "WrLNFNzq0IHmm7g4_";
   const templateParams = { orderDetails };
   console.log(templateParams);
   useEffect(() => {

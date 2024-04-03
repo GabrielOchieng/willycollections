@@ -65,18 +65,18 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           )}
         </button>
-        <div>
-          <Link to="/" className="navbar-brand font-bolder">
-            WILLYCOLLECTIONS
-          </Link>
-        </div>
+        <Link to="/" className="navbar-brand fs-3 fw-bold text-gemini">
+          WILLYCOLLECTIONS
+        </Link>
+
+        {/* Mobile Menu (Hidden on larger screens) */}
         <div
           className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/create" className="nav-link active">
+              <Link to="/create" className="nav-link">
                 SHOP ALL
               </Link>
             </li>
@@ -90,55 +90,53 @@ const Navbar = () => {
                 MEN'S WEAR
               </Link>
             </li>
-
             <li className="nav-item">
               <a href="#contact" className="nav-link">
                 CONTACT
               </a>
             </li>
           </ul>
-        </div>
-        <div>
-          <form
-            role="search"
-            className="mb-2 border rounded-pill d-flex navbar-collapse show"
-            onSubmit={handleSearchSubmit}
-          >
-            <IoSearch className="searchicon cursor-pointer" />
-            <input
-              className="form-control bg-body-tertiary border-0 shadow-none"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </form>
-          {isModalOpen && (
-            <ItemSearchModal
-              searchResults={searchResults}
-              searchTerm={searchTerm}
-              handleSearchSubmit={handleSearchSubmit}
-              onClose={() => setIsModalOpen(false)}
-            />
-          )}
-        </div>
-        <div className="d-flex gap-3 align-items-center ms-0 ms-lg-4">
-          <Link to="/cart" className="nav-link">
-            <span className="text-danger">{totalQuantity}</span>
-            <FiShoppingCart />
-          </Link>
-
-          {currentUser ? (
-            <button onClick={handleLogout} className="btn btn-secondary">
-              Logout
-            </button>
-          ) : (
-            <Link to="/auth" className="nav-link">
-              <IoPersonCircleOutline />
+          <div>
+            <form
+              role="search"
+              className="mb-2 border rounded-pill d-flex navbar-collapse show"
+              onSubmit={handleSearchSubmit}
+            >
+              <IoSearch className="searchicon cursor-pointer" />
+              <input
+                className="form-control bg-body-tertiary border-0 shadow-none"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                value={searchTerm}
+                onChange={handleSearchChange}
+              />
+            </form>
+            {isModalOpen && (
+              <ItemSearchModal
+                searchResults={searchResults}
+                searchTerm={searchTerm}
+                handleSearchSubmit={handleSearchSubmit}
+                onClose={() => setIsModalOpen(false)}
+              />
+            )}
+          </div>
+          <div className="d-flex gap-3 align-items-center mt-auto">
+            <Link to="/cart" className="nav-link">
+              <span className="text-danger">{totalQuantity}</span>
+              <FiShoppingCart />
             </Link>
-          )}
-        </div>{" "}
+            {currentUser ? (
+              <button onClick={handleLogout} className="btn btn-secondary">
+                Logout
+              </button>
+            ) : (
+              <Link to="/auth" className="nav-link">
+                <IoPersonCircleOutline />
+              </Link>
+            )}
+          </div>{" "}
+        </div>
       </div>
     </nav>
   );
