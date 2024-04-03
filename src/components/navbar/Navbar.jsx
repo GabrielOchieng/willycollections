@@ -128,10 +128,12 @@ const Navbar = () => {
                 <FiShoppingCart />
               </Link>
             )}
-            <Link to="/cart" className="nav-link">
-              <span className="text-danger"></span>
-              <FiShoppingCart />
-            </Link>
+            {!currentUser && (
+              <Link to="/cart" className="nav-link">
+                <span className="text-danger"></span>
+                <FiShoppingCart />
+              </Link>
+            )}
             {currentUser ? (
               <button onClick={handleLogout} className="btn btn-secondary">
                 Logout
