@@ -104,7 +104,7 @@ const Navbar = () => {
             >
               <IoSearch className="searchicon cursor-pointer" />
               <input
-                className="form-control bg-body-tertiary border-0 shadow-none"
+                className="form-control bg-body-tertiary border-0 shadow-none w-75"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
@@ -121,7 +121,7 @@ const Navbar = () => {
               />
             )}
           </div>
-          <div className="d-flex gap-3 align-items-center mt-auto">
+          <div className="d-flex flex-column gap-3 align-md-items-center flex-md-row ml-1 mt-auto">
             <Link to="/cart" className="nav-link">
               <span className="text-danger">{totalQuantity}</span>
               <FiShoppingCart />
