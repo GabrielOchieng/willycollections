@@ -247,7 +247,7 @@ const CheckoutPage = () => {
           </div>
         </div>
       )}
-      {showOrderSuccess && <OrderSuccess />}
+      {showOrderSuccess && <OrderSuccess orderDetails={orderDetails} />}
     </div>
   );
 };

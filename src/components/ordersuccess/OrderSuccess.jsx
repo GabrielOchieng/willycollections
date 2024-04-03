@@ -26,7 +26,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Import Link for navigation
 
-const OrderSuccess = ({ orderId }) => {
+const OrderSuccess = ({ orderDetails }) => {
   return (
     <div className="container mt-5 mb-5">
       <h2 className="text-center">Order Successful!</h2>
@@ -36,8 +36,8 @@ const OrderSuccess = ({ orderId }) => {
           Your order has been placed successfully!
         </h4>
         <p>
-          Thank you for your order. Your order ID is: <strong>{orderId}</strong>
-          .
+          Thank you for your order. Your items will be delivered in{" "}
+          <strong>{orderDetails.shippingInfo.city}</strong>.
         </p>
         <p>
           You will receive a confirmation email with your order details shortly.
