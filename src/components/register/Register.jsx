@@ -21,7 +21,7 @@ const Register = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate("/"); // Redirect to desired path after registration
+      navigate("/auth"); // Redirect to desired path after registration
     } catch (err) {
       setError(err.message);
     }
