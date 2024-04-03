@@ -15,7 +15,10 @@ const Featured = () => {
   }, []);
 
   return (
-    <div className="d-flex container containerfea flex-column align-items-center pt-5">
+    <div
+      className="d-flex container containerfea flex-column align-items-center pt-5"
+      id="featured"
+    >
       <div className="upperdiv text-center">
         <p>Shop by category</p>
         {items.length !== 0 && <h3>FEATURED ITEMS</h3>}

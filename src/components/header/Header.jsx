@@ -30,9 +30,11 @@ const Header = () => {
         </p>
         <p>Find all quality items you need at affordable prices</p>
         <h5>Delivery done countrywide at a small fee.</h5>
-        <button type="button" className="btn btn-dark fs-2">
-          Shop Now
-        </button>
+        <a href="#featured">
+          <button type="button" className="btn btn-dark fs-2">
+            Shop Now
+          </button>
+        </a>
       </div>
       <div className="right container">
         <img

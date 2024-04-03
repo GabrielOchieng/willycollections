@@ -4,6 +4,7 @@ import set from "../../assets/set.jpg";
 import good from "../../assets/good.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 const Product = () => {
   useEffect(() => {
@@ -32,9 +33,11 @@ const Product = () => {
           <img src={good} alt="" className="img-fluid" />
           <h4 className="fs-6 fw-bolder">Ladies Dress</h4>
           <div className="priceop d-flex align-items-center gap-1">
-            <button type="button" className="btn btn-dark fs-6">
-              More Options
-            </button>
+            <Link to="/type/women">
+              <button type="button" className="btn btn-dark fs-6">
+                More Options
+              </button>
+            </Link>
           </div>
         </div>
       </div>
