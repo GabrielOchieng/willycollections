@@ -102,7 +102,7 @@ class CartDataService {
     }
   };
 
-  createOrder = async (userId) => {
+  createOrder = async (userId, orderDetails) => {
     try {
       const userCartRef = doc(CartCollectionRef, userId);
       const cartDoc = await getDoc(userCartRef);
@@ -123,7 +123,7 @@ class CartDataService {
         const ordersRef = collection(db, "orders");
         const orderRef = await addDoc(ordersRef, {
           userId,
-          items: cartItems, // Include cart items in the order
+          orderDetails: orderDetails,
           createdAt: serverTimestamp(), // Use serverTimestamp for easier order creation time management
           orderId,
         });
