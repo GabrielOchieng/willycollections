@@ -9,7 +9,8 @@ const OrderSuccess = ({ orderDetails }) => {
   const serviceId = "service_24lvd9i"; // Replace with your actual EmailJS service ID
   const templateId = "template_lihqopb"; // Replace with your actual EmailJS template ID
   const publicKey = "WrLNFNzq0IHmm7g4_"; // Replace with your EmailJS public key
-
+  const templateParams = { orderDetails };
+  console.log(templateParams);
   useEffect(() => {
     const handleOrderSuccess = async () => {
       try {
@@ -18,9 +19,13 @@ const OrderSuccess = ({ orderDetails }) => {
         await emailjs.send(
           serviceId,
           templateId,
+
           {
-            to_email: email,
-            message: orderDetails,
+            to_email: email, // Recipient's email
+            templateParams: {
+              to_name: orderDetails.shippingInfo.name, // Assuming name is in shippingInfo
+              orderDetails: orderDetails,
+            },
           },
           publicKey
         );
