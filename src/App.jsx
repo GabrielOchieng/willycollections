@@ -30,14 +30,7 @@ function App() {
           <Navbar />
           <div className="content-container">
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <RequireAuth>
-                    <LandingPage />
-                  </RequireAuth>
-                }
-              />
+              <Route path="/" element={<LandingPage />} />
               <Route
                 path="/create"
                 element={
