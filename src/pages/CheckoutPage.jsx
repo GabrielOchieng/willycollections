@@ -170,6 +170,20 @@ const CheckoutPage = () => {
                   ></textarea>
                 </div>
                 <div className="mb-3">
+                  <label htmlFor="email" className="form-label">
+                    Email:
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    rows="1"
+                    value={shippingInfo.email}
+                    onChange={handleInputChange}
+                    required
+                  ></textarea>
+                </div>
+                <div className="mb-3">
                   <label htmlFor="address" className="form-label">
                     Address:
                   </label>

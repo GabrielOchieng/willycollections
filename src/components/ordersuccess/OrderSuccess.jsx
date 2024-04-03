@@ -1,8 +1,39 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import emailjs from "@emailjs/browser";
 
 const OrderSuccess = ({ orderDetails }) => {
+  const { dispatch } = useContext(CartContext);
+
+  const serviceId = "service_24lvd9i"; // Replace with your actual EmailJS service ID
+  const templateId = "template_lihqopb"; // Replace with your actual EmailJS template ID
+  const publicKey = "WrLNFNzq0IHmm7g4_"; // Replace with your EmailJS public key
+
+  const handleOrderSuccess = async () => {
+    try {
+      const email = orderDetails.shippingInfo.email; // Extract customer email
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          to_email: email,
+          orderDetails,
+        },
+        publicKey
+      );
+
+      console.log("Email sent successfully!");
+      dispatch({ type: "CLEAR_CART" });
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
+  };
+
+  useEffect(() => {
+    // Call handleOrderSuccess directly without event trigger
+    handleOrderSuccess();
+  }, []);
   return (
     <div className="container mt-5 mb-5 text-center">
       <h2 className="text-center">Order Successful!</h2>
