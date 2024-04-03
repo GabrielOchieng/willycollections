@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [error, setError] = useState(false);
@@ -72,7 +72,16 @@ const Register = () => {
         <button type="submit" className="btn btn-primary">
           Register
         </button>
+        <br />
         {error && <span className="text-danger mt-3">{error}</span>}
+        {!error && (
+          <span>
+            Already have an account?{" "}
+            <Link to="/auth" className="link">
+              Login
+            </Link>
+          </span>
+        )}
       </form>
     </div>
   );

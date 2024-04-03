@@ -122,8 +122,14 @@ const Navbar = () => {
             )}
           </div>
           <div className="d-flex flex-column gap-3 align-md-items-center flex-md-row ml-1 mt-auto">
+            {currentUser && (
+              <Link to="/cart" className="nav-link">
+                <span className="text-danger">{totalQuantity}</span>
+                <FiShoppingCart />
+              </Link>
+            )}
             <Link to="/cart" className="nav-link">
-              <span className="text-danger">{totalQuantity}</span>
+              <span className="text-danger"></span>
               <FiShoppingCart />
             </Link>
             {currentUser ? (
