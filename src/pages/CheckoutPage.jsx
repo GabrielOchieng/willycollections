@@ -104,7 +104,7 @@ const CheckoutPage = () => {
 
           <div className="payment-info mb-4">
             <h3>Payment Information</h3>
-            <div className="d-flex mb-3">
+            <div className="d-flex mb-3 flex-column flex-md-row">
               <div className="form-check me-3">
                 <input
                   className="form-check-input"
@@ -197,7 +197,7 @@ const CheckoutPage = () => {
                     required
                   ></textarea>
                 </div>
-                <div className="d-flex mb-3">
+                <div className="d-flex mb-3 d-flex flex-column flex-md-row">
                   <div className="me-3">
                     <label htmlFor="city" className="form-label">
                       Phone No.:
