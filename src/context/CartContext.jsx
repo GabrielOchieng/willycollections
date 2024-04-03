@@ -96,7 +96,7 @@ export const CartContextProvider = ({ children }) => {
   const removeItemFromCart = async (userId, itemId) => {
     try {
       await Cart_Services.deleteCartItem(userId, itemId);
-      // dispatch({ type: "REMOVE_FROM_CART", payload: itemId }); // Dispatch after successful deletion
+      dispatch({ type: "REMOVE_FROM_CART_SUCCESS", payload: itemId }); // Dispatch after successful deletion
     } catch (error) {
       dispatch({ type: "REMOVE_FROM_CART_FAILURE", error: error.message });
     }
@@ -112,14 +112,33 @@ export const CartContextProvider = ({ children }) => {
       dispatch({ type: "CREATE_ORDER_SUCCESS", payload: generatedOrderId });
       alert("Order placed successfully! Your order ID is: " + generatedOrderId);
 
-      return generatedOrderId; // Return the generated order ID
+      return generatedOrderId;
     } catch (error) {
       // ... handle errors
       console.error("Error creating order:", error);
-      dispatch({ type: "CREATE_ORDER_FAILURE", error: error.message }); // Dispatch failure action
+      dispatch({ type: "CREATE_ORDER_FAILURE", error: error.message });
       alert("Order placement failed. Please try again later.");
     }
   };
+
+  // const createOrder = async (orderDetails) => {
+  //   dispatch({ type: "CREATE_ORDER_REQUEST" });
+  //   try {
+  //     const generatedOrderId = await Cart_Services.createOrder(
+  //       userId,
+  //       orderDetails
+  //     );
+  //     dispatch({ type: "CREATE_ORDER_SUCCESS", payload: generatedOrderId });
+  //     alert("Order placed successfully! Your order ID is: " + generatedOrderId);
+
+  //     return generatedOrderId; // Return the generated order ID
+  //   } catch (error) {
+  //     // ... handle errors
+  //     console.error("Error creating order:", error);
+  //     dispatch({ type: "CREATE_ORDER_FAILURE", error: error.message }); // Dispatch failure action
+  //     alert("Order placement failed. Please try again later.");
+  //   }
+  // };
 
   // const fetchOrder = async (orderId) => {
   //   setLoading(true); // Set loading state

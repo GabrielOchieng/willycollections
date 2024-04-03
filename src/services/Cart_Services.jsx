@@ -10,6 +10,7 @@ import {
   setDoc,
   addDoc,
   serverTimestamp,
+  writeBatch,
 } from "firebase/firestore";
 
 export const CartCollectionRef = collection(db, "users"); // Define a reference for carts collection
@@ -105,21 +106,35 @@ class CartDataService {
   createOrder = async (userId, orderDetails) => {
     try {
       const userCartRef = doc(CartCollectionRef, userId);
-      const cartDoc = await getDoc(userCartRef);
+      const cartDoc = await getDoc(userCartRef); // Check if cart document exists
 
       if (cartDoc.exists()) {
         const itemsCollectionRef = collection(userCartRef, "carts");
-        const querySnapshot = await getDocs(itemsCollectionRef);
-        const cartItems = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+
+        // Create a write batch
+        const batch = writeBatch(db);
+
+        try {
+          // Fetch cart items (assuming you want to delete them)
+          const querySnapshot = await getDocs(itemsCollectionRef);
+
+          // Add delete operations for each item in the cart
+          querySnapshot.forEach((doc) => {
+            batch.delete(doc.ref);
+          });
+
+          // Commit the batch write after all deletions are added
+          await batch.commit();
+        } catch (error) {
+          console.error("Error fetching or deleting cart items:", error);
+          throw error; // Re-throw for higher-level handling
+        }
 
         // Generate a unique order ID (consider using a library like `uuid`)
         const orderId = crypto.randomUUID();
         console.log(orderId);
 
-        // Create a new order document in Firestore (replace 'orders' with your collection name)
+        // Create a new order document in Firestore
         const ordersRef = collection(db, "orders");
         const orderRef = await addDoc(ordersRef, {
           userId,
@@ -131,42 +146,18 @@ class CartDataService {
         // Clear the user's cart after successful order creation (optional)
         await setDoc(userCartRef, {});
 
-        // dispatch({ type: "CREATE_ORDER_SUCCESS", payload: orderId }); // Dispatch success action with order ID
+        // ... rest of order creation logic (e.g., generating order ID, storing order details)
 
-        return orderId; // Return the created order ID
+        return orderId; // Return the generated order ID
       } else {
         console.warn("Cart document not found for user:", userId);
         return null; // Or throw an error depending on your logic
       }
     } catch (error) {
       console.error("Error creating order:", error);
-      // Handle errors (optional)
-      return null;
+      throw error; // Re-throw for higher-level handling
     }
   };
-
-  //   fetchOrder = async (orderId) => {
-  //     try {
-  //       // Reference the orders collection
-  //       const ordersRef = collection(db, "orders");
-
-  //       // Get the specific order document by ID
-  //       const orderDoc = await getDoc(doc(ordersRef, orderId));
-
-  //       if (orderDoc.exists) {
-  //         // Retrieve the order data
-  //         const orderData = orderDoc.data();
-  //         return orderData;
-  //       } else {
-  //         // Handle the case where the order doesn't exist
-  //         console.warn("Order not found:", orderId);
-  //         return null;
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching order:", error);
-  //       throw error; // Re-throw the error for higher-level handling
-  //     }
-  //   };
 
   fetchOrder = async (orderId) => {
     try {
