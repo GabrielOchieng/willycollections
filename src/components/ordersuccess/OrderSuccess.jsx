@@ -10,30 +10,34 @@ const OrderSuccess = ({ orderDetails }) => {
   const templateId = "template_lihqopb"; // Replace with your actual EmailJS template ID
   const publicKey = "WrLNFNzq0IHmm7g4_"; // Replace with your EmailJS public key
 
-  const handleOrderSuccess = async () => {
-    try {
-      const email = orderDetails.shippingInfo.email; // Extract customer email
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          to_email: email,
-          orderDetails,
-        },
-        publicKey
-      );
-
-      console.log("Email sent successfully!");
-      dispatch({ type: "CLEAR_CART" });
-    } catch (error) {
-      console.error("Error sending email:", error);
-    }
-  };
-
   useEffect(() => {
-    // Call handleOrderSuccess directly without event trigger
+    const handleOrderSuccess = async () => {
+      try {
+        const email = orderDetails.shippingInfo.email; // Extract customer email
+        console.log(email);
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            to_email: email,
+            message: orderDetails,
+          },
+          publicKey
+        );
+
+        console.log("Email sent successfully!");
+        dispatch({ type: "CLEAR_CART" });
+      } catch (error) {
+        console.error("Error sending email:", error);
+      }
+    };
     handleOrderSuccess();
   }, []);
+
+  // useEffect(() => {
+  //   // Call handleOrderSuccess directly without event trigger
+  //   handleOrderSuccess();
+  // }, []);
   return (
     <div className="container mt-5 mb-5 text-center">
       <h2 className="text-center">Order Successful!</h2>
