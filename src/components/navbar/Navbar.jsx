@@ -47,7 +47,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg mb-5 fixed-top bg-light mb-2">
+    <nav className="navbar navbar-expand-lg fixed-top bg-light mb-2">
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <button
           className="navbar-toggler mb-2"
