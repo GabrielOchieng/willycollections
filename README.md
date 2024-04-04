@@ -33,7 +33,7 @@ Setup Instructions:
 Clone the repository:
 
 Bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/GabrielOchieng/willycollections.git
 
 Install dependencies:
 
