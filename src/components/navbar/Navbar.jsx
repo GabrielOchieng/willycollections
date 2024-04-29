@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoPersonCircleOutline } from "react-icons/io5";
-import "./navbar.css"; // Assuming your styles are in this file
+import "./navbar.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { AuthContext } from "../../context/AuthContext";
@@ -16,9 +16,14 @@ const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { totalQuantity } = useContext(CartContext);
+  const [isLoading, setIsLoading] = useState(true); // State for loading indicator
+  const { loadCartFromFirebase, totalQuantity } = useContext(CartContext);
   const { currentUser } = useContext(AuthContext);
   const { items } = useContext(ItemContext);
+
+  const currentUserId = currentUser?.uid;
+
+  console.log(currentUser);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -45,6 +50,21 @@ const Navbar = () => {
     setIsModalOpen(false);
     setSearchTerm("");
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        await loadCartFromFirebase(currentUserId); // Call context fetch if needed
+      } catch (error) {
+        console.error("Error fetching cart items:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [currentUserId]);
 
   return (
     <nav className="navbar navbar-expand-lg fixed-top bg-light mb-2">
@@ -77,17 +97,17 @@ const Navbar = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/create" className="nav-link">
-                SHOP ALL
+                SHOP
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/type/women" className="nav-link">
-                WOMEN'S WEAR
+                WOMEN
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/type/men" className="nav-link">
-                MEN'S WEAR
+                MEN
               </Link>
             </li>
             <li className="nav-item">

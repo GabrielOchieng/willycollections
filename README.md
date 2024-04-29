@@ -57,24 +57,24 @@ Project Structure
 
 your-repo-name/
 ├── App.css
-├── App.js  # Main application component
+├── App.js # Main application component
 ├── components/
-│   ├── footer/Footer.js  # Footer component
-│   └── navbar/Navbar.js  # Navbar component
+│ ├── footer/Footer.js # Footer component
+│ └── navbar/Navbar.js # Navbar component
 ├── context/
-│   ├── AuthContext.js  # Context for authentication state
-│   └── CartContext.js  # Context for cart state (optional, Redux can be used)
+│ ├── AuthContext.js # Context for authentication state
+│ └── CartContext.js # Context for cart state (optional, Redux can be used)
 ├── pages/
-│   ├── AuthPage.js  # Login and registration page
-│   ├── CartPage.js  # Shopping cart page
-│   ├── CheckoutPage.js  # Checkout page for payment processing
-│   ├── CreateItemPage.js  # Page for creating new product listings
-│   ├── ItemPage.js  # Individual product details page
-│   ├── ItemTypesPage.js  # Page for browsing products by category
-│   ├── LandingPage.js  # Homepage
-│   └── OrderConfirmationPage.js  # Order confirmation page
-├── RegisterPage.js  # Registration page (separate from AuthPage)
-└── utils/  # Utility functions (optional)
+│ ├── AuthPage.js # Login and registration page
+│ ├── CartPage.js # Shopping cart page
+│ ├── CheckoutPage.js # Checkout page for payment processing
+│ ├── CreateItemPage.js # Page for creating new product listings
+│ ├── ItemPage.js # Individual product details page
+│ ├── ItemTypesPage.js # Page for browsing products by category
+│ ├── LandingPage.js # Homepage
+│ └── OrderConfirmationPage.js # Order confirmation page
+├── RegisterPage.js # Registration page (separate from AuthPage)
+└── utils/ # Utility functions (optional)
 Features and Functionality
 
 User Authentication:
@@ -102,4 +102,3 @@ Building an administration panel for managing products and orders
 Contributing
 
 Feel free to fork the repository, make your changes, and submit pull requests to contribute to this project's development.
-

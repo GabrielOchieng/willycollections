@@ -17,8 +17,11 @@ export const CartContextProvider = ({ children }) => {
   const [cart, dispatch] = useReducer(CartReducer, {
     shoppingCart: [],
     totalPrice: 0,
-    totalQty: 0,
+    totalQuantity: 0,
   });
+
+  console.log(cart);
+
   const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [orderId, setOrderId] = useState(null); // Added state for order ID
