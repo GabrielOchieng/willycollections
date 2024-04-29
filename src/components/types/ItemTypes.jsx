@@ -19,7 +19,7 @@ const ItemTypes = () => {
       setFilteredItems(filtered); // Directly set filtered items
     }
     setIsLoading(false); // Indicate loading finished
-  }, [items]);
+  }, [type, items]);
 
   return (
     <div className="container mt-5 mb-5">
