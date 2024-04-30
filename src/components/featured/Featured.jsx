@@ -5,7 +5,6 @@ import { ItemContext } from "../../context/ItemContext";
 const Featured = () => {
   const { items } = useContext(ItemContext);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(items.length);
 
   useEffect(() => {
     // Simulate data fetching delay (remove in production)

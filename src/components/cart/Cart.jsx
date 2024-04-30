@@ -17,16 +17,36 @@ const Cart = () => {
   const navigate = useNavigate();
   const { dispatch } = useContext(CartContext);
 
-  const currentUserId = currentUser.uid;
+  const currentUserId = currentUser?.uid;
   const [isLoading, setIsLoading] = useState(false); // State for loading indicator
+  const [cartItems, setCartItems] = useState();
 
   const isEmpty = shoppingCart.length === 0;
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setIsLoading(true);
+  //     try {
+  //       await loadCartFromFirebase(currentUserId); // Call context fetch if needed
+  //     } catch (error) {
+  //       console.error("Error fetching cart items:", error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [currentUserId]);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        loadCartFromFirebase(currentUserId); // Call context fetch if needed
+        const response = await loadCartFromFirebase(currentUserId);
+        if (response) {
+          console.log(response);
+          setCartItems(response);
+        }
       } catch (error) {
         console.error("Error fetching cart items:", error);
       } finally {
@@ -35,7 +55,7 @@ const Cart = () => {
     };
 
     fetchData();
-  }, [currentUserId]);
+  }, [currentUserId, currentUser]);
 
   const handleCheckout = () => {
     // Implement your checkout logic here
