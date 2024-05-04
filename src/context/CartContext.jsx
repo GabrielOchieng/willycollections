@@ -1,4 +1,10 @@
-import React, { createContext, useReducer, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useReducer,
+  useEffect,
+  useState,
+  useContext,
+} from "react";
 import {
   collection,
   getDocs,
@@ -10,6 +16,7 @@ import { auth, db } from "../firebase";
 import { CartReducer } from "./CartReducer";
 import { onAuthStateChanged } from "firebase/auth";
 import Cart_Services from "../services/Cart_Services";
+import { AuthContext } from "./AuthContext";
 
 export const CartContext = createContext();
 
@@ -20,11 +27,15 @@ export const CartContextProvider = ({ children }) => {
     totalQuantity: 0,
   });
 
-  console.log(cart);
+  // console.log(cart);
+  const { currentUser } = useContext(AuthContext);
+  const currentUserId = currentUser?.uid;
 
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState(currentUserId);
   const [loading, setLoading] = useState(false);
   const [orderId, setOrderId] = useState(null); // Added state for order ID
+
+  // console.log(userId);
 
   const addToCart = async (itemData) => {
     setLoading(true); // Set loading state
@@ -35,12 +46,17 @@ export const CartContextProvider = ({ children }) => {
         userId
       );
 
-      // Only dispatch success if the item was actually added (not a duplicate)
+      // Only dispatch success after successful server-side addition (pessimistic update)
       if (addedItemId) {
         dispatch({
           type: "ADD_TO_CART_SUCCESS",
           payload: { ...itemData, id: addedItemId },
         });
+      } else {
+        // Handle scenario where item wasn't added (e.g., duplicate on server)
+        console.warn(
+          "Item might already exist in cart. Consider updating quantity."
+        );
       }
     } catch (error) {
       dispatch({ type: "ADD_TO_CART_FAILURE", error: error.message });
@@ -48,6 +64,30 @@ export const CartContextProvider = ({ children }) => {
       setLoading(false); // Reset loading state
     }
   };
+
+  // const addToCart = async (itemData) => {
+  //   setLoading(true); // Set loading state
+
+  //   // console.log(itemData);
+  //   try {
+  //     const addedItemId = await Cart_Services.addToCartOnFirebase(
+  //       itemData,
+  //       userId
+  //     );
+
+  //     // Only dispatch success if the item was actually added (not a duplicate)
+  //     if (addedItemId) {
+  //       dispatch({
+  //         type: "ADD_TO_CART_SUCCESS",
+  //         payload: { ...itemData, id: addedItemId },
+  //       });
+  //     }
+  //   } catch (error) {
+  //     dispatch({ type: "ADD_TO_CART_FAILURE", error: error.message });
+  //   } finally {
+  //     setLoading(false); // Reset loading state
+  //   }
+  // };
 
   const loadCartFromFirebase = async () => {
     if (!userId) {
@@ -64,18 +104,7 @@ export const CartContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // Initialize Firebase app (if needed)
-    // ... initialization code here ...
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // console.log("User authenticated:", user);
-        setUserId(user.uid);
-        loadCartFromFirebase();
-      } else {
-        console.log("User not authenticated.");
-      }
-    });
+    loadCartFromFirebase();
   }, []);
 
   useEffect(() => {
@@ -124,41 +153,6 @@ export const CartContextProvider = ({ children }) => {
     }
   };
 
-  // const createOrder = async (orderDetails) => {
-  //   dispatch({ type: "CREATE_ORDER_REQUEST" });
-  //   try {
-  //     const generatedOrderId = await Cart_Services.createOrder(
-  //       userId,
-  //       orderDetails
-  //     );
-  //     dispatch({ type: "CREATE_ORDER_SUCCESS", payload: generatedOrderId });
-  //     alert("Order placed successfully! Your order ID is: " + generatedOrderId);
-
-  //     return generatedOrderId; // Return the generated order ID
-  //   } catch (error) {
-  //     // ... handle errors
-  //     console.error("Error creating order:", error);
-  //     dispatch({ type: "CREATE_ORDER_FAILURE", error: error.message }); // Dispatch failure action
-  //     alert("Order placement failed. Please try again later.");
-  //   }
-  // };
-
-  // const fetchOrder = async (orderId) => {
-  //   setLoading(true); // Set loading state
-  //   try {
-  //     const fetchedOrder = await Cart_Services.fetchOrder(orderId);
-  //     if (fetchedOrder) {
-  //       dispatch({ type: "FETCH_ORDER_SUCCESS", payload: fetchedOrder });
-  //     } else {
-  //       console.warn("Order not found:", orderId);
-  //     }
-  //   } catch (error) {
-  //     dispatch({ type: "FETCH_ORDER_FAILURE", error: error.message });
-  //   } finally {
-  //     setLoading(false); // Reset loading state
-  //   }
-  // };
-
   const fetchOrder = async (orderId) => {
     try {
       setLoading(true);
@@ -192,6 +186,8 @@ export const CartContextProvider = ({ children }) => {
     const newTotals = calculateCartTotal(shoppingCart);
     dispatch({ type: "UPDATE_TOTALS", payload: newTotals });
   }, [cart.shoppingCart]);
+
+  // console.log(cart.shoppingCart[0].imageUrl);
 
   return (
     <CartContext.Provider

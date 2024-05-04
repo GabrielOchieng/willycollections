@@ -23,40 +23,6 @@ const Cart = () => {
 
   const isEmpty = shoppingCart.length === 0;
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setIsLoading(true);
-  //     try {
-  //       await loadCartFromFirebase(currentUserId); // Call context fetch if needed
-  //     } catch (error) {
-  //       console.error("Error fetching cart items:", error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [currentUserId]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const response = await loadCartFromFirebase(currentUserId);
-        if (response) {
-          console.log(response);
-          setCartItems(response);
-        }
-      } catch (error) {
-        console.error("Error fetching cart items:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [currentUserId, currentUser]);
-
   const handleCheckout = () => {
     // Implement your checkout logic here
     // This function could redirect to a checkout page, trigger an API call, etc.
